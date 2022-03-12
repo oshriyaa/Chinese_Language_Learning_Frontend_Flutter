@@ -1,6 +1,5 @@
 import 'package:chinese_learning/routes/routes.dart';
 import 'package:flutter/material.dart';
-
 import 'routes/route_constant.dart';
 
 void main() {

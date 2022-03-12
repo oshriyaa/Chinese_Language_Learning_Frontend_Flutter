@@ -1,11 +1,15 @@
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
+import 'package:chinese_learning/presentation/widgets/custom_button.dart';
+
 import 'package:chinese_learning/presentation/widgets/validators.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
+import '../../widgets/custom_textfield.dart';
+
 class LoginForm extends StatefulWidget {
-  LoginForm({Key? key}) : super(key: key);
+  const LoginForm({Key? key}) : super(key: key);
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -30,130 +34,70 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Form(
-        key: _loginKey,
-        child: Column(
-          children: [
-            TextFormField(
-              controller: _emailController,
-              onChanged: (value) {
-                emailText = value;
-              },
-              validator: (value) {
-                return TextValidator.emailValidation(value);
-              },
-              
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-              ),
-              decoration: InputDecoration(
-                labelText: "Email",
-                hintText: "Enter your email address.",
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                filled: true,
-                fillColor: AppColor.L_RED,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide(color: AppColor.GREY),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide(color: AppColor.GREY),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide(color: AppColor.GREY),
-                ),
-              ),
+      key: _loginKey,
+      child: Column(
+        // ignore: prefer_const_literals_to_create_immutables
+        children: [
+          const Text(
+            "Login",
+            style: TextStyle(
+              color: CustomColors.RED,
+              fontFamily: 'Bitter',
+              fontSize: 40,
             ),
-            SizedBox(
-              height: size.height * 0.03,
-            ),
-            TextFormField(
-              controller: _passwordController,
-              validator: (value) {
-                return TextValidator.passwordValidation(value);
-              },
-              onSaved: (value) {
-                passwordText = value;
-              },
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              obscureText: _obscureText,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
+          ),
+          CustomTextField(
+            fieldHint: "Enter your Email.",
+            fieldLabel: "Email",
+            controller: _emailController,
+            save: (value) {
+              emailText = value;
+            },
+            obscure: false,
+            validation: (value) {
+              return TextValidator.emailValidation(value);
+            },
+          ),
+          CustomTextField(
+            fieldHint: "Enter your password.",
+            fieldLabel: "Password",
+            controller: _passwordController,
+            suffixIcon: IconButton(
+              icon: Icon(
+                _obscureText == true ? Icons.visibility_off : Icons.visibility,
               ),
-              decoration: InputDecoration(
-                labelText: "Password",
-                hintText: "Enter your password.",
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    _obscureText == true
-                        ? Icons.visibility_off
-                        : Icons.visibility,
+              onPressed: () {
+                print('The eye visibility is working.');
+                setState(() {
+                  _obscureText = !_obscureText;
+                });
+              },
+            ),
+            obscure: _obscureText,
+            save: (value) {
+              passwordText = value;
+            },
+            validation: (value) {
+              return TextValidator.passwordValidation(value);
+            },
+          ),
+          CustomFormButton(
+            buttonText: "Login",
+            save: () {
+              if (_loginKey.currentState!.validate()) {
+                print('Validated');
+                _loginKey.currentState!.save();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LandingScreen(),
                   ),
-                  onPressed: () {
-                    print('The eye visibility is working.');
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                ),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                filled: true,
-                fillColor: AppColor.L_RED,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide(color: AppColor.GREY),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide(color: AppColor.GREY),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide(color: AppColor.GREY),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            Container(
-              width: size.width * 0.4,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  backgroundColor: AppColor.RED,
-                  padding: const EdgeInsets.all(10.0),
-                  primary: Colors.black,
-                  textStyle: const TextStyle(fontSize: 15),
-                ),
-                onPressed: () {
-                  if (_loginKey.currentState!.validate()) {
-                    print('Validated');
-                    _loginKey.currentState!.save();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LandingScreen(),
-                      ),
-                    );
-
-                    print('should login');
-                  }
-                },
-                child: const Text(
-                  'Login',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-          ],
-        ));
+                );
+              }
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:chinese_learning/presentation/colors/colors.dart';
+import 'package:chinese_learning/presentation/screens/login%20pages/login_screen.dart';
 import 'package:chinese_learning/presentation/screens/signup%20pages/signup_form.dart';
-import 'package:chinese_learning/presentation/screens/signup%20pages/signup_textfield.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -14,21 +14,36 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: AppColor.WHITE,
-      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Center(
-          child: Text(
-            "Sign Up",
-            style: TextStyle(
-              color: AppColor.RED,
-              fontSize: 40,
-            ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: CustomColors.WHITE,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 100),
+                child: Center(child: SignUpForm()),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 50, 0, 30),
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Already registered? Login.",
+                      style: TextStyle(color: CustomColors.RED),
+                    )),
+              ),
+            ],
           ),
         ),
-        SizedBox(height: size.height * 0.03,),
-        SignUpForm(),
-      ]),
+      ),
     );
   }
 }

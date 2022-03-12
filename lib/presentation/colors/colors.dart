@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class AppColor {
+class CustomColors {
   static const WHITE = Color(0xFFFFFFFF);
   static const L_RED = Color(0xFFf1E9E9);
   static const GREY = Color(0xFF707070);
