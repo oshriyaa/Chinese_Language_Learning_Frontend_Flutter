@@ -1,7 +1,9 @@
+import 'package:chinese_learning/presentation/screens/dashboard/sub_about/description.dart';
 import 'package:flutter/material.dart';
 
 import '../../../colors/colors.dart';
 import '../../../styling/textstyle.dart';
+import 'history.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({Key? key}) : super(key: key);
@@ -17,15 +19,19 @@ class AboutPage extends StatelessWidget {
         // automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.favorite),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HistoryPage(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.book),
           ),
         ],
       ),
+      body: const AboutDescription(),
     );
   }
 }

@@ -1,6 +1,5 @@
 // ignore_for_file: sized_box_for_whitespace
 
-import 'package:chinese_learning/presentation/widgets/validators.dart';
 import 'package:flutter/material.dart';
 
 import '../colors/colors.dart';
@@ -51,24 +50,13 @@ class CustomTextField extends StatelessWidget {
                 const TextStyle(fontFamily: 'Bitter', color: CustomColors.RED),
             hintText: fieldHint,
             hintStyle: const TextStyle(fontFamily: 'Bitter'),
-            contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+            contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
             filled: true,
             fillColor: CustomColors.L_RED,
             suffixIcon: suffixIcon,
           ),
           obscureText: obscure,
         ),
-        
-        // decoration: const BoxDecoration(
-        //   boxShadow: [
-        //     BoxShadow(
-        //       color: CustomColors.RED,
-        //       blurRadius: 10,
-        //       spreadRadius: 1,
-        //       offset: Offset(0, 1),
-        //     ),
-        //   ],
-        // ),
       ),
     );
   }

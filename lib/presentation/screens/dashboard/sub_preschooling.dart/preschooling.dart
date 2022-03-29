@@ -1,3 +1,4 @@
+import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_preschooling.dart/chinese_alphabets.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_preschooling.dart/nepali_alphabets.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_preschooling.dart/numbers.dart';
@@ -29,12 +30,15 @@ class _PreschoolingScreenState extends State<PreschoolingScreen> {
           // automaticallyImplyLeading: false,
           actions: [
             IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.favorite),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.search),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LandingScreen(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.home),
             ),
           ],
         ),

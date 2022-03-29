@@ -11,7 +11,7 @@ class VocabularyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    // var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: CustomColors.L_RED,
       drawer: const CustomDrawer(),
@@ -45,7 +45,7 @@ class VocabularyScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const WordDisplayScreen(),
+                          builder: (context) => const WordDisplayScreen(categoryID: 'C1',),
                         ));
                   },
                 ),
@@ -57,7 +57,7 @@ class VocabularyScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const WordDisplayScreen(),
+                          builder: (context) => const WordDisplayScreen(categoryID: 'C02',),
                         ));
                   },
                 ),

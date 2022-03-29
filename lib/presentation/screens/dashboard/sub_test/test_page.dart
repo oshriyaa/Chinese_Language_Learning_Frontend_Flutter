@@ -1,3 +1,4 @@
+import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/questions.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/results.dart';
 import 'package:chinese_learning/presentation/widgets/custom_select_button.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/material.dart';
 import '../../../colors/colors.dart';
 import '../../../styling/textstyle.dart';
 import '../../../widgets/custom_drawer.dart';
-
 
 class TestPage extends StatelessWidget {
   const TestPage({Key? key}) : super(key: key);
@@ -23,13 +23,15 @@ class TestPage extends StatelessWidget {
         // automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.favorite),
+            onPressed: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LandingScreen(),
+                  ),
+                );},
+            icon: const Icon(Icons.home),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
-          ),
+          
         ],
       ),
       body: Center(
@@ -37,22 +39,34 @@ class TestPage extends StatelessWidget {
           child: Column(
             children: [
               CustomSelectButton(
-                buttonName: "Take a test",
-                onPress: (){ Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>  const QuestionPage(),
-                    ));
-              },
+                buttonName: "Level: Easy",
+                onPress: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const QuestionPage(),
+                      ));
+                },
               ),
               CustomSelectButton(
-                buttonName: "View test results",
-                onPress: (){ Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>  const UserResults(),
-                    ));
-              },
+                buttonName: "Level: Hard",
+                onPress: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const UserResults(),
+                      ));
+                },
+              ),
+              CustomSelectButton(
+                buttonName: "Audio Test",
+                onPress: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const UserResults(),
+                      ));
+                },
               ),
             ],
           ),

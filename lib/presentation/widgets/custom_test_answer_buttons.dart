@@ -6,7 +6,7 @@ import '../colors/colors.dart';
 class CustomTestAnswerButtonWidget extends StatefulWidget {
   final String? buttonText;
   final Function()? onPress;
-  CustomTestAnswerButtonWidget({Key? key, this.buttonText, this.onPress})
+  const CustomTestAnswerButtonWidget({Key? key, this.buttonText, this.onPress})
       : super(key: key);
 
   @override

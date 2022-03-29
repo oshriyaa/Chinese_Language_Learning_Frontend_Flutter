@@ -1,4 +1,3 @@
-import 'package:chinese_learning/presentation/screens/dashboard/learn.dart';
 import 'package:flutter/material.dart';
 
 import '../colors/colors.dart';
@@ -11,7 +10,11 @@ class FeatureContainer extends StatelessWidget {
   final Function()? tapFunction;
 
   const FeatureContainer(
-      {Key? key, this.tileTitle, this.tileSubHeading, this.image,this.tapFunction})
+      {Key? key,
+      this.tileTitle,
+      this.tileSubHeading,
+      this.image,
+      this.tapFunction})
       : super(key: key);
 
   @override
@@ -46,20 +49,20 @@ class FeatureContainer extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 5),
                 child: ListTile(
                   onTap: tapFunction,
-                  leading: SizedBox(width: 120),
+                  leading: const SizedBox(width: 120),
                   title: Text(
                     tileTitle!,
                     style: StyleText.featureHeading,
                   ),
                   subtitle: Padding(
-                    padding: EdgeInsets.only(top: 7),
+                    padding: const EdgeInsets.only(top: 7),
                     child: Text(
                       tileSubHeading!,
                       style: StyleText.featureSubHeading,
                     ),
                   ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 30.0),
                   dense: true,
                 ),
               ),

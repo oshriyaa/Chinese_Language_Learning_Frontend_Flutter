@@ -32,7 +32,7 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    // var size = MediaQuery.of(context).size;
     return Form(
       key: _loginKey,
       child: Column(
@@ -67,7 +67,7 @@ class _LoginFormState extends State<LoginForm> {
                 _obscureText == true ? Icons.visibility_off : Icons.visibility,
               ),
               onPressed: () {
-                print('The eye visibility is working.');
+                // print('The eye visibility is working.');
                 setState(() {
                   _obscureText = !_obscureText;
                 });
@@ -85,12 +85,12 @@ class _LoginFormState extends State<LoginForm> {
             buttonText: "Login",
             save: () {
               if (_loginKey.currentState!.validate()) {
-                print('Validated');
+                // print('Validated');
                 _loginKey.currentState!.save();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LandingScreen(),
+                    builder: (context) => const LandingScreen(),
                   ),
                 );
               }

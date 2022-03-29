@@ -1,14 +1,12 @@
 import 'package:chinese_learning/presentation/screens/login%20pages/login_screen.dart';
 import 'package:chinese_learning/presentation/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
-
 import '../../colors/colors.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/validators.dart';
-import '../dashboard/landing_screen.dart';
 
 class SignUpForm extends StatefulWidget {
-  SignUpForm({Key? key}) : super(key: key);
+  const SignUpForm({Key? key}) : super(key: key);
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
@@ -38,7 +36,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    // var size = MediaQuery.of(context).size;
 
     // ignore: sized_box_for_whitespace
     return Form(
@@ -100,7 +98,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       : Icons.visibility,
                 ),
                 onPressed: () {
-                  print('The eye visibility is working.');
+                  // print('The eye visibility is working.');
                   setState(() {
                     _obscureText = !_obscureText;
                   });
@@ -118,7 +116,7 @@ class _SignUpFormState extends State<SignUpForm> {
               buttonText: "Sign Up",
               save: () {
                 if (_signUpKey.currentState!.validate()) {
-                  print('Validated');
+                  // print('Validated');
                   _signUpKey.currentState!.save();
                   Navigator.push(
                     context,

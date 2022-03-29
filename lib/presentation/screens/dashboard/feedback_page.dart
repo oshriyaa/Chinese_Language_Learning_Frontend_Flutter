@@ -1,12 +1,10 @@
-import 'package:chinese_learning/presentation/widgets/custom_textfield.dart';
-import 'package:chinese_learning/routes/route_constant.dart';
 import 'package:flutter/material.dart';
 
 import '../../colors/colors.dart';
 import '../../styling/textstyle.dart';
 
 class FeedbackPage extends StatefulWidget {
-  FeedbackPage({Key? key}) : super(key: key);
+  const FeedbackPage({Key? key}) : super(key: key);
 
   @override
   State<FeedbackPage> createState() => _FeedbackPageState();

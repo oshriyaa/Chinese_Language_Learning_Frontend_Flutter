@@ -21,6 +21,14 @@ class StyleText {
     // fontWeight: FontWeight.bold,
   );
 
+static const aboutDesc = TextStyle(
+    fontSize: 15,
+    fontFamily: 'Bitter',
+    color: CustomColors.RED,
+    
+    // fontWeight: FontWeight.bold,
+    
+  );
   static const categoryHeading = TextStyle(
     fontSize: 20,
     fontFamily: 'Bitter',
@@ -39,6 +47,13 @@ class StyleText {
 
   static const testAnswerButtons = TextStyle(
     fontSize: 23,
+    fontFamily: 'Bitter',
+    color: CustomColors.RED,
+    // fontWeight: FontWeight.bold,
+  );
+
+  static const vocabularyText = TextStyle(
+    fontSize: 30,
     fontFamily: 'Bitter',
     color: CustomColors.RED,
     // fontWeight: FontWeight.bold,

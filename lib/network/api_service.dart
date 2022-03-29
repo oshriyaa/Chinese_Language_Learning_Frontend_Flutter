@@ -1,27 +1,27 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:chinese_learning/network/url.dart';
 import 'package:http/http.dart' as http;
-
 import '../models/vocabulary_model.dart';
+
 
 class DictionaryService {
   Future<List<VocabularyModel>> getMeaning() async {
-    final url = URL;
     try {
-      final req = await http.get(Uri.parse(url));
-
-      print(req.statusCode);
+      final req = await http.get(Uri.parse("${FypEnv.URL_PREFIX}/vocabulary"));
+      // print("got response");
+      // print(req.statusCode);
+      // print(req.body);
+      // print(req.statusCode);
 
       if (req.statusCode == 200) {
-        print(req.body);
+        // print(req.body);
 
         final vocabularyModel =
             vocabularyModelFromJson(utf8.decode(req.bodyBytes));
         return vocabularyModel;
       } else {
-        print(req.body);
+        // print(req.body);
         final vocabularyModel = vocabularyModelFromJson(req.body);
 
         return vocabularyModel;

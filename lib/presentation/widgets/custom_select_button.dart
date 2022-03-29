@@ -10,10 +10,10 @@ class CustomSelectButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Container(
+      padding: const EdgeInsets.all(10.0),
+      child: SizedBox(
         width: 300,
-        height: 100,
+        height: 70,
         child: TextButton(
           child: Text(
             buttonName!,
