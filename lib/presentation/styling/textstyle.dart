@@ -58,6 +58,15 @@ static const aboutDesc = TextStyle(
     color: CustomColors.RED,
     // fontWeight: FontWeight.bold,
   );
+
+   static const Hedding30Text = TextStyle(
+    fontSize: 30,
+    fontFamily: 'Bitter',
+    color: CustomColors.RED,
+    fontWeight: FontWeight.bold,
+  );
+
+
 }
 
 // Text("data",style: StyleText.textStyle1,),//use it like this

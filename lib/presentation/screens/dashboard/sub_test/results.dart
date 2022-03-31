@@ -11,9 +11,13 @@ class UserResults extends StatefulWidget {
 class _UserResultsState extends State<UserResults> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       backgroundColor: CustomColors.L_RED,
-      body: Center(child: SafeArea(child: Text("ALL results display here"))),
+      body: Center(child: SafeArea(child: Column(
+        children: [
+         for (var i = 0; i < 10; i++) Text("ALL results display here"),
+        ],
+      ),),),
     );
   }
 }

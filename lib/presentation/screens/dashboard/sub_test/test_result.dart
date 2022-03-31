@@ -1,5 +1,5 @@
 import 'package:chinese_learning/presentation/colors/colors.dart';
-import 'package:chinese_learning/presentation/screens/dashboard/sub_test/questions.dart';
+import 'package:chinese_learning/presentation/screens/dashboard/sub_test/hard_test.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/results.dart';
 import 'package:flutter/material.dart';
 

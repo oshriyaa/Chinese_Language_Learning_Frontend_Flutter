@@ -24,15 +24,8 @@ class _QuestionPageState extends State<QuestionPage> {
             children: [
               Container(
                 margin: const EdgeInsets.only(top: 150),
-                child: const Text(
-                  "Question no. 1",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontFamily: 'Bitter',
-                    color: CustomColors.RED,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: const Text("Question no. 1",
+                    style: StyleText.Hedding30Text),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 30),

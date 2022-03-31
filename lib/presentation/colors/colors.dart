@@ -7,4 +7,6 @@ class CustomColors {
   static const RED = Color(0xFF892424);
   static const BLACK = Color(0XFF000000);
   static const BLUE = Color(0XFF34315D);
+  static const GREEN = Color(0XFF265E2F);
+
 }
