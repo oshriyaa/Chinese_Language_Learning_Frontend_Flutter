@@ -1,6 +1,5 @@
 import 'package:chinese_learning/presentation/screens/dashboard/sub_about/description.dart';
 import 'package:flutter/material.dart';
-
 import '../../../colors/colors.dart';
 import '../../../styling/textstyle.dart';
 import 'history.dart';
@@ -16,7 +15,6 @@ class AboutPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: CustomColors.WHITE),
         backgroundColor: CustomColors.RED,
         title: const Text("About", style: StyleText.textAppBar),
-        // automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () {

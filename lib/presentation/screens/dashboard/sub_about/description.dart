@@ -43,7 +43,6 @@ class AboutDescription extends StatelessWidget {
             padding: const EdgeInsets.only(top: 30),
             child: Container(
               decoration: BoxDecoration(
-                // color: CustomColors.L_RED,
                 color: CustomColors.WHITE,
                 borderRadius: BorderRadius.circular(5),
                 boxShadow: const [
@@ -51,12 +50,9 @@ class AboutDescription extends StatelessWidget {
                     blurRadius: 6,
                     offset: Offset(0, 0),
                   ),
-            
                 ],
               ),
               width: size.width * 0.9,
-
-              // color: CustomColors.BLUE,
               child: Column(
                 children: const [
                   Padding(

@@ -1,23 +1,38 @@
-import 'package:chinese_learning/data/text_question_data.dart';
-import 'package:chinese_learning/presentation/colors/colors.dart';
-import 'package:chinese_learning/presentation/screens/dashboard/sub_test/test_result.dart';
-import 'package:chinese_learning/presentation/styling/textstyle.dart';
-import 'package:chinese_learning/presentation/widgets/custom_test_answer_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
+import '../../../../data/hard_quiz_question.dart';
+import '../../../colors/colors.dart';
+import '../../../styling/textstyle.dart';
+import '../../../widgets/custom_test_answer_buttons.dart';
+import 'test_result.dart';
 
-class HardQuestionPage extends StatefulWidget {
-  const HardQuestionPage({Key? key}) : super(key: key);
+class HardTestQuizPage extends StatefulWidget {
+  HardTestQuizPage({Key? key}) : super(key: key);
 
   @override
-  State<HardQuestionPage> createState() => _HardQuestionPageState();
+  State<HardTestQuizPage> createState() => _HardTestQuizPageState();
 }
 
-class _HardQuestionPageState extends State<HardQuestionPage> {
+class _HardTestQuizPageState extends State<HardTestQuizPage> {
   int _questionIndex = 0;
   int _totalScore = 0;
   bool answerWasSelected = false;
   bool endOfQuiz = false;
   bool correctAnswerSelected = false;
+
+  late AudioPlayer player;
+  @override
+  void initState() {
+    hardQuizQuestionData.shuffle();
+    super.initState();
+    player = AudioPlayer();
+  }
+
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
+  }
 
   void _questionAnswered(bool answerScore) {
     setState(() {
@@ -30,7 +45,7 @@ class _HardQuestionPageState extends State<HardQuestionPage> {
       }
 
       //when the quiz ends
-      if (_questionIndex + 1 == textQuizQuestion.length) {
+      if (_questionIndex + 1 == hardQuizQuestionData.length) {
         endOfQuiz = true;
       }
     });
@@ -42,12 +57,6 @@ class _HardQuestionPageState extends State<HardQuestionPage> {
       answerWasSelected = false;
       correctAnswerSelected = false;
     });
-  }
-
-  @override
-  void initState() {
-    textQuizQuestion.shuffle();
-    super.initState();
   }
 
   @override
@@ -71,14 +80,54 @@ class _HardQuestionPageState extends State<HardQuestionPage> {
                 width: size.width * 0.8,
                 // color: Colors.black,
                 child: Center(
-                  child: Text(
-                    textQuizQuestion[_questionIndex]['question'] as String,
-                    style: StyleText.questionFont,
-                    textAlign: TextAlign.center,
-                  ),
+                  child: hardQuizQuestionData[_questionIndex]['category'] ==
+                          'audio'
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              hardQuizQuestionData[_questionIndex]['question']
+                                  as String,
+                              style: StyleText.questionFont,
+                              textAlign: TextAlign.center,
+                            ),
+                            Container(
+                              width: size.width * 0.3,
+                              decoration: BoxDecoration(
+                                  color: CustomColors.RED,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      blurRadius: 2,
+                                      offset: Offset(2, 2),
+                                    )
+                                  ]),
+                              child: TextButton.icon(
+                                label: const Text(
+                                  "Play ",
+                                  style: StyleText.testWhiteAnswerButtons,
+                                ),
+                                icon: const Icon(
+                                  Icons.play_arrow,
+                                  color: CustomColors.WHITE,
+                                ),
+                                onPressed: () async {
+                                  await player.setAsset('assets/audio/cow.mp3');
+                                  player.play();
+                                },
+                              ),
+                            )
+                          ],
+                        )
+                      : Text(
+                          hardQuizQuestionData[_questionIndex]['question']
+                              as String,
+                          style: StyleText.questionFont,
+                          textAlign: TextAlign.center,
+                        ),
                 ),
               ),
-              ...(textQuizQuestion[_questionIndex]['answers']
+              ...(hardQuizQuestionData[_questionIndex]['answers']
                       as List<Map<String, Object>>)
                   .map(
                 (answer) => CustomTestAnswerButtonWidget(

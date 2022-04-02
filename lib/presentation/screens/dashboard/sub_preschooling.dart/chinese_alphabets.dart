@@ -1,7 +1,6 @@
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
-
 import '../landing_screen.dart';
 import 'table_row_data.dart';
 

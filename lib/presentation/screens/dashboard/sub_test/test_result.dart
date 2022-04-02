@@ -77,6 +77,7 @@ class TestResults extends StatelessWidget {
                         builder: (context) => const TestPage(),
                       ));
                 },
+                shadowColor: CustomColors.BLACK,
               ),
               CustomTestAnswerButtonWidget(
                 buttonText: "Take a new test",
@@ -89,6 +90,7 @@ class TestResults extends StatelessWidget {
                         builder: (context) => const TestPage(),
                       ));
                 },
+                shadowColor: CustomColors.BLACK,
               ),
             ],
           ),

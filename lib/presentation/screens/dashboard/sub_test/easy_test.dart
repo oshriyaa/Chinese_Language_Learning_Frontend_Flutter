@@ -1,10 +1,10 @@
-import 'package:chinese_learning/presentation/screens/dashboard/sub_test/test_result.dart';
+import 'package:chinese_learning/data/easy_quiz_question.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../models/question_model.dart';
 import '../../../colors/colors.dart';
+import '../../../widgets/custom_test_answer_buttons.dart';
 import '../landing_screen.dart';
+import 'test_result.dart';
 
 class EasyQuizPage extends StatefulWidget {
   const EasyQuizPage({Key? key}) : super(key: key);
@@ -14,70 +14,53 @@ class EasyQuizPage extends StatefulWidget {
 }
 
 class _EasyQuizPageState extends State<EasyQuizPage> {
-  var score = 0;
-  var n = 0;
-  List questionList = [
-    Questions("1.MS Word is a hardware.", false),
-    Questions("2.CPU controls only input data of computer.", false),
-    Questions("3.CPU stands for Central Processing Unit.", true),
-    Questions(
-        "4.Freeware is software that is available for use at no monetary cost..",
-        true),
-    Questions("5.MS Word is a hardware.", false),
-    Questions("6.CPU controls only input data of computer.", false),
-    Questions("7.CPU stands for Central Processing Unit.", true),
-    Questions(
-        "8.Freeware is software that is available for use at no monetary cost..",
-        true),
-  ];
+  List<Icon> _scoreTracker = [];
+  int _questionIndex = 0;
+  int _totalScore = 0;
+  bool answerWasSelected = false;
+  bool endOfQuiz = false;
+  bool correctAnswerSelected = false;
+  bool selected = false;
 
-  void checkAnswer(bool choice, BuildContext ctx) {
-    if (choice == questionList[n].ans) {
-      //debugPrint("Correct");
-      score = score + 1;
-      final snackbar = SnackBar(
-        content: Text("Correct Answer"),
-        duration: Duration(milliseconds: 500),
-        backgroundColor: Colors.green,
+  void _questionAnswered(bool answerScore) {
+    setState(() {
+      // answer was selected
+      answerWasSelected = true;
+      // check if answer was correct
+      if (answerScore) {
+        _totalScore++;
+        correctAnswerSelected = true;
+      }
+      _scoreTracker.add(
+        answerScore
+            ? Icon(
+                Icons.check_circle,
+                color: Colors.green,
+              )
+            : Icon(
+                Icons.clear,
+                color: Colors.red,
+              ),
       );
-      // Scaffold.of(ctx).showSnackBar(snackbar);
-    } else {
-      final snackbar = SnackBar(
-        content: Text("Wrong Answer"),
-        duration: Duration(milliseconds: 500),
-        backgroundColor: Colors.red,
-      );
-      // Scaffold.of(ctx).showSnackBar(snackbar);
-    }
-    setState(
-      () {
-        // if(n<que_list.length-1)
-        if (n < 3) {
-          n = n + 1;
-        } else {
-          final snackbar = SnackBar(
-            content: Text("Quiz Completed Score $score/4"),
-            duration: Duration(seconds: 5),
-            backgroundColor: Colors.blueAccent,
-          );
-          // TestResults();
-          Scaffold.of(ctx).showSnackBar(snackbar);
-          reset();
-        }
-      },
-    );
+
+      //when the quiz ends
+      if (_questionIndex + 1 == easyQuestionList.length) {
+        endOfQuiz = true;
+      }
+    });
   }
 
-  void reset() {
+  void _nextQuestion() {
     setState(() {
-      n = 0;
-      score = 0;
+      _questionIndex++;
+      answerWasSelected = false;
+      correctAnswerSelected = false;
     });
   }
 
   @override
   void initState() {
-    questionList.shuffle();
+    easyQuestionList.shuffle();
     super.initState();
   }
 
@@ -86,104 +69,113 @@ class _EasyQuizPageState extends State<EasyQuizPage> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: CustomColors.L_RED,
-      appBar: AppBar(
-        iconTheme: const IconThemeData(color: CustomColors.WHITE),
-        backgroundColor: CustomColors.RED,
-        title: const Text("Test: Easy", style: StyleText.textAppBar),
-        // automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LandingScreen(),
-                ),
-              );
-            },
-            icon: const Icon(Icons.home),
-          ),
-        ],
-      ),
-      body: Builder(
-        builder: (ctx) => Column(
+      body: SafeArea(
+        child: Stack(
           children: [
-            Container(
-              margin: const EdgeInsets.only(top: 120),
+            Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("Question no. ${n + 1}", style: StyleText.Hedding30Text),
+                children: [
                   Container(
-                    // color: Colors.yellow,
-                    margin: const EdgeInsets.only(top: 10, bottom: 40),
-                    height: 170,
+                    margin: const EdgeInsets.only(top: 100),
+                    child: Text("Question no. ${_questionIndex + 1}",
+                        style: StyleText.Hedding30Text),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 30),
+                    height: 200,
                     width: size.width * 0.8,
                     // color: Colors.black,
                     child: Center(
                       child: Text(
-                        questionList[n].que,
+                        easyQuestionList[_questionIndex]['question'] as String,
                         style: StyleText.questionFont,
                         textAlign: TextAlign.center,
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        SizedBox(
-                          width: size.width * 0.35,
-                          child: TextButton(
-                            style: TextButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              backgroundColor: CustomColors.GREEN,
-                              padding: const EdgeInsets.all(10.0),
-                              primary: Colors.black,
-                              textStyle: const TextStyle(fontSize: 15),
-                            ),
-                            onPressed: () => checkAnswer(true, ctx),
-                            child: const Text(
-                              "True",
-                              style: TextStyle(
-                                  color: CustomColors.WHITE,
-                                  fontFamily: 'Bitter',
-                                  fontWeight: FontWeight.w200,
-                                  fontSize: 20),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: size.width * 0.35,
-                          child: TextButton(
-                            style: TextButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              backgroundColor: CustomColors.RED,
-                              padding: const EdgeInsets.all(10.0),
-                              primary: Colors.black,
-                              textStyle: const TextStyle(fontSize: 15),
-                            ),
-                            onPressed: () => checkAnswer(false, ctx),
-                            child: const Text(
-                              "False",
-                              style: TextStyle(
-                                  color: CustomColors.WHITE,
-                                  fontFamily: 'Bitter',
-                                  fontWeight: FontWeight.w200,
-                                  fontSize: 20),
-                            ),
-                          ),
-                        ),
-                      ],
+                  ...(easyQuestionList[_questionIndex]['answers']
+                          as List<Map<String, Object>>)
+                      .map(
+                    (answer) => CustomTestAnswerButtonWidget(
+                      buttonText: answer['answerText'] as String,
+                      buttonColor: answerWasSelected
+                          ? answer['score'] as bool
+                              ? CustomColors.GREEN
+                              : CustomColors.RED
+                          : CustomColors.WHITE,
+                      btnTextStyle: answerWasSelected
+                          ? StyleText.testWhiteAnswerButtons
+                          : StyleText.testAnswerButtons,
+                      shadowColor: CustomColors.BLACK,
+                      buttonPress: () {
+                        // if answer was already selected then nothing happens onTap
+                        if (answerWasSelected) {
+                          return;
+                        }
+                        //answer is being selected
+
+                        _questionAnswered(answer['score'] as bool);
+                      },
                     ),
                   ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    width: size.width * 0.4,
+                    margin: EdgeInsets.only(left: 150),
+                    decoration: BoxDecoration(
+                        color: CustomColors.RED,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 2,
+                            offset: Offset(2, 2),
+                          )
+                        ]),
+                    child: TextButton(
+                      onPressed: () {
+                        if (!answerWasSelected) {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text(
+                                'Please select an answer before going to the next question'),
+                          ));
+                          return;
+                        }
+                        endOfQuiz
+                            ? Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => TestResults(
+                                    testScore: _totalScore,
+                                  ),
+                                ))
+                            : _nextQuestion();
+                      },
+                      child: Text(endOfQuiz ? 'View Results' : 'Next Question →',
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontFamily: 'Bitter',
+                            color: CustomColors.WHITE,
+                          )),
+                    ),
+                  ),
+                  
                 ],
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 150, left: 5),
+              child: Column(
+              
+                      children: [
+                        if (_scoreTracker.isEmpty)
+                          const SizedBox(
+                            height: 25.0,
+                          ),
+                        if (_scoreTracker.isNotEmpty) ..._scoreTracker
+                      ],
+                    ),
             ),
           ],
         ),

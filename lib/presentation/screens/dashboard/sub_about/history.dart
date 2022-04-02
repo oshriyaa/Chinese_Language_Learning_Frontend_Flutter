@@ -1,7 +1,6 @@
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../../../styling/textstyle.dart';
 
 class HistoryPage extends StatelessWidget {
@@ -16,7 +15,6 @@ class HistoryPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: CustomColors.WHITE),
         backgroundColor: CustomColors.RED,
         title: const Text("History", style: StyleText.textAppBar),
-        // automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () {
@@ -55,7 +53,7 @@ class HistoryPage extends StatelessWidget {
                 ],
               ),
               width: size.width * 0.9,
-              child:  Padding(
+              child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: const [
@@ -65,40 +63,40 @@ class HistoryPage extends StatelessWidget {
                       textAlign: TextAlign.justify,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 10,bottom: 10),
+                      padding: EdgeInsets.only(top: 10, bottom: 10),
                       child: Text(
                         "Sino-Tibetan ancestry",
                         style: StyleText.categoryHeading,
                         textAlign: TextAlign.justify,
                       ),
                     ),
-                     Text(
+                    Text(
                       "Chinese is part of the Sino-Tibetan language family, a group of languages that all descend from Proto-Sino-Tibetan. While there is very good documentation that allows for the reconstruction of the ancient sounds of Chinese, there is no written documentation of the point where Chinese split from the rest of the Sino-Tibetan languages. Despite their affinity, the common ancestry of the Chinese and Tibeto-Burman languages remains an unproven hypothesis.",
                       style: StyleText.featureSubHeading,
                       textAlign: TextAlign.justify,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 10,bottom: 10),
+                      padding: EdgeInsets.only(top: 10, bottom: 10),
                       child: Text(
                         "Old Chinese",
                         style: StyleText.categoryHeading,
                         textAlign: TextAlign.justify,
                       ),
                     ),
-                     Text(
+                    Text(
                       "Old Chinese, sometimes known as 'Archaic Chinese', is genetically related to all current dialects of Chinese. The first known use of the Chinese writing system is divinatory inscriptions into tortoise shells and oracle bones in the Shang dynasty (1766–1122 BC). In the later early and middle Zhou dynasty (1122–256 BC), writing which descended from the Shang is found texts of which include inscriptions on bronze artifacts.",
                       style: StyleText.featureSubHeading,
                       textAlign: TextAlign.justify,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 10,bottom: 10),
+                      padding: EdgeInsets.only(top: 10, bottom: 10),
                       child: Text(
                         "Middle Chinese",
                         style: StyleText.categoryHeading,
                         textAlign: TextAlign.justify,
                       ),
                     ),
-                     Text(
+                    Text(
                       "Middle Chinese was the language used during the Sui dynasty, Tang dynasty,and Song dynasty, or the sixth to tenth centuries AD. It can be divided into an early period, which can be shown by the Qieyun rime dictionary (AD 601) and its later redaction the Guangyun.",
                       style: StyleText.featureSubHeading,
                       textAlign: TextAlign.justify,
@@ -200,7 +198,9 @@ class HistoryPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),
