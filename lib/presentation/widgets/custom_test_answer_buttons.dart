@@ -5,8 +5,11 @@ import '../colors/colors.dart';
 
 class CustomTestAnswerButtonWidget extends StatefulWidget {
   final String? buttonText;
-  final Function()? onPress;
-  const CustomTestAnswerButtonWidget({Key? key, this.buttonText, this.onPress})
+  final Color? buttonColor;
+  final TextStyle? btnTextStyle;
+  final Function()? buttonPress;
+  const CustomTestAnswerButtonWidget(
+      {Key? key, this.buttonText, this.buttonColor,this.btnTextStyle, this.buttonPress})
       : super(key: key);
 
   @override
@@ -25,13 +28,13 @@ class _CustomTestAnswerButtonWidgetState
       child: TextButton(
         child: Text(
           widget.buttonText!,
-          style: StyleText.testAnswerButtons,
+          style: widget.btnTextStyle,
         ),
-        onPressed: widget.onPress,
+        onPressed: widget.buttonPress,
       ),
       decoration: BoxDecoration(
+          color: widget.buttonColor,
           borderRadius: BorderRadius.circular(5),
-          color: CustomColors.WHITE,
           boxShadow: const [
             BoxShadow(
               blurRadius: 2,

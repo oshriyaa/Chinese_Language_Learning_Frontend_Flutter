@@ -1,3 +1,4 @@
+import 'package:chinese_learning/presentation/screens/dashboard/sub_test/test_result.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
 
@@ -59,6 +60,7 @@ class _EasyQuizPageState extends State<EasyQuizPage> {
             duration: Duration(seconds: 5),
             backgroundColor: Colors.blueAccent,
           );
+          // TestResults();
           Scaffold.of(ctx).showSnackBar(snackbar);
           reset();
         }

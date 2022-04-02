@@ -21,13 +21,12 @@ class StyleText {
     // fontWeight: FontWeight.bold,
   );
 
-static const aboutDesc = TextStyle(
+  static const aboutDesc = TextStyle(
     fontSize: 15,
     fontFamily: 'Bitter',
     color: CustomColors.RED,
-    
+
     // fontWeight: FontWeight.bold,
-    
   );
   static const categoryHeading = TextStyle(
     fontSize: 20,
@@ -36,20 +35,24 @@ static const aboutDesc = TextStyle(
     // fontWeight: FontWeight.bold,
   );
 
-   static const questionFont = TextStyle(
+  static const questionFont = TextStyle(
     fontSize: 25,
     fontFamily: 'Bitter',
     fontWeight: FontWeight.w200,
     color: CustomColors.RED,
     // fontWeight: FontWeight.bold,
   );
-  
 
   static const testAnswerButtons = TextStyle(
     fontSize: 23,
     fontFamily: 'Bitter',
     color: CustomColors.RED,
     // fontWeight: FontWeight.bold,
+  );
+  static const testWhiteAnswerButtons = TextStyle(
+    fontSize: 23,
+    fontFamily: 'Bitter',
+    color: CustomColors.WHITE,
   );
 
   static const vocabularyText = TextStyle(
@@ -59,14 +62,12 @@ static const aboutDesc = TextStyle(
     // fontWeight: FontWeight.bold,
   );
 
-   static const Hedding30Text = TextStyle(
+  static const Hedding30Text = TextStyle(
     fontSize: 30,
     fontFamily: 'Bitter',
     color: CustomColors.RED,
     fontWeight: FontWeight.bold,
   );
-
-
 }
 
 // Text("data",style: StyleText.textStyle1,),//use it like this

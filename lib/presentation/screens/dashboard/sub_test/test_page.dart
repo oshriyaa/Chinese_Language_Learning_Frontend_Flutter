@@ -1,6 +1,7 @@
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/easy_test.dart';
-import 'package:chinese_learning/presentation/screens/dashboard/sub_test/hard_test.dart';
+import 'package:chinese_learning/presentation/screens/dashboard/sub_test/copypaste.dart';
+import 'package:chinese_learning/presentation/screens/dashboard/sub_test/hard_test_page.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/results.dart';
 import 'package:chinese_learning/presentation/widgets/custom_select_button.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,7 @@ class TestPage extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const UserResults(),
+                        builder: (context) =>  HardQuestionPage(),
                       ));
                 },
               ),
