@@ -44,7 +44,7 @@ class _EasyQuizPageState extends State<EasyQuizPage> {
       );
 
       //when the quiz ends
-      if (_questionIndex + 1 == easyQuestionList.length) {
+      if (_questionIndex + 1 == 10) {
         endOfQuiz = true;
       }
     });

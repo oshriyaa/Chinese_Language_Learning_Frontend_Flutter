@@ -3,8 +3,6 @@ import 'package:chinese_learning/presentation/screens/login%20pages/login_screen
 import 'package:chinese_learning/routes/route_constant.dart';
 import 'package:flutter/material.dart';
 
-import '../presentation/screens/test.dart';
-
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -14,8 +12,6 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const LandingScreen());
       case SignUpPage:
         return MaterialPageRoute(builder: (_) => const LandingScreen());
-         case test:
-        return MaterialPageRoute(builder: (_) => const Test());
 
       default:
         return MaterialPageRoute(

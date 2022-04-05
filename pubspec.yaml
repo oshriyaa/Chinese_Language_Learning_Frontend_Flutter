@@ -13,7 +13,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   http: ^0.13.4
-  just_audio: ^0.9.13
+  audioplayers: ^0.20.1
 
 dev_dependencies:
   flutter_test:
@@ -33,7 +33,7 @@ flutter:
     - lib/assets/feedback.png
     - lib/assets/history.png
     - lib/assets/feedbackwithoutbackground.png
-    - lib/assets/audio/
+    - lib/assets/audio/test.mp3
   uses-material-design: true
 
   fonts:

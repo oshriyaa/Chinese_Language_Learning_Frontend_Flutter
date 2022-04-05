@@ -30,7 +30,7 @@ class _HardQuestionPageState extends State<HardQuestionPage> {
       }
 
       //when the quiz ends
-      if (_questionIndex + 1 == textQuizQuestion.length) {
+      if (_questionIndex + 1 == 10) {
         endOfQuiz = true;
       }
     });

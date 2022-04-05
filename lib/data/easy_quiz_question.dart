@@ -1,37 +1,93 @@
 List easyQuestionList = [
   {
-    'question': '1.How long is New Zealand’s Ninety Mile Beach?',
+    'question': "'Sorry' transates to 'Duìbùqǐ' in Chinese.",
     'answers': [
       {'answerText': 'True', 'score': true},
       {'answerText': 'False', 'score': false},
     ],
   },
   {
-    'question': '2. How long is New Zealand’s Ninety Mile Beach?',
-    'answers': [
-      {'answerText': 'True', 'score': true},
-      {'answerText': 'False', 'score': false},
-    ],
-  },
-  {
-    'question': '3. How long is New Zealand’s Ninety Mile Beach?',
+    'question': "'Menu' translates to 'Chē' in Chinese.",
     'answers': [
       {'answerText': 'True', 'score': false},
       {'answerText': 'False', 'score': true},
     ],
   },
   {
-    'question': '4. How long is New Zealand’s Ninety Mile Beach?',
+    'question': "'Xièxiè' translates 'bottle' in English.",
+    'answers': [
+      {'answerText': 'True', 'score': false},
+      {'answerText': 'False', 'score': true},
+    ],
+  },
+  {
+    'question': "A 'Dà xiàng' can fly.",
+    'answers': [
+      {'answerText': 'True', 'score': false},
+      {'answerText': 'False', 'score': true},
+    ],
+  },
+  {
+    'question': "A 'Hǎitún' can swim.",
     'answers': [
       {'answerText': 'True', 'score': true},
       {'answerText': 'False', 'score': false},
     ],
   },
   {
-    'question': '5. How long is New Zealand’s Ninety Mile Beach?',
+    'question': "There are 'Shí'èr' months in a year.",
     'answers': [
       {'answerText': 'True', 'score': true},
       {'answerText': 'False', 'score': false},
+    ],
+  },
+  {
+    'question': "'Shí'èr' translates to 'Red' in English.",
+    'answers': [
+      {'answerText': 'True', 'score': false},
+      {'answerText': 'False', 'score': true},
+    ],
+  },
+  {
+    'question': "'Eye' translates to 'Yǎnjīng' in Chinese.",
+    'answers': [
+      {'answerText': 'True', 'score': true},
+      {'answerText': 'False', 'score': false},
+    ],
+  },
+  {
+    'question': "A human body has two 'Bízi'",
+    'answers': [
+      {'answerText': 'True', 'score': false},
+      {'answerText': 'False', 'score': true},
+    ],
+  },
+  {
+    'question': "'Lánhuā' is the name of a flower.",
+    'answers': [
+      {'answerText': 'True', 'score': true},
+      {'answerText': 'False', 'score': false},
+    ],
+  },
+  {
+    'question': "'Xiàngrìkuí' translates to 'Sunflower' in English.",
+    'answers': [
+      {'answerText': 'True', 'score': true},
+      {'answerText': 'False', 'score': false},
+    ],
+  },
+  {
+    'question': "'Xiàngrìkuí' translates to 'Sunflower' in English.",
+    'answers': [
+      {'answerText': 'True', 'score': true},
+      {'answerText': 'False', 'score': false},
+    ],
+  },
+  {
+    'question': "'Son' translates to 'Nǚ'ér' in Chinese.",
+    'answers': [
+      {'answerText': 'True', 'score': false},
+      {'answerText': 'False', 'score': true},
     ],
   },
 ];

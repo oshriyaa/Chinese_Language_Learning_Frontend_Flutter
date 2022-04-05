@@ -1,5 +1,6 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
+
 import '../../../../data/hard_quiz_question.dart';
 import '../../../colors/colors.dart';
 import '../../../styling/textstyle.dart';
@@ -14,24 +15,34 @@ class HardTestQuizPage extends StatefulWidget {
 }
 
 class _HardTestQuizPageState extends State<HardTestQuizPage> {
+  AudioPlayer audioPlayer = AudioPlayer();
+  AudioCache? audioCache;
+  String path = 'test.mp3';
+
+  @override
+  void initAudio() {
+    super.initState();
+    audioCache = AudioCache(fixedPlayer: audioPlayer);
+    // audioPlayer.onPlayerStateChanged.listen(AudioPlayerState s){
+    //   setState(() {
+    //     audioPlayerState = s;
+    //   });
+  }
+
+  playMusic() async {
+    await audioCache!.play(path);
+  }
+
   int _questionIndex = 0;
   int _totalScore = 0;
   bool answerWasSelected = false;
   bool endOfQuiz = false;
   bool correctAnswerSelected = false;
 
-  late AudioPlayer player;
   @override
   void initState() {
     hardQuizQuestionData.shuffle();
     super.initState();
-    player = AudioPlayer();
-  }
-
-  @override
-  void dispose() {
-    player.dispose();
-    super.dispose();
   }
 
   void _questionAnswered(bool answerScore) {
@@ -45,7 +56,7 @@ class _HardTestQuizPageState extends State<HardTestQuizPage> {
       }
 
       //when the quiz ends
-      if (_questionIndex + 1 == hardQuizQuestionData.length) {
+      if (_questionIndex + 1 == 10) {
         endOfQuiz = true;
       }
     });
@@ -111,9 +122,8 @@ class _HardTestQuizPageState extends State<HardTestQuizPage> {
                                   Icons.play_arrow,
                                   color: CustomColors.WHITE,
                                 ),
-                                onPressed: () async {
-                                  await player.setAsset('assets/audio/cow.mp3');
-                                  player.play();
+                                onPressed: () {
+                                  initAudio();
                                 },
                               ),
                             )

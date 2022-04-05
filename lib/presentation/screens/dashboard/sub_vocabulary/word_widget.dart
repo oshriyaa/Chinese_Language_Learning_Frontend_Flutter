@@ -1,22 +1,35 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
-
 import '../../../colors/colors.dart';
 
-class WordWidget extends StatelessWidget {
+class WordWidget extends StatefulWidget {
   final String? inEng;
   final String? inNep;
   final String? inChi;
   final String? inPin;
   final String? inDev;
-  const WordWidget({
-    Key? key,
-    this.inEng,
-    this.inNep,
-    this.inChi,
-    this.inPin,
-    this.inDev,
-  }) : super(key: key);
+  final String? audio;
+  const WordWidget(
+      {Key? key,
+      this.inEng,
+      this.inNep,
+      this.inChi,
+      this.inPin,
+      this.inDev,
+      this.audio})
+      : super(key: key);
+
+  @override
+  State<WordWidget> createState() => _WordWidgetState();
+}
+
+class _WordWidgetState extends State<WordWidget> {
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  initAudio() {
+    audioPlayer.play(widget.audio!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,15 +63,9 @@ class WordWidget extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    inEng!,
+                    widget.inEng!,
                     style: StyleText.vocabularyText,
                   ),
-                  // const Divider(
-                  //   thickness: 1,
-                  //   color: CustomColors.GREY,
-                  //   endIndent: 70,
-                  // ),
-                  
                   const SizedBox(
                     height: 10,
                   ),
@@ -70,7 +77,7 @@ class WordWidget extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    inNep!,
+                    widget.inNep!,
                     style: StyleText.vocabularyText,
                   ),
                   const Divider(
@@ -82,25 +89,25 @@ class WordWidget extends StatelessWidget {
                     'Translation:',
                     style: StyleText.categoryHeading,
                   ),
-                   const SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    inChi!,
+                    widget.inChi!,
                     style: StyleText.vocabularyText,
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   Text(
-                    inPin!,
+                    widget.inPin!,
                     style: StyleText.vocabularyText,
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   Text(
-                    inDev!,
+                    widget.inDev!,
                     style: StyleText.vocabularyText,
                   ),
                   const SizedBox(
@@ -109,10 +116,13 @@ class WordWidget extends StatelessWidget {
                 ],
               ),
               Positioned(
-                top: 240,
+                  top: 240,
                   left: size.width * 0.6,
                   child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        print(widget.audio!);
+                        initAudio();
+                      },
                       icon: const Icon(
                         Icons.play_arrow,
                         color: CustomColors.RED,

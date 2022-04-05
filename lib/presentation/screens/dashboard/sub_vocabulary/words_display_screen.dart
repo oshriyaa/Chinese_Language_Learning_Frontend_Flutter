@@ -53,6 +53,8 @@ class _WordDisplayScreenState extends State<WordDisplayScreen> {
                                   inChi: data.inChinese!,
                                   inPin: data.inPinYin!,
                                   inDev: data.inDevnagari!,
+                                  audio: data.audio,
+                                
                                 )
                               : const SizedBox(
                                   height: 1,
