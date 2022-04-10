@@ -84,16 +84,22 @@ class _LoginFormState extends State<LoginForm> {
           CustomFormButton(
             buttonText: "Login",
             save: () {
-              if (_loginKey.currentState!.validate()) {
-                // print('Validated');
-                _loginKey.currentState!.save();
-                Navigator.push(
+               Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const LandingScreen(),
                   ),
                 );
-              }
+              // if (_loginKey.currentState!.validate()) {
+              //   // print('Validated');
+              //   _loginKey.currentState!.save();
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => const LandingScreen(),
+              //     ),
+              //   );
+              // }
             },
           ),
         ],

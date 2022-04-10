@@ -5,6 +5,12 @@ class TextValidator {
     }
     return null;
   }
+   static emptyValidation(value) {
+    if (value!.isEmpty) {
+      return 'Please enter a value.';
+    }
+    return null;
+  }
 
   static phoneNumberValidation(value) {
     if (value!.isEmpty) {

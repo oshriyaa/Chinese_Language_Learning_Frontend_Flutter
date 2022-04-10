@@ -1,9 +1,12 @@
+import 'package:chinese_learning/network/dio_api.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/feedback_page.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_about/about.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/client_info.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_preschooling.dart/preschooling.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/test_page.dart';
+import 'package:chinese_learning/presentation/screens/dashboard/translate_page.dart';
+import 'package:chinese_learning/presentation/screens/other/search_screen.dart';
 
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
@@ -33,11 +36,19 @@ class _LandingScreenState extends State<LandingScreen> {
         // automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              getHttp();
+            },
             icon: const Icon(Icons.favorite),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SearchScreen(),
+                  ));
+            },
             icon: const Icon(Icons.search),
           ),
         ],
@@ -54,7 +65,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>  const PreschoolingScreen(),
+                      builder: (context) => const PreschoolingScreen(),
                     ));
               },
             ),
@@ -81,6 +92,18 @@ class _LandingScreenState extends State<LandingScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => const TestPage(),
+                    ));
+              },
+            ),
+             FeatureContainer(
+              tileTitle: "Translate",
+              tileSubHeading: "Translate from English to Chinese.",
+              image: 'lib/assets/feedback.png',
+              tapFunction: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TranslatePage(),
                     ));
               },
             ),
@@ -116,10 +139,11 @@ class _LandingScreenState extends State<LandingScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>  const FeedbackPage(),
+                      builder: (context) => const FeedbackPage(),
                     ));
               },
             ),
+            
             const SizedBox(
               height: 15,
             )

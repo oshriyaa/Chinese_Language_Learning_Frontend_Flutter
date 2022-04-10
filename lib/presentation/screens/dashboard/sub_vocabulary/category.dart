@@ -57,7 +57,7 @@ class VocabularyScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const WordDisplayScreen(categoryID: 'C02',),
+                          builder: (context) => const WordDisplayScreen(categoryID: 'C2',),
                         ));
                   },
                 ),

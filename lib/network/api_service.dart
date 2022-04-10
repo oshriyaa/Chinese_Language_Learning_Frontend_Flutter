@@ -1,27 +1,34 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:chinese_learning/models/translation_model.dart';
 import 'package:chinese_learning/network/url.dart';
 import 'package:http/http.dart' as http;
 import '../models/vocabulary_model.dart';
 
-
 class DictionaryService {
-  Future<List<VocabularyModel>> getMeaning() async {
+  List<VocabularyModel> results = [];
+  Future<List<VocabularyModel>> getMeaning({String? query}) async {
     try {
       final req = await http.get(Uri.parse("${FypEnv.URL_PREFIX}/vocabulary"));
-      // print("got response");
-      // print(req.statusCode);
-      // print(req.body);
-      // print(req.statusCode);
 
       if (req.statusCode == 200) {
-        // print(req.body);
-
         final vocabularyModel =
             vocabularyModelFromJson(utf8.decode(req.bodyBytes));
+
+        print('here2');
+        print(query);
+        if (query != null) {
+          results = results
+              .where((element) => element.inEnglish!
+                  .toLowerCase()
+                  .contains((query.toLowerCase())))
+              .toList();
+          print("here3");
+          print(results);
+        }
         return vocabularyModel;
       } else {
-        // print(req.body);
+        print("fetch error");
         final vocabularyModel = vocabularyModelFromJson(req.body);
 
         return vocabularyModel;
@@ -34,38 +41,22 @@ class DictionaryService {
   }
 }
 
+class TranslationAPI {
+  static Future<TranslationModel?> getTranslation(
+      {String? word }) async {
+    String? lang = 'en-zh';
+    String? token = '5926e7dc213240d1f1959af9422617a9';
 
-
-// import 'dart:convert';
-// import 'dart:io';
-// import 'package:http/http.dart' as http;
-
-// import '../models/vocabulary_model.dart';
-
-// class APIService {
-//   Future<List<VocabularyModel>> getVocabulary() async {
-//     var url = "http://127.0.0.1:8000/vocabulary";
-    
-//     try {
-//       print("2");
-//       var decodedResponse;
-//       final response = await http.get(Uri.parse(url));
-//       print("3");
-//       print(response.statusCode);
-//       print(response.body);
-//       if (response.statusCode == 200) {
-//         final res = json.decode(response.body);
-//         final vocabularyModel = vocabularyModelFromJson(res);
-//         return vocabularyModel;
-//       } else {
-//         final errorRes = json.decode(response.body);
-//         final vocabularyModel = vocabularyModelFromJson(errorRes);
-//         return vocabularyModel;
-//       }
-//       // } on SocketException catch (e) {
-//       //   return Future.error("No Network found");
-//     } catch (e) {
-//       return Future.error("Something wrong");
-//     }
-//   }
-// }
+    var url = Uri.parse(
+        'https://translate.hirak.site/?lang=$lang&txt=$word&token=$token');
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      print('Response status: ${response.statusCode}');
+      var decoded = json.decode(response.body);
+      var data = TranslationModel.fromJson(decoded);
+      print(data);
+      return data;
+    }
+    return null;
+  }
+}
