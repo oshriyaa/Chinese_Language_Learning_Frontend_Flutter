@@ -38,6 +38,7 @@ class _LandingScreenState extends State<LandingScreen> {
           IconButton(
             onPressed: () {
               getHttp();
+
             },
             icon: const Icon(Icons.favorite),
           ),

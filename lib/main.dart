@@ -1,8 +1,14 @@
 import 'package:chinese_learning/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'models/secure_storage.dart';
 import 'routes/route_constant.dart';
 
+late final SecureStorage secureStorage;
+
+
 void main() {
+  secureStorage = SecureStorage();
+
   runApp(const MyApp());
 }
 
@@ -22,4 +28,9 @@ class MyApp extends StatelessWidget {
       initialRoute: LoginPage,
     );
   }
+}
+
+Future checkToken() async {
+  var token = await secureStorage.readSecureData('token');
+  return token;
 }

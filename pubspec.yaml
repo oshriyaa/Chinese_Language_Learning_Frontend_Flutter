@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  animated_splash_screen:
+  flutter_secure_storage: ^4.2.1
 
   cupertino_icons: ^1.0.2
   http: ^0.13.4

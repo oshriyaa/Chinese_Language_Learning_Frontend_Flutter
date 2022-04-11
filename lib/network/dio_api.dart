@@ -4,6 +4,7 @@ import '../models/vocabulary_model.dart';
 import 'url.dart';
 
 getHttp() async {
+  List<VocabularyModel> results = [];
   try {
     Dio dio = new Dio();
     dio.options.baseUrl = "${FypEnv.URL_PREFIX}/vocabulary";

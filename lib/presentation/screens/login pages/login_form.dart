@@ -1,3 +1,4 @@
+import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/widgets/custom_button.dart';
@@ -22,6 +23,8 @@ class _LoginFormState extends State<LoginForm> {
   String? passwordText;
   String? emailText;
   bool _obscureText = true;
+  bool? pressedLogin = false;
+  var loginResponse;
 
   @override
   void dispose() {
@@ -84,12 +87,7 @@ class _LoginFormState extends State<LoginForm> {
           CustomFormButton(
             buttonText: "Login",
             save: () {
-               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LandingScreen(),
-                  ),
-                );
+              logIn(context);
               // if (_loginKey.currentState!.validate()) {
               //   // print('Validated');
               //   _loginKey.currentState!.save();
@@ -104,6 +102,72 @@ class _LoginFormState extends State<LoginForm> {
           ),
         ],
       ),
+    );
+  }
+
+  logIn(BuildContext context) async {
+    if (_loginKey.currentState!.validate()) {
+      _loginKey.currentState!.save();
+      pressedLogin = true;
+      setState(() {});
+
+      loginResponse = await AuthService.login(emailText, passwordText);
+      print('FIRST PRINT $loginResponse');
+
+      // print('TOKEN = ${loginResponse['token']}');
+
+      await Future.delayed(const Duration(seconds: 0));
+      print("HERE IS RESPONSE $loginResponse");
+      if (loginResponse==null) {
+        print("HERE AGAIN");
+         await showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text('Error'),
+        content: Text(
+                'Your login credentitals are invalid. Please check and try again.'),
+        actions: <Widget>[
+          new FlatButton(
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true)
+                  .pop(); // dismisses only the dialog and returns nothing
+            },
+            child: new Text('OK'),
+          ),
+        ],
+      ),
+    );
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => LandingScreen()));
+      }
+    } else {
+      loginError(context);
+      pressedLogin = false;
+    }
+  }
+
+  loginError(BuildContext context) {
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("${loginResponse["status"].toUpperCase()}"),
+      content: Text("${loginResponse["message"]}"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }
