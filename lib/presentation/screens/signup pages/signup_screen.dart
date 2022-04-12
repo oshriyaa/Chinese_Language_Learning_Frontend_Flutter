@@ -20,8 +20,8 @@ class _SignUpPageState extends State<SignUpPage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 100),
+              const Padding(
+                padding: EdgeInsets.only(top: 100),
                 child: Center(child: SignUpForm()),
               ),
               Padding(
@@ -31,7 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => const LoginScreen(),
                         ),
                       );
                     },
@@ -46,4 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
+  
+
+
 }

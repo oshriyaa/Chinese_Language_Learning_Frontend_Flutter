@@ -1,10 +1,7 @@
-// ignore_for_file: unused_local_variable
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:chinese_learning/models/translation_model.dart';
 import 'package:chinese_learning/network/url.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import '../main.dart';
 import '../models/vocabulary_model.dart';
@@ -47,60 +44,57 @@ class DictionaryService {
 }
 
 class AuthService {
-//LOGIN
+  //API service for login
   static Future login(email, password) async {
-    print("HEREEEEE");
     final String loginURL = FypEnv.loginURL;
     var requestBody = {'username': '$email', 'password': '$password'};
     var decodedResponse;
-    print("HEREEEEE22");
+    //sending API request for login
     final response = await http.post(Uri.parse(loginURL),
         headers: <String, String>{
           'Content_Type': 'application/json',
         },
         body: requestBody);
-    print("HEREEEEE33");
+    //if the login is successful
     if (response.statusCode == 200) {
-      print("HEREEEEE44");
       decodedResponse = json.decode(response.body);
-      print(decodedResponse);
+
       var token = decodedResponse['token'];
 
-      print('ACCESS TOKEN1 = $token');
-
-      secureStorage.writeSecureData(token);
-      print("RESPONSE = $decodedResponse");
       return decodedResponse;
-    // } else {
-    //   decodedResponse = "Something went wrong";
-    //   return decodedResponse;
     }
+    //if the login is unseccessful
     return null;
   }
 
-  static Future register(email, fullName, phoneNumber, password) async {
+// secureStorage.writeSecureData(token);
+  //API service for Register
+  static Future register(fullName, phoneNumber, email, password) async {
+    print("hereagain4");
     var requestBody = {
-      'email-address': '$email',
+      'email': '$email',
       'user_name': '$fullName',
       'phone_number': '$phoneNumber',
       'password': '$password'
     };
     var decodedResponse;
-
+    print("hereagain5");
+    //sending API request for register
     final response = await http.post(Uri.parse(FypEnv.registerURL),
         headers: <String, String>{
           'Content_Type': 'application/json',
         },
         body: requestBody);
-    if (response.statusCode == 200) {
+    print("hereagain1");
+    //if register is successful
+
+    print(response.statusCode);
+    print("hereagain1");
+    if (response.statusCode == 201) {
       decodedResponse = json.decode(response.body);
-
-      if (decodedResponse["status"] == "success") {
-        print('STATUS SUCCESS $decodedResponse');
-
-        return decodedResponse;
-      }
+      return decodedResponse;
     }
+    return null;
   }
 }
 

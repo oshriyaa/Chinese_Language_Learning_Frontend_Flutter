@@ -39,7 +39,6 @@ class _LoginFormState extends State<LoginForm> {
     return Form(
       key: _loginKey,
       child: Column(
-        // ignore: prefer_const_literals_to_create_immutables
         children: [
           const Text(
             "Login",
@@ -88,16 +87,7 @@ class _LoginFormState extends State<LoginForm> {
             buttonText: "Login",
             save: () {
               logIn(context);
-              // if (_loginKey.currentState!.validate()) {
-              //   // print('Validated');
-              //   _loginKey.currentState!.save();
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => const LandingScreen(),
-              //     ),
-              //   );
-              // }
+
             },
           ),
         ],
@@ -122,17 +112,17 @@ class _LoginFormState extends State<LoginForm> {
         print("HERE AGAIN");
          await showDialog(
       context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Error'),
-        content: Text(
+      builder: (context) => AlertDialog(
+        title:  const Text('Error'),
+        content: const Text(
                 'Your login credentitals are invalid. Please check and try again.'),
         actions: <Widget>[
-          new FlatButton(
+           TextButton(
             onPressed: () {
               Navigator.of(context, rootNavigator: true)
                   .pop(); // dismisses only the dialog and returns nothing
             },
-            child: new Text('OK'),
+            child:  const Text('OK'),
           ),
         ],
       ),

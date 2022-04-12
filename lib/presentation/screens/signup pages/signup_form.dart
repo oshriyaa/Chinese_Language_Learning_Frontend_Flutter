@@ -1,6 +1,8 @@
+import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/screens/login%20pages/login_screen.dart';
 import 'package:chinese_learning/presentation/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import '../../../network/api_service.dart';
 import '../../colors/colors.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/validators.dart';
@@ -18,12 +20,16 @@ class _SignUpFormState extends State<SignUpForm> {
   final _phoneNumberController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   String? fullNameInput;
   String? numberImput;
   String? passwordInput;
+  String? confirmPasswordInput;
   String? emailInput;
   bool _obscureText = true;
+  bool? pressedLogin = false;
+  var registerResponse;
 
   @override
   void dispose() {
@@ -31,6 +37,7 @@ class _SignUpFormState extends State<SignUpForm> {
     _phoneNumberController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -112,22 +119,109 @@ class _SignUpFormState extends State<SignUpForm> {
                 return TextValidator.passwordValidation(value);
               },
             ),
-            CustomFormButton(
-              buttonText: "Sign Up",
-              save: () {
-                if (_signUpKey.currentState!.validate()) {
-                  // print('Validated');
-                  _signUpKey.currentState!.save();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
-                    ),
-                  );
-                }
+            CustomTextField(
+              fieldHint: "Re-enter your password.",
+              fieldLabel: "Confirm Password",
+              controller: _confirmPasswordController,
+              suffixIcon: IconButton(
+                icon: Icon(
+                  _obscureText == true
+                      ? Icons.visibility_off
+                      : Icons.visibility,
+                ),
+                onPressed: () {
+                  // print('The eye visibility is working.');
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+              ),
+              obscure: _obscureText,
+              save: (value) {
+                passwordInput = value;
+              },
+              validation: (value) {
+                return TextValidator.passwordValidation(value);
               },
             ),
+            CustomFormButton(
+                buttonText: "Sign Up",
+                save: () {
+                  Register(context);
+                }),
           ],
         ));
+  }
+
+  Register(BuildContext context) async {
+    print("2here");
+    if (_signUpKey.currentState!.validate()) {
+      print("1here");
+      _signUpKey.currentState!.save();
+
+      setState(() {
+        pressedLogin = true;
+      });
+      print(pressedLogin);
+      print("1here");
+      registerResponse = await AuthService.register(
+          fullNameInput, numberImput, emailInput, passwordInput);
+      print('FIRST PRINT $registerResponse');
+      if (registerResponse==null) {
+        print("HERE AGAIN");
+         await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title:  const Text('Error'),
+        content: const Text(
+                'Your register credentitals are invalid. Please check and try again.'),
+        actions: <Widget>[
+           TextButton(
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true)
+                  .pop(); // dismisses only the dialog and returns nothing
+            },
+            child:  const Text('OK'),
+          ),
+        ],
+      ),
+    );
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => LoginScreen()));
+      }
+
+      // print('ACCESS TOKEN = ${registerResponse['access_token']}');
+      //   print('REFRESH TOKEN = ${registerResponse["refresh_token"]}');
+
+     
+    } else {
+      loginError(context);
+      pressedLogin = false;
+    }
+  }
+
+  loginError(BuildContext context) {
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("${registerResponse["status"].toUpperCase()}"),
+      content: Text("${registerResponse["message"]}"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }
