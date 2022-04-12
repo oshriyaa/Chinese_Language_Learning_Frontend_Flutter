@@ -8,7 +8,7 @@ import '../models/vocabulary_model.dart';
 
 class DictionaryService {
   List<VocabularyModel> results = [];
-  Future<List<VocabularyModel>> getMeaning({String? query}) async {
+  Future<List<VocabularyModel>> getMeaning() async {
     try {
       final req = await http.get(Uri.parse("${FypEnv.URL_PREFIX}/vocabulary"));
 
@@ -17,16 +17,7 @@ class DictionaryService {
             vocabularyModelFromJson(utf8.decode(req.bodyBytes));
 
         print('here2');
-        print(query);
-        if (query != null) {
-          results = results
-              .where((element) => element.inEnglish!
-                  .toLowerCase()
-                  .contains((query.toLowerCase())))
-              .toList();
-          print("here3");
-          print(results);
-        }
+
         return vocabularyModel;
       } else {
         print("fetch error");
@@ -60,6 +51,7 @@ class AuthService {
       decodedResponse = json.decode(response.body);
 
       var token = decodedResponse['token'];
+      secureStorage.writeSecureData(token);
 
       return decodedResponse;
     }
@@ -67,7 +59,6 @@ class AuthService {
     return null;
   }
 
-// secureStorage.writeSecureData(token);
   //API service for Register
   static Future register(fullName, phoneNumber, email, password) async {
     print("hereagain4");

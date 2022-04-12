@@ -52,7 +52,7 @@ class TestPage extends StatelessWidget {
                 },
               ),
               CustomSelectButton(
-                buttonName: "Level: Hard",
+                buttonName: "Level: Medium",
                 onPress: () {
                   Navigator.push(
                       context,
@@ -62,7 +62,7 @@ class TestPage extends StatelessWidget {
                 },
               ),
               CustomSelectButton(
-                buttonName: "Audio Test",
+                buttonName: "Level: Hard",
                 onPress: () {
                   Navigator.push(
                       context,

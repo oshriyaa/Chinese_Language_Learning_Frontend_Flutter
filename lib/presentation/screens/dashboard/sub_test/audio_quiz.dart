@@ -15,22 +15,16 @@ class HardTestQuizPage extends StatefulWidget {
 }
 
 class _HardTestQuizPageState extends State<HardTestQuizPage> {
-  AudioPlayer audioPlayer = AudioPlayer();
-  AudioCache? audioCache;
-  String path = 'test.mp3';
+
+  late AudioCache audioCache;
 
   @override
-  void initAudio() {
+  void initState() {
     super.initState();
-    audioCache = AudioCache(fixedPlayer: audioPlayer);
-    // audioPlayer.onPlayerStateChanged.listen(AudioPlayerState s){
-    //   setState(() {
-    //     audioPlayerState = s;
-    //   });
-  }
-
-  playMusic() async {
-    await audioCache!.play(path);
+    // create this only once
+    audioCache = AudioCache(
+        prefix: "lib/assets/audio/",
+        fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
   }
 
   int _questionIndex = 0;
@@ -39,11 +33,11 @@ class _HardTestQuizPageState extends State<HardTestQuizPage> {
   bool endOfQuiz = false;
   bool correctAnswerSelected = false;
 
-  @override
-  void initState() {
-    hardQuizQuestionData.shuffle();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   hardQuizQuestionData.shuffle();
+  //   super.initState();
+  // }
 
   void _questionAnswered(bool answerScore) {
     setState(() {
@@ -122,11 +116,11 @@ class _HardTestQuizPageState extends State<HardTestQuizPage> {
                                   Icons.play_arrow,
                                   color: CustomColors.WHITE,
                                 ),
-                                onPressed: () {
-                                  initAudio();
-                                },
+                                onPressed: () => audioCache.play(
+                                              hardQuizQuestionData[_questionIndex]
+                                                  ['audio'] as String)),
                               ),
-                            )
+                            
                           ],
                         )
                       : Text(

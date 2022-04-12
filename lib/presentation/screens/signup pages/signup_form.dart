@@ -23,12 +23,12 @@ class _SignUpFormState extends State<SignUpForm> {
   final _confirmPasswordController = TextEditingController();
 
   String? fullNameInput;
-  String? numberImput;
+  String? numberInput;
   String? passwordInput;
   String? confirmPasswordInput;
   String? emailInput;
   bool _obscureText = true;
-  bool? pressedLogin = false;
+  bool? pressedRegister = false;
   var registerResponse;
 
   @override
@@ -75,7 +75,7 @@ class _SignUpFormState extends State<SignUpForm> {
               fieldLabel: "Phone number",
               controller: _phoneNumberController,
               save: (value) {
-                numberImput = value;
+                numberInput = value;
               },
               obscure: false,
               validation: (value) {
@@ -160,12 +160,12 @@ class _SignUpFormState extends State<SignUpForm> {
       _signUpKey.currentState!.save();
 
       setState(() {
-        pressedLogin = true;
+        pressedRegister = true;
       });
-      print(pressedLogin);
+      print(pressedRegister);
       print("1here");
       registerResponse = await AuthService.register(
-          fullNameInput, numberImput, emailInput, passwordInput);
+          fullNameInput, numberInput, emailInput, passwordInput);
       print('FIRST PRINT $registerResponse');
       if (registerResponse==null) {
         print("HERE AGAIN");
@@ -197,7 +197,7 @@ class _SignUpFormState extends State<SignUpForm> {
      
     } else {
       loginError(context);
-      pressedLogin = false;
+      pressedRegister = false;
     }
   }
 

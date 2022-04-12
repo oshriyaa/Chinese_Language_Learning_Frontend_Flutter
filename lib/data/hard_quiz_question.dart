@@ -44,7 +44,7 @@ List hardQuizQuestionData = [
     'question':
         'Which part of his body did musician Gene Simmons from Kiss insure for one million dollars?',
     'category': 'audio',
-    'audio' : 'null',
+    'audio' : 'test.mp3',
     'answers': [
       {'answerText': 'His tongue', 'score': true},
       {'answerText': 'His leg', 'score': false},
@@ -54,7 +54,7 @@ List hardQuizQuestionData = [
   {
     'question': 'In which country are Panama hats made?',
     'category': 'audio',
-    'audio' : 'null',
+    'audio' : 'test.mp3',
     'answers': [
       {'answerText': 'Ecuador', 'score': true},
       {'answerText': 'Panama (duh)', 'score': false},
@@ -64,7 +64,7 @@ List hardQuizQuestionData = [
   {
     'question': 'From which country do French fries originate?',
     'category': 'audio',
-    'audio' : 'null',
+    'audio' : 'test.mp3',
     'answers': [
       {'answerText': 'Belgium', 'score': true},
       {'answerText': 'France (duh)', 'score': false},
@@ -74,7 +74,7 @@ List hardQuizQuestionData = [
   {
     'question': 'Which sea creature has three hearts?',
     'category': 'audio',
-    'audio' : 'null',
+    'audio' : 'test.mp3',
     'answers': [
       {'answerText': 'Great White Sharks', 'score': false},
       {'answerText': 'Killer Whales', 'score': false},
@@ -84,7 +84,7 @@ List hardQuizQuestionData = [
   {
     'question': 'Which European country eats the most chocolate per capita?',
     'category': 'audio',
-    'audio' : 'null',
+    'audio' : 'test.mp3',
     'answers': [
       {'answerText': 'Belgium', 'score': false},
       {'answerText': 'The Netherlands', 'score': false},

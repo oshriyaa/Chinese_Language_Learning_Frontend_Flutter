@@ -6,13 +6,13 @@ import 'package:chinese_learning/presentation/screens/dashboard/client_info.dart
 import 'package:chinese_learning/presentation/screens/dashboard/sub_preschooling.dart/preschooling.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/test_page.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/translate_page.dart';
-import 'package:chinese_learning/presentation/screens/other/search_screen.dart';
 
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/feature_tile.dart';
 import '../../widgets/custom_drawer.dart';
+import '../other/search_screen.dart';
 import 'sub_vocabulary/category.dart';
 
 class LandingScreen extends StatefulWidget {
