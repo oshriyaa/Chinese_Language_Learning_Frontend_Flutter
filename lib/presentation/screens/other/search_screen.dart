@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:chinese_learning/models/testvocabmodel.dart';
+import 'package:chinese_learning/models/search_vocabulary_model.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_vocabulary/word_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -15,8 +15,8 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final List<Posts> _list = [];
-  final List<Posts> _search = [];
+  final List<SearchVocabulary> _list = [];
+  final List<SearchVocabulary> _search = [];
   var loading = false;
 
   Future<void> fetchData() async {
@@ -30,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
       final data = jsonDecode(utf8.decode(response.bodyBytes));
       setState(() {
         for (Map i in data) {
-          _list.add(Posts.formJson(i));
+          _list.add(SearchVocabulary.formJson(i));
           loading = false;
         }
       });

@@ -10,18 +10,20 @@ import '../../styling/textstyle.dart';
 import 'dialog.dart';
 
 class ClientInformationPage extends StatefulWidget {
-  const ClientInformationPage({ Key? key }) : super(key: key);
+  const ClientInformationPage({Key? key}) : super(key: key);
 
   @override
   State<ClientInformationPage> createState() => _ClientInformationPageState();
 }
 
 class _ClientInformationPageState extends State<ClientInformationPage> {
-   int activeIndex = 0;
+  int activeIndex = 0;
   final urlImages = [
-    'https://media.istockphoto.com/photos/businessman-jumping-in-a-park-picture-id1319011801?s=612x612',
-    'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=838&q=80',
-    'https://media.istockphoto.com/photos/happy-energetic-young-boy-jumping-high-in-the-air-picture-id1145380418?s=612x612',
+    'lib/assets/images/handa_img/image1.png',
+    'lib/assets/images/handa_img/image2.jpg',
+    'lib/assets/images/handa_img/image4.png',
+    'lib/assets/images/handa_img/image3.png',
+    'lib/assets/images/handa_img/image5.jpg',
   ];
 
   Widget buildImage(String urlImage, int index) => Container(
@@ -39,13 +41,13 @@ class _ClientInformationPageState extends State<ClientInformationPage> {
         width: 1000,
         margin: EdgeInsets.symmetric(horizontal: 10),
         // color: CustomColors.GREY,
-        child: Image.network(
+        child: Image.asset(
           urlImage,
           fit: BoxFit.cover,
         ),
       );
 
-      Widget buildIndicator() => AnimatedSmoothIndicator(
+  Widget buildIndicator() => AnimatedSmoothIndicator(
         activeIndex: activeIndex,
         count: urlImages.length,
         effect: WormEffect(
@@ -54,7 +56,7 @@ class _ClientInformationPageState extends State<ClientInformationPage> {
         ),
       );
 
-      Future openContactDialog() => showDialog(
+  Future openContactDialog() => showDialog(
       context: context,
       builder: (contex) => const DialogAlert(
             btn1: '982-8555637',
@@ -78,8 +80,7 @@ class _ClientInformationPageState extends State<ClientInformationPage> {
             imageLink: 'lib/assets/contactsLogo.png',
           ));
 
-   
-   @override
+  @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
@@ -138,12 +139,16 @@ class _ClientInformationPageState extends State<ClientInformationPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomIconButton(
-                      save: () {openContactDialog();},
+                      save: () {
+                        openContactDialog();
+                      },
                       buttonText: "Contact Us",
                       btnIcon: Icons.call,
                     ),
                     CustomIconButton(
-                      save: () {openLearnDialog();},
+                      save: () {
+                        openLearnDialog();
+                      },
                       buttonText: "Learn More",
                       btnIcon: Icons.travel_explore,
                     )
@@ -212,5 +217,3 @@ class _ClientInformationPageState extends State<ClientInformationPage> {
     );
   }
 }
-
-

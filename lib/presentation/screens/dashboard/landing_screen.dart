@@ -12,7 +12,7 @@ import 'package:chinese_learning/presentation/screens/login%20pages/login_screen
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/secure_storage.dart';
+import '../../../secure_storage/secure_storage.dart';
 import '../../widgets/feature_tile.dart';
 import '../../widgets/custom_drawer.dart';
 import '../other/search_screen.dart';

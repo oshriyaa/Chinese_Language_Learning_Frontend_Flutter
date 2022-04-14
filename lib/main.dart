@@ -4,7 +4,7 @@ import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.d
 import 'package:chinese_learning/presentation/screens/login%20pages/login_screen.dart';
 import 'package:chinese_learning/routes/routes.dart';
 import 'package:flutter/material.dart';
-import 'models/secure_storage.dart';
+import 'secure_storage/secure_storage.dart';
 import 'routes/route_constant.dart';
 
 late final SecureStorage secureStorage;

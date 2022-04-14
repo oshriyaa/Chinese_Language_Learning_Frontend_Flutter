@@ -1,4 +1,4 @@
-class Posts {
+class SearchVocabulary {
 
      int? wordId;
     String? categoryId;
@@ -9,7 +9,7 @@ class Posts {
     String? inDevnagari;
     String? audio;
 
-  Posts({
+  SearchVocabulary({
     this.wordId,
         this.categoryId,
         this.inEnglish,
@@ -20,8 +20,8 @@ class Posts {
         this.audio,
   });
 
-  factory Posts.formJson(Map<dynamic, dynamic> json) {
-    return new Posts(
+  factory SearchVocabulary.formJson(Map<dynamic, dynamic> json) {
+    return new SearchVocabulary(
       wordId: json["WordID"],
         categoryId: json["CategoryID"],
         inEnglish: json["InEnglish"],

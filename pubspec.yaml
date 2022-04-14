@@ -29,6 +29,9 @@ dev_dependencies:
 
 flutter:
   assets:
+    - lib/assets/images/handa_img/image2.jpg
+    - lib/assets/images/handa_img/image5.jpg
+    - lib/assets/images/handa_img/
     - lib/assets/contactsLogo.png
     - lib/assets/logo1.png
     - lib/assets/dictionary.png
