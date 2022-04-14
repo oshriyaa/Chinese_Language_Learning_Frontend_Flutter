@@ -13,7 +13,6 @@ class SecureStorage {
 
   }
 
-
   Future deleteSecureData() async {
     await storage.deleteAll();
   }

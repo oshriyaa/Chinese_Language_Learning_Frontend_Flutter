@@ -1,3 +1,7 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:chinese_learning/presentation/colors/colors.dart';
+import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
+import 'package:chinese_learning/presentation/screens/login%20pages/login_screen.dart';
 import 'package:chinese_learning/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'models/secure_storage.dart';
@@ -25,7 +29,25 @@ class MyApp extends StatelessWidget {
       ),
       onGenerateRoute: AppRouter.generateRoute,
       // initialRoute: SignUpPage,
-      initialRoute: LoginPage,
+       home: AnimatedSplashScreen(
+        splash: Image.asset(
+          'lib/assets/logo1.png',
+        ),
+        duration: 2000,
+        splashTransition: SplashTransition.fadeTransition,
+        // pageTransitionType:  PageTransitionType.bottomToTop,
+        backgroundColor: CustomColors.RED,
+        nextScreen: FutureBuilder(
+          builder: (context, snapshot) {
+            print('SNAPSHOT.DATA $snapshot.data');
+            if (snapshot.data != null) {
+              return LandingScreen();
+            }
+            return LoginScreen();
+          },
+          future: checkToken(),
+        ),
+      ),
     );
   }
 }

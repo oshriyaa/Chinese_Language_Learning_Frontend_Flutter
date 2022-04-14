@@ -1,3 +1,4 @@
+import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/network/dio_api.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/feedback_page.dart';
@@ -6,10 +7,12 @@ import 'package:chinese_learning/presentation/screens/dashboard/client_info.dart
 import 'package:chinese_learning/presentation/screens/dashboard/sub_preschooling.dart/preschooling.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/test_page.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/translate_page.dart';
+import 'package:chinese_learning/presentation/screens/login%20pages/login_screen.dart';
 
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
 
+import '../../../models/secure_storage.dart';
 import '../../widgets/feature_tile.dart';
 import '../../widgets/custom_drawer.dart';
 import '../other/search_screen.dart';
@@ -23,6 +26,11 @@ class LandingScreen extends StatefulWidget {
 }
 
 class _LandingScreenState extends State<LandingScreen> {
+  final SecureStorage secureStorage = SecureStorage();
+
+  bool? pressedLogout = false;
+  var logoutResponse;
+
   @override
   Widget build(BuildContext context) {
     // var size = MediaQuery.of(context).size;
@@ -38,7 +46,6 @@ class _LandingScreenState extends State<LandingScreen> {
           IconButton(
             onPressed: () {
               getHttp();
-
             },
             icon: const Icon(Icons.favorite),
           ),
@@ -96,7 +103,7 @@ class _LandingScreenState extends State<LandingScreen> {
                     ));
               },
             ),
-             FeatureContainer(
+            FeatureContainer(
               tileTitle: "Translate",
               tileSubHeading: "Translate from English to Chinese.",
               image: 'lib/assets/feedback.png',
@@ -144,7 +151,20 @@ class _LandingScreenState extends State<LandingScreen> {
                     ));
               },
             ),
-            
+            FeatureContainer(
+              tileTitle: "Logout",
+              tileSubHeading: "Logout",
+              image: 'lib/assets/feedback.png',
+              tapFunction: () async {
+                pressedLogout = true;
+                
+                secureStorage.deleteSecureData();
+                 Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => LoginScreen()));
+
+                
+              },
+            ),
             const SizedBox(
               height: 15,
             )

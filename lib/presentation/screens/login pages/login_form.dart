@@ -128,7 +128,7 @@ class _LoginFormState extends State<LoginForm> {
       ),
     );
       } else {
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => LandingScreen()));
       }
     } else {
