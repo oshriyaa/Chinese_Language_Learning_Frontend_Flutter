@@ -1,14 +1,60 @@
+import 'package:carousel_slider/carousel_options.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/widgets/custom_icon_botton.dart';
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../colors/colors.dart';
 import '../../styling/textstyle.dart';
 
-class ClientInformationPage extends StatelessWidget {
-  const ClientInformationPage({Key? key}) : super(key: key);
+class ClientInformationPage extends StatefulWidget {
+  const ClientInformationPage({ Key? key }) : super(key: key);
 
   @override
+  State<ClientInformationPage> createState() => _ClientInformationPageState();
+}
+
+class _ClientInformationPageState extends State<ClientInformationPage> {
+   int activeIndex = 0;
+  final urlImages = [
+    'https://media.istockphoto.com/photos/businessman-jumping-in-a-park-picture-id1319011801?s=612x612',
+    'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=838&q=80',
+    'https://media.istockphoto.com/photos/happy-energetic-young-boy-jumping-high-in-the-air-picture-id1145380418?s=612x612',
+  ];
+
+  Widget buildImage(String urlImage, int index) => Container(
+        decoration: BoxDecoration(
+          color: CustomColors.WHITE,
+          borderRadius: BorderRadius.circular(5),
+          boxShadow: const [
+            BoxShadow(
+              blurRadius: 6,
+              offset: Offset(0, 0),
+            ),
+          ],
+        ),
+        // height: 700,
+        width: 1000,
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        // color: CustomColors.GREY,
+        child: Image.network(
+          urlImage,
+          fit: BoxFit.cover,
+        ),
+      );
+
+      Widget buildIndicator() => AnimatedSmoothIndicator(
+        activeIndex: activeIndex,
+        count: urlImages.length,
+        effect: WormEffect(
+          dotColor: CustomColors.GREY,
+          activeDotColor: CustomColors.RED,
+        ),
+      );
+
+   
+   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
@@ -38,20 +84,26 @@ class ClientInformationPage extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: CustomColors.WHITE,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: const [
-                    BoxShadow(
-                      blurRadius: 6,
-                      offset: Offset(0, 0),
-                    ),
-                  ],
-                ),
-                height: size.height * 0.2,
-                width: size.width * 0.9,
+              CarouselSlider.builder(
+                itemCount: urlImages.length,
+                itemBuilder: (context, index, realIndex) {
+                  final urlImage = urlImages[index];
+                  return buildImage(urlImage, index);
+                },
+                options: CarouselOptions(
+                    height: size.height * 0.2,
+                    // viewportFraction: 1,
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    autoPlayInterval: Duration(seconds: 2),
+                    onPageChanged: (index, reason) => setState(
+                          () => activeIndex = index,
+                        )),
               ),
+              const SizedBox(
+                height: 15,
+              ),
+              buildIndicator(),
               const SizedBox(
                 height: 15,
               ),
@@ -135,3 +187,5 @@ class ClientInformationPage extends StatelessWidget {
     );
   }
 }
+
+
