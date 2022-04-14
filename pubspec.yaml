@@ -29,6 +29,7 @@ dev_dependencies:
 
 flutter:
   assets:
+    - lib/assets/contactsLogo.png
     - lib/assets/dictionary.png
     - lib/assets/test.png
     - lib/assets/learn.png

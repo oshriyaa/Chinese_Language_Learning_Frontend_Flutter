@@ -7,6 +7,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../colors/colors.dart';
 import '../../styling/textstyle.dart';
+import 'dialog.dart';
 
 class ClientInformationPage extends StatefulWidget {
   const ClientInformationPage({ Key? key }) : super(key: key);
@@ -52,6 +53,30 @@ class _ClientInformationPageState extends State<ClientInformationPage> {
           activeDotColor: CustomColors.RED,
         ),
       );
+
+      Future openContactDialog() => showDialog(
+      context: context,
+      builder: (contex) => const DialogAlert(
+            btn1: '982-8555637',
+            btn1icn: Icons.call,
+            btn2: '9800000000',
+            btn2icn: Icons.call,
+            btn3: 'handachinese1@gmail.com',
+            btn3icn: Icons.mail,
+            imageLink: 'lib/assets/contactsLogo.png',
+          ));
+
+  Future openLearnDialog() => showDialog(
+      context: context,
+      builder: (contex) => const DialogAlert(
+            btn1: 'Website',
+            btn1icn: Icons.language,
+            btn2: 'Facebook',
+            btn2icn: Icons.facebook,
+            btn3: 'Instagram',
+            btn3icn: Icons.feed,
+            imageLink: 'lib/assets/contactsLogo.png',
+          ));
 
    
    @override
@@ -113,12 +138,12 @@ class _ClientInformationPageState extends State<ClientInformationPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomIconButton(
-                      save: () {},
+                      save: () {openContactDialog();},
                       buttonText: "Contact Us",
                       btnIcon: Icons.call,
                     ),
                     CustomIconButton(
-                      save: () {},
+                      save: () {openLearnDialog();},
                       buttonText: "Learn More",
                       btnIcon: Icons.travel_explore,
                     )
