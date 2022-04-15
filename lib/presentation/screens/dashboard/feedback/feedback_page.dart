@@ -1,9 +1,9 @@
-import 'package:chinese_learning/presentation/screens/dashboard/feedback_form.dart';
-import 'package:chinese_learning/presentation/widgets/custom_textfield.dart';
+import 'package:chinese_learning/presentation/screens/dashboard/feedback/feedback_form.dart';
+import 'package:chinese_learning/presentation/widgets/textfields/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
-import '../../colors/colors.dart';
-import '../../styling/textstyle.dart';
+import '../../../colors/colors.dart';
+import '../../../styling/textstyle.dart';
 
 class FeedbackPage extends StatefulWidget {
   const FeedbackPage({Key? key}) : super(key: key);

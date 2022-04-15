@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../colors/colors.dart';
+import '../../colors/colors.dart';
 
-class CustomIconButton extends StatelessWidget {
+class CustomWhiteIconButton extends StatelessWidget {
   final String? buttonText;
   final Function()? save;
   final IconData? btnIcon;
-  const CustomIconButton({
+  const CustomWhiteIconButton({
     Key? key,
     this.save,
     this.buttonText,
@@ -19,25 +19,26 @@ class CustomIconButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: size.width * 0.4,
+        // width: size.width * 0.4,
         child: TextButton(
           style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            backgroundColor: CustomColors.RED,
+            // backgroundColor: CustomColors.RED,
             padding: const EdgeInsets.all(10.0),
             primary: Colors.black,
             textStyle: const TextStyle(fontSize: 15),
           ),
+          
           child: Row(
             children: [
-              Icon(btnIcon!, color: CustomColors.WHITE,),
-              SizedBox(width: 7,),
+              Icon(btnIcon!, color: CustomColors.RED,),
+              SizedBox(width: 15,),
               Text(
                 buttonText!,
                 style: const TextStyle(
-                    color: CustomColors.WHITE,
+                    color: CustomColors.RED,
                     fontFamily: 'Bitter',
                     fontWeight: FontWeight.w200,
                     fontSize: 20),

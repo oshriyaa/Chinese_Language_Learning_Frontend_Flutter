@@ -1,14 +1,14 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
-import 'package:chinese_learning/presentation/widgets/custom_icon_botton.dart';
+import 'package:chinese_learning/presentation/widgets/buttons/custom_icon_botton.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../colors/colors.dart';
 import '../../styling/textstyle.dart';
-import 'dialog.dart';
+import '../../widgets/dialog.dart';
 
 class ClientInformationPage extends StatefulWidget {
   const ClientInformationPage({Key? key}) : super(key: key);

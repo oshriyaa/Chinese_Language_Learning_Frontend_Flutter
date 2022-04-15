@@ -2,7 +2,7 @@ import 'package:chinese_learning/data/easy_quiz_question.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
 import '../../../colors/colors.dart';
-import '../../../widgets/custom_test_answer_buttons.dart';
+import '../../../widgets/buttons/custom_test_answer_buttons.dart';
 import '../landing_screen.dart';
 import 'test_result.dart';
 

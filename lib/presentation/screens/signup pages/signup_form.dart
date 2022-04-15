@@ -1,10 +1,10 @@
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/screens/login%20pages/login_screen.dart';
-import 'package:chinese_learning/presentation/widgets/custom_textfield.dart';
+import 'package:chinese_learning/presentation/widgets/textfields/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import '../../../network/api_service.dart';
 import '../../colors/colors.dart';
-import '../../widgets/custom_button.dart';
+import '../../widgets/buttons/custom_button.dart';
 import '../../widgets/validators.dart';
 
 class SignUpForm extends StatefulWidget {

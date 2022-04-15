@@ -35,6 +35,7 @@ flutter:
     - lib/assets/images/handa_img/image5.jpg
     - lib/assets/images/handa_img/
     - lib/assets/contactsLogo.png
+    - lib/assets/importance.jpg
     - lib/assets/logoutLogo.png
     - lib/assets/learnmore.png
     - lib/assets/logo1.png

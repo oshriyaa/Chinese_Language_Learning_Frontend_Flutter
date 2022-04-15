@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../colors/colors.dart';
-import '../../widgets/custom_white_icon_button.dart';
+import '../colors/colors.dart';
+import 'buttons/custom_white_icon_button.dart';
 
 class DialogAlert extends StatelessWidget {
   final String? btn1;

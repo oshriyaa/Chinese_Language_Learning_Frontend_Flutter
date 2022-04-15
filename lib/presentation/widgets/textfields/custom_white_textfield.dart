@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../colors/colors.dart';
+import '../../colors/colors.dart';
 
 class CustomWhiteTextField extends StatelessWidget {
   final String? fieldHint;

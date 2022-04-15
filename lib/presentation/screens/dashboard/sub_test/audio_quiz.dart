@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../data/hard_quiz_question.dart';
 import '../../../colors/colors.dart';
 import '../../../styling/textstyle.dart';
-import '../../../widgets/custom_test_answer_buttons.dart';
+import '../../../widgets/buttons/custom_test_answer_buttons.dart';
 import 'test_result.dart';
 
 class HardTestQuizPage extends StatefulWidget {

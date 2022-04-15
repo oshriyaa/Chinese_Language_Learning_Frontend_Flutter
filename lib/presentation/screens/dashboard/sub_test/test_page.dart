@@ -1,12 +1,9 @@
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/audio_quiz.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/easy_test.dart';
-import 'package:chinese_learning/presentation/screens/dashboard/sub_test/copypaste.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/hard_test_page.dart';
-import 'package:chinese_learning/presentation/screens/dashboard/sub_test/results.dart';
-import 'package:chinese_learning/presentation/widgets/custom_select_button.dart';
+import 'package:chinese_learning/presentation/widgets/buttons/custom_select_button.dart';
 import 'package:flutter/material.dart';
-
 import '../../../colors/colors.dart';
 import '../../../styling/textstyle.dart';
 import '../../../widgets/custom_drawer.dart';

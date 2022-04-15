@@ -1,11 +1,11 @@
-import 'package:chinese_learning/presentation/widgets/custom_button.dart';
-import 'package:chinese_learning/presentation/widgets/custom_textfield.dart';
-import 'package:chinese_learning/presentation/widgets/custom_white_icon_button.dart';
-import 'package:chinese_learning/presentation/widgets/custom_white_textfield.dart';
+import 'package:chinese_learning/presentation/widgets/buttons/custom_button.dart';
+import 'package:chinese_learning/presentation/widgets/textfields/custom_textfield.dart';
+import 'package:chinese_learning/presentation/widgets/buttons/custom_white_icon_button.dart';
+import 'package:chinese_learning/presentation/widgets/textfields/custom_white_textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../widgets/validators.dart';
+import '../../../widgets/validators.dart';
 
 class FeedbackForm extends StatefulWidget {
   const FeedbackForm({Key? key}) : super(key: key);

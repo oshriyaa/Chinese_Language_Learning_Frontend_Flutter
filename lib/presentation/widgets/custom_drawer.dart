@@ -1,13 +1,33 @@
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/client_info.dart';
-import 'package:chinese_learning/presentation/screens/other/about_us_screen.dart';
+import 'package:chinese_learning/presentation/screens/dashboard/sub_about/about.dart';
+
 import 'package:chinese_learning/presentation/screens/other/favourites_screen.dart';
 import 'package:chinese_learning/presentation/screens/other/search_screen.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
 
-class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({Key? key}) : super(key: key);
+import '../../secure_storage/secure_storage.dart';
+import 'logout_alert.dart';
+
+class CustomDrawer extends StatefulWidget {
+  const CustomDrawer({ Key? key }) : super(key: key);
+
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
+
+class _CustomDrawerState extends State<CustomDrawer> {
+
+  final SecureStorage secureStorage = SecureStorage();
+  bool? pressedLogout = false;
+
+  Future openLogoutDialog() => showDialog(
+        context: context,
+        builder: (contex) => LogoutAlertDialog(
+              
+              imageLink: 'lib/assets/logoutLogo.png',
+            ));
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +48,7 @@ class CustomDrawer extends StatelessWidget {
                   onClicked: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AboutUsScreen(),
+                        builder: (context) => AboutPage(),
                       )),
                 ),
               ),
@@ -49,9 +69,13 @@ class CustomDrawer extends StatelessWidget {
                   icon: Icons.house,
                   onClicked: () => selectedItem(context, 2)),
               buildDrawerItem(
-                  text: "About Us",
+                  text: "Send Feedback",
                   icon: Icons.book,
-                  onClicked: () => selectedItem(context, 3))
+                  onClicked: () => selectedItem(context, 3)),
+               buildDrawerItem(
+                  text: "Logout",
+                  icon: Icons.logout,
+                  onClicked: () => selectedItem(context, 4))
             ],
           ),
         ),
@@ -109,8 +133,11 @@ class CustomDrawer extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AboutUsScreen(),
+              builder: (context) => AboutPage(),
             ));
+        break;
+       case 4:
+        openLogoutDialog();
         break;
     }
   }
@@ -128,3 +155,6 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 }
+
+
+

@@ -2,7 +2,7 @@ import 'package:chinese_learning/data/text_question_data.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/test_result.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
-import 'package:chinese_learning/presentation/widgets/custom_test_answer_buttons.dart';
+import 'package:chinese_learning/presentation/widgets/buttons/custom_test_answer_buttons.dart';
 import 'package:flutter/material.dart';
 
 class HardQuestionPage extends StatefulWidget {

@@ -2,7 +2,7 @@ import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/test_page.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
-import '../../../widgets/custom_test_answer_buttons.dart';
+import '../../../widgets/buttons/custom_test_answer_buttons.dart';
 
 class TestResults extends StatelessWidget {
   final int? testScore;

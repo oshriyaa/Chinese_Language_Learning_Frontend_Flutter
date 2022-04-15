@@ -26,7 +26,8 @@ class AboutDescription extends StatelessWidget {
             ),
           ),
           Container(
-            height: size.height * 0.25,
+            child: Image.asset("lib/assets/importance.jpg"),
+            // height: size.height * 0.25,
             width: size.width * 0.9,
             decoration: BoxDecoration(
               color: CustomColors.RED,
@@ -37,6 +38,7 @@ class AboutDescription extends StatelessWidget {
                   offset: Offset(0, 0),
                 ),
               ],
+              
             ),
           ),
           Padding(

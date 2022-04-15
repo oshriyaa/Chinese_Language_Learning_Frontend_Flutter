@@ -1,6 +1,6 @@
 import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
-import 'package:chinese_learning/presentation/widgets/custom_button.dart';
+import 'package:chinese_learning/presentation/widgets/buttons/custom_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/translation_model.dart';

@@ -1,7 +1,7 @@
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
 
-import '../colors/colors.dart';
+import '../../colors/colors.dart';
 
 class CustomTestAnswerButtonWidget extends StatefulWidget {
   final String? buttonText;

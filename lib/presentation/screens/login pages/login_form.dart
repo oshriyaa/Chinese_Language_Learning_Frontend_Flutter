@@ -1,13 +1,13 @@
 import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
-import 'package:chinese_learning/presentation/widgets/custom_button.dart';
+import 'package:chinese_learning/presentation/widgets/buttons/custom_button.dart';
 
 import 'package:chinese_learning/presentation/widgets/validators.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../widgets/custom_textfield.dart';
+import '../../widgets/textfields/custom_textfield.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
