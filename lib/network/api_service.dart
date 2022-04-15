@@ -90,23 +90,26 @@ class AuthService {
 }
 
 class TranslationAPI {
-  static Future<TranslationModel?> getTranslation({String? word}) async {
-    String? lang = 'en-zh';
-    String? token = '5926e7dc213240d1f1959af9422617a9';
+  static Future<TranslationModel?> getTranslation(
+      {source, target, text}) async {
+    print("APICALL");
+    print(target);
+    print(source);
 
+    // String target_code = target;
+    // String source_code = source;
     var url = Uri.parse(
-        'https://translate.hirak.site/?lang=$lang&txt=$word&token=$token');
+        'https://translation.googleapis.com/language/translate/v2?source=$source&key=AIzaSyDW8hzWVIuKfq_JZbqFtkL-w19g8P9xSgM&q=$text&target=$target');
     var response = await http.get(url);
     if (response.statusCode == 200) {
-      print('Response status: ${response.statusCode}');
       var decoded = json.decode(response.body);
+
+      // var translatedText= decoded['data']['translations'][0]['translatedText'] ;
+
       var data = TranslationModel.fromJson(decoded);
-      print(data);
+
       return data;
-      // } else {
-      //   return Text("Please try again");
     }
     return null;
   }
 }
-

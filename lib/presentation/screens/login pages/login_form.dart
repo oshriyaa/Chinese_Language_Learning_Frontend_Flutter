@@ -87,7 +87,6 @@ class _LoginFormState extends State<LoginForm> {
             buttonText: "Login",
             save: () {
               logIn(context);
-
             },
           ),
         ],
@@ -98,8 +97,10 @@ class _LoginFormState extends State<LoginForm> {
   logIn(BuildContext context) async {
     if (_loginKey.currentState!.validate()) {
       _loginKey.currentState!.save();
-      pressedLogin = true;
-      setState(() {});
+
+      setState(() {
+        pressedLogin = true;
+      });
 
       loginResponse = await AuthService.login(emailText, passwordText);
       print('FIRST PRINT $loginResponse');
@@ -108,25 +109,25 @@ class _LoginFormState extends State<LoginForm> {
 
       await Future.delayed(const Duration(seconds: 0));
       print("HERE IS RESPONSE $loginResponse");
-      if (loginResponse==null) {
+      if (loginResponse == null) {
         print("HERE AGAIN");
-         await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title:  const Text('Error'),
-        content: const Text(
+        await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Error'),
+            content: const Text(
                 'Your login credentitals are invalid. Please check and try again.'),
-        actions: <Widget>[
-           TextButton(
-            onPressed: () {
-              Navigator.of(context, rootNavigator: true)
-                  .pop(); // dismisses only the dialog and returns nothing
-            },
-            child:  const Text('OK'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .pop(); // dismisses only the dialog and returns nothing
+                },
+                child: const Text('OK'),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        );
       } else {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => LandingScreen()));

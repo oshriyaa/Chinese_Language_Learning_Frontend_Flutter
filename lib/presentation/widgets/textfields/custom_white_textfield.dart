@@ -1,3 +1,4 @@
+import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,8 +10,10 @@ class CustomWhiteTextField extends StatelessWidget {
   final TextEditingController? controller;
   final Function(String?)? save;
   final String? Function(String?)? validation;
-  final Widget? suffixIcon;
   final int? maxLine;
+  final double? topPosition;
+  final double? leftPosition;
+  final  bool? editable;
   const CustomWhiteTextField({
     Key? key,
     this.fieldHint,
@@ -18,8 +21,10 @@ class CustomWhiteTextField extends StatelessWidget {
     this.controller,
     this.fieldLabel,
     this.validation,
-    this.suffixIcon,
     this.maxLine,
+    this.leftPosition,
+    this.topPosition,
+    this.editable,
   }) : super(key: key);
 
   @override
@@ -27,37 +32,59 @@ class CustomWhiteTextField extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: Container(
-        width: size.width * 0.85,
-        // height: size.height * 0.06,
-        child: TextFormField(
-          controller: controller,
-          maxLines: maxLine,
-          onSaved: save,
-          validator: validation,
-          // autovalidateMode: AutovalidateMode.onUserInteraction,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: const BorderSide(
-                width: 1,
-                style: BorderStyle.solid,
-                color: CustomColors.RED,
+      child: Stack(
+        children: [
+          Container(
+            width: size.width * 0.85,
+            // height: size.height * 0.06,
+            child: TextFormField(
+              readOnly: editable!,
+              controller: controller,
+              maxLines: maxLine,
+              onSaved: save,
+              validator: validation,
+              style: StyleText.categoryHeading,
+              // autovalidateMode: AutovalidateMode.onUserInteraction,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: const BorderSide(
+                    width: 1,
+                    style: BorderStyle.solid,
+                    color: CustomColors.RED,
+                  ),
+                ),
+                labelText: fieldLabel,
+                labelStyle: const TextStyle(
+                    fontFamily: 'Bitter',
+                    color: CustomColors.RED,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                hintText: fieldHint,
+                hintStyle: const TextStyle(fontFamily: 'Bitter', color: CustomColors.GREY, fontSize: 20),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                filled: true,
+                fillColor: CustomColors.WHITE,
               ),
             ),
-            labelText: fieldLabel,
-            labelStyle:
-                const TextStyle(fontFamily: 'Bitter', color: CustomColors.RED, fontSize: 20, fontWeight: FontWeight.bold),
-            floatingLabelBehavior:FloatingLabelBehavior.always,    
-            hintText: fieldHint,
-            hintStyle: const TextStyle(fontFamily: 'Bitter'),
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-            filled: true,
-            fillColor: CustomColors.WHITE,
-            suffixIcon: suffixIcon,
           ),
-        ),
+          editable==false?
+           Positioned(
+              top: topPosition,
+              left: leftPosition,
+              child: TextButton(
+                child: Text(
+                  'Clear',
+                  style: StyleText.featureSubHeading,
+                ),
+                onPressed: () {
+                  controller?.clear();
+                },
+              ))  
+              : SizedBox(),
+        ],
       ),
     );
   }

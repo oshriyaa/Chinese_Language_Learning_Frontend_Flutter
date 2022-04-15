@@ -27,14 +27,16 @@ class _FeedbackFormState extends State<FeedbackForm> {
       child: Column(children: [
         CustomWhiteTextField(
           maxLine: 1,
+          editable:false,
           fieldHint: "Enter your subject.",
           fieldLabel: "Subject",
           controller: _subjectController,
           save: (value) {
             subjectInput = value;
           },
+          leftPosition: 285,
           validation: (value) {
-            return TextValidator.emailValidation(value);
+            return TextValidator.emptyValidation(value);
           },
         ),
         CustomWhiteTextField(
@@ -44,9 +46,12 @@ class _FeedbackFormState extends State<FeedbackForm> {
           save: (value) {
             feedbackInput = value;
           },
-          maxLine: 5,
+          topPosition: 80,
+          leftPosition: 285,
+          maxLine: 4,
+          editable:false,
           validation: (value) {
-            return TextValidator.emailValidation(value);
+            return TextValidator.emptyValidation(value);
           },
         ),
         CustomFormButton(

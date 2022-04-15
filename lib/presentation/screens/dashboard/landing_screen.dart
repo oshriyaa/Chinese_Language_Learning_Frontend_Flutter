@@ -118,7 +118,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const TranslatePage(),
+                      builder: (context) => const TranslationPage(),
                     ));
               },
             ),
