@@ -68,6 +68,8 @@ class StyleText {
     color: CustomColors.RED,
     fontWeight: FontWeight.bold,
   );
+
+
 }
 
 // Text("data",style: StyleText.textStyle1,),//use it like this

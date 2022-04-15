@@ -1,3 +1,4 @@
+import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -42,16 +43,15 @@ class DialogAlert extends StatelessWidget {
           children: <Widget>[
             Container(
                 width: double.infinity,
-                height: 300,
+                height: 330,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: CustomColors.L_RED),
-                padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
+                padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
                 child: Column(
                   children: [
                     CustomWhiteIconButton(
                       save: save1,
-                      
                       buttonText: btn1,
                       btnIcon: btn1icn,
                     ),
@@ -72,9 +72,21 @@ class DialogAlert extends StatelessWidget {
                       save: save3,
                       buttonText: btn3,
                       btnIcon: btn3icn,
-                    )
+                    ),
+                   
                   ],
                 )),
+            Positioned(
+              top: 270,
+              right: 50,
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "← Back",
+                      style: StyleText.aboutDesc,
+                    ))),
             Positioned(
                 top: -50, child: Image.asset(imageLink!, width: 90, height: 90))
           ],

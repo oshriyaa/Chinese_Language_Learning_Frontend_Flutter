@@ -26,13 +26,12 @@ class _FeedbackFormState extends State<FeedbackForm> {
       key: _feedbackKey,
       child: Column(children: [
         CustomWhiteTextField(
+          maxLine: 1,
           fieldHint: "Enter your subject.",
           fieldLabel: "Subject",
           controller: _subjectController,
           save: (value) {
-            print("HERE: $value");
             subjectInput = value;
-            print("HERE: $subjectInput");
           },
           validation: (value) {
             return TextValidator.emailValidation(value);
@@ -43,10 +42,9 @@ class _FeedbackFormState extends State<FeedbackForm> {
           fieldLabel: "Feedback",
           controller: _feedbackController,
           save: (value) {
-            print("HERE: $value");
             feedbackInput = value;
-            print("HERE: $feedbackInput");
           },
+          maxLine: 5,
           validation: (value) {
             return TextValidator.emailValidation(value);
           },
@@ -54,23 +52,20 @@ class _FeedbackFormState extends State<FeedbackForm> {
         CustomFormButton(
           buttonText: "Continue",
           save: () async {
-            print("HERE:$subjectInput");
             if (_feedbackKey.currentState!.validate()) {
               _feedbackKey.currentState!.save();
 
               const toEmail = 'namastechina2022@gmail.com';
-            final subject = "$subjectInput";
-            final message =
-                '$feedbackInput';
-            final url = 'mailto: $toEmail?subject=$subject&body=$message';
-            if (await canLaunch(url)) {
-              await launch(
-                url,
-                forceSafariVC: false,
-              );
+              final subject = "$subjectInput";
+              final message = '$feedbackInput';
+              final url = 'mailto: $toEmail?subject=$subject&body=$message';
+              if (await canLaunch(url)) {
+                await launch(
+                  url,
+                  forceSafariVC: false,
+                );
+              }
             }
-            }
-            
           },
         )
       ]),

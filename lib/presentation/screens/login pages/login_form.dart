@@ -23,7 +23,7 @@ class _LoginFormState extends State<LoginForm> {
   String? passwordText;
   String? emailText;
   bool _obscureText = true;
-  // bool? pressedLogin = false;
+  bool? pressedLogin = false;
   var loginResponse;
 
   @override
@@ -98,8 +98,8 @@ class _LoginFormState extends State<LoginForm> {
   logIn(BuildContext context) async {
     if (_loginKey.currentState!.validate()) {
       _loginKey.currentState!.save();
-      // pressedLogin = true;
-      // setState(() {});
+      pressedLogin = true;
+      setState(() {});
 
       loginResponse = await AuthService.login(emailText, passwordText);
       print('FIRST PRINT $loginResponse');
@@ -131,12 +131,33 @@ class _LoginFormState extends State<LoginForm> {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => LandingScreen()));
       }
+    } else {
+      loginError(context);
+      pressedLogin = false;
     }
-    //  else {
-    //   // loginError(context);
-    //   // pressedLogin = false;
-    // }
   }
 
-  
+  loginError(BuildContext context) {
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("${loginResponse.toUpperCase()}"),
+      content: Text("${loginResponse["message"]}"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 }

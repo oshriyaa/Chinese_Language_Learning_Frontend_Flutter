@@ -139,7 +139,7 @@ class _ClientInformationPageState extends State<ClientInformationPage> {
                 );
               }
             },
-            imageLink: 'lib/assets/contactsLogo.png',
+            imageLink: 'lib/assets/learnmore.png',
           ));
 
   @override

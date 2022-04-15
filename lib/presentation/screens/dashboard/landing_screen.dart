@@ -2,6 +2,7 @@ import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/network/dio_api.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/feedback_page.dart';
+import 'package:chinese_learning/presentation/screens/dashboard/logout_alert.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_about/about.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/client_info.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_preschooling.dart/preschooling.dart';
@@ -26,13 +27,19 @@ class LandingScreen extends StatefulWidget {
 }
 
 class _LandingScreenState extends State<LandingScreen> {
-  final SecureStorage secureStorage = SecureStorage();
-
-  bool? pressedLogout = false;
   var logoutResponse;
+  final SecureStorage secureStorage = SecureStorage();
+  bool? pressedLogout = false;
 
+  Future openLogoutDialog() => showDialog(
+        context: context,
+        builder: (contex) => LogoutAlertDialog(
+              
+              imageLink: 'lib/assets/logoutLogo.png',
+            ));
   @override
   Widget build(BuildContext context) {
+    
     // var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: CustomColors.L_RED,
@@ -106,7 +113,7 @@ class _LandingScreenState extends State<LandingScreen> {
             FeatureContainer(
               tileTitle: "Translate",
               tileSubHeading: "Translate from English to Chinese.",
-              image: 'lib/assets/feedback.png',
+              image: 'lib/assets/translate.png',
               tapFunction: () {
                 Navigator.push(
                     context,
@@ -118,7 +125,7 @@ class _LandingScreenState extends State<LandingScreen> {
             FeatureContainer(
               tileTitle: "About",
               tileSubHeading: "Learn about Chinese history and its importance.",
-              image: 'lib/assets/history.png',
+              image: 'lib/assets/about.png',
               tapFunction: () {
                 Navigator.push(
                     context,
@@ -153,16 +160,10 @@ class _LandingScreenState extends State<LandingScreen> {
             ),
             FeatureContainer(
               tileTitle: "Logout",
-              tileSubHeading: "Logout",
-              image: 'lib/assets/feedback.png',
-              tapFunction: () async {
-                pressedLogout = true;
-                
-                secureStorage.deleteSecureData();
-                 Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (_) => LoginScreen()));
-
-                
+              tileSubHeading: "We hope you enjoyed your stay. Visit us again.",
+              image: 'lib/assets/logout.png',
+              tapFunction: () {
+                openLogoutDialog();
               },
             ),
             const SizedBox(

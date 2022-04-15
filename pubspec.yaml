@@ -35,16 +35,17 @@ flutter:
     - lib/assets/images/handa_img/image5.jpg
     - lib/assets/images/handa_img/
     - lib/assets/contactsLogo.png
+    - lib/assets/logoutLogo.png
+    - lib/assets/learnmore.png
     - lib/assets/logo1.png
-    - lib/assets/dictionary.png
+    - lib/assets/about.png
     - lib/assets/test.png
     - lib/assets/learn.png
     - lib/assets/client.png
     - lib/assets/dictionary2.png
-    - lib/assets/learn2.png
-    - lib/assets/client2.png
+    - lib/assets/logout.png
+    - lib/assets/translate.png
     - lib/assets/feedback.png
-    - lib/assets/history.png
     - lib/assets/feedbackwithoutbackground.png
     - lib/assets/audio/test.mp3
   uses-material-design: true
