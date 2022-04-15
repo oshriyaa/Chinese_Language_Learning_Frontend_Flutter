@@ -4,6 +4,7 @@ import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.d
 import 'package:chinese_learning/presentation/widgets/custom_icon_botton.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../colors/colors.dart';
 import '../../styling/textstyle.dart';
@@ -58,25 +59,86 @@ class _ClientInformationPageState extends State<ClientInformationPage> {
 
   Future openContactDialog() => showDialog(
       context: context,
-      builder: (contex) => const DialogAlert(
-            btn1: '982-8555637',
+      builder: (contex) => DialogAlert(
+            btn1: '+977-9828555637',
             btn1icn: Icons.call,
-            btn2: '9800000000',
+            save1: () async {
+              const phoneNumber = '9828555637';
+              const url = 'tel:$phoneNumber';
+
+              if (await canLaunch(url)) {
+                await launch(
+                  url,
+                  forceSafariVC: false,
+                );
+              }
+            },
+            btn2: '+977-9813547805',
             btn2icn: Icons.call,
+            save2: () async {
+              const phoneNumber = '9813547805';
+              const url = 'tel:$phoneNumber';
+              if (await canLaunch(url)) {
+                await launch(
+                  url,
+                  forceSafariVC: false,
+                );
+              }
+            },
             btn3: 'handachinese1@gmail.com',
             btn3icn: Icons.mail,
+            save3: () async {
+              const toEmail = 'handachinese1@gmail.com';
+              const subject = 'Chinese Class Enquiry';
+              const message =
+                  'Hello! I would like to learn more about your institute.';
+              const url = 'mailto: $toEmail?subject=$subject&body=$message';
+              if (await canLaunch(url)) {
+                await launch(
+                  url,
+                  forceSafariVC: false,
+                );
+              }
+            },
             imageLink: 'lib/assets/contactsLogo.png',
           ));
 
   Future openLearnDialog() => showDialog(
       context: context,
-      builder: (contex) => const DialogAlert(
+      builder: (contex) => DialogAlert(
             btn1: 'Website',
             btn1icn: Icons.language,
+            save1: () async {
+              const url = 'http://handa.52chinese.cn/';
+              if (await canLaunch(url)) {
+                await launch(
+                  url,
+                  forceSafariVC: false,
+                );
+              }
+            },
             btn2: 'Facebook',
             btn2icn: Icons.facebook,
+            save2: () async {
+              const url = 'https://www.facebook.com/Handachinese';
+              if (await canLaunch(url)) {
+                await launch(
+                  url,
+                  forceSafariVC: false,
+                );
+              }
+            },
             btn3: 'Instagram',
             btn3icn: Icons.feed,
+            save3: () async {
+              const url = 'https://www.instagram.com/handa_chinese/';
+              if (await canLaunch(url)) {
+                await launch(
+                  url,
+                  forceSafariVC: false,
+                );
+              }
+            },
             imageLink: 'lib/assets/contactsLogo.png',
           ));
 

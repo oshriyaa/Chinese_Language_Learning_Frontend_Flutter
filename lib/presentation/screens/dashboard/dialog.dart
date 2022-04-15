@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../colors/colors.dart';
 import '../../widgets/custom_white_icon_button.dart';
@@ -12,6 +13,10 @@ class DialogAlert extends StatelessWidget {
   final IconData? btn2icn;
   final IconData? btn3icn;
   final String? imageLink;
+  final Function()? save1;
+  final Function()? save2;
+  final Function()? save3;
+
   const DialogAlert({
     Key? key,
     this.btn1,
@@ -21,6 +26,9 @@ class DialogAlert extends StatelessWidget {
     this.btn2icn,
     this.btn3icn,
     this.imageLink,
+    this.save1,
+    this.save2,
+    this.save3,
   }) : super(key: key);
 
   @override
@@ -42,7 +50,8 @@ class DialogAlert extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomWhiteIconButton(
-                      save: () {},
+                      save: save1,
+                      
                       buttonText: btn1,
                       btnIcon: btn1icn,
                     ),
@@ -51,7 +60,7 @@ class DialogAlert extends StatelessWidget {
                       color: CustomColors.GREY,
                     ),
                     CustomWhiteIconButton(
-                      save: () {},
+                      save: save2,
                       buttonText: btn2,
                       btnIcon: btn2icn,
                     ),
@@ -60,16 +69,14 @@ class DialogAlert extends StatelessWidget {
                       color: CustomColors.GREY,
                     ),
                     CustomWhiteIconButton(
-                      save: () {},
+                      save: save3,
                       buttonText: btn3,
                       btnIcon: btn3icn,
                     )
                   ],
                 )),
             Positioned(
-                top: -50,
-                child: Image.asset(imageLink!,
-                    width: 90, height: 90))
+                top: -50, child: Image.asset(imageLink!, width: 90, height: 90))
           ],
         ));
   }

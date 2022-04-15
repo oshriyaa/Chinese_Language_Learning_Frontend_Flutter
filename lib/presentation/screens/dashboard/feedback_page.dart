@@ -1,3 +1,5 @@
+import 'package:chinese_learning/presentation/screens/dashboard/feedback_form.dart';
+import 'package:chinese_learning/presentation/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
 import '../../colors/colors.dart';
@@ -52,7 +54,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       )
                     ]),
               ),
-              
+              SizedBox(height: 30,),
+             FeedbackForm(),
             ],
           ),
         ),
