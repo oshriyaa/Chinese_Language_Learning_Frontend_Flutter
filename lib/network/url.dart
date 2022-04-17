@@ -3,6 +3,8 @@ class FypEnv {
   static String URL_PREFIX = "http://10.0.2.2:8000";
   static String registerURL = "http://10.0.2.2:8000/api/user/create/";
   static String loginURL = "http://10.0.2.2:8000/token/";
+  static String favouritesURL = "http://10.0.2.2:8000/Api/Favourites/post/";
+//   http://127.0.0.1:8000/Api/Favourites/post/1/
 }
 
 

@@ -113,3 +113,36 @@ class TranslationAPI {
     return null;
   }
 }
+
+class FavouritesAPI {
+  static Future addFavourites({required int? word}) async {
+    print("We are here");
+    var token = await secureStorage.readSecureData('token');
+    print(token);
+    String auth = 'Token $token';
+    print("AUTH HERE $auth");
+    final String url = FypEnv.favouritesURL;
+    // var decodedResponse = checkToken();
+
+    //sending API request for login
+    final response = await http.post(
+      Uri.parse("http://10.0.2.2:8000/Api/Favourites/post/$word/"),
+    
+    headers:
+    <String, String>{
+      'Authorization': 'Token $token',
+    });
+    print("We are here");
+    print("Code ${response.statusCode as int}");
+    // body: requestBody);
+    //if the login is successful
+    if ((response.statusCode as int) == 200) {
+      print("===============THIS=========");
+      print(response.body);
+
+      return response.body;
+    }
+    //if the login is unseccessful
+    return null;
+  }
+}

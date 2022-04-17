@@ -39,6 +39,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
             return TextValidator.emptyValidation(value);
           },
         ),
+        SizedBox(height: 5,),
         CustomWhiteTextField(
           fieldHint: "Enter your feedback.",
           fieldLabel: "Feedback",
@@ -46,7 +47,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
           save: (value) {
             feedbackInput = value;
           },
-          topPosition: 80,
+          topPosition: 75,
           leftPosition: 285,
           maxLine: 4,
           editable:false,

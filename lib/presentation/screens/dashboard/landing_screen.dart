@@ -2,6 +2,7 @@ import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/network/dio_api.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/feedback/feedback_page.dart';
+import 'package:chinese_learning/presentation/screens/other/favourites_screen.dart';
 import 'package:chinese_learning/presentation/widgets/logout_alert.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_about/about.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/client_info.dart';
@@ -32,14 +33,12 @@ class _LandingScreenState extends State<LandingScreen> {
   bool? pressedLogout = false;
 
   Future openLogoutDialog() => showDialog(
-        context: context,
-        builder: (contex) => LogoutAlertDialog(
-              
-              imageLink: 'lib/assets/logoutLogo.png',
-            ));
+      context: context,
+      builder: (contex) => LogoutAlertDialog(
+            imageLink: 'lib/assets/logoutLogo.png',
+          ));
   @override
   Widget build(BuildContext context) {
-    
     // var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: CustomColors.L_RED,
@@ -52,7 +51,7 @@ class _LandingScreenState extends State<LandingScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              getHttp();
+              FavouritesScreen;
             },
             icon: const Icon(Icons.favorite),
           ),

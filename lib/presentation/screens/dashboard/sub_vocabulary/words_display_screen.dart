@@ -1,4 +1,3 @@
-
 import 'package:chinese_learning/models/vocabulary_model.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_vocabulary/word_widget.dart';
@@ -46,6 +45,10 @@ class _WordDisplayScreenState extends State<WordDisplayScreen> {
                                   inPin: data.inPinYin!,
                                   inDev: data.inDevnagari!,
                                   audio: data.audio,
+                                  favPressed: () {
+                                    FavouritesAPI.addFavourites(
+                                        word: (data.wordId));
+                                  },
                                 )
                               : const SizedBox(
                                   height: 1,

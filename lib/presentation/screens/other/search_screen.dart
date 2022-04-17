@@ -125,6 +125,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 inChi: searchList.inChinese,
                                 inPin: searchList.inPinYin,
                                 inDev: searchList.inDevnagari,
+                                isFav: true,
                               );
                             },
                           )
@@ -145,6 +146,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                         inPin: displayList.inPinYin,
                                         inDev: displayList.inDevnagari,
                                         audio: displayList.audio,
+                                        isFav: true,
                                       ),
                                     ],
                                   ));

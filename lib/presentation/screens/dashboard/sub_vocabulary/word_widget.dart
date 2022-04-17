@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
 import '../../../colors/colors.dart';
@@ -10,15 +11,19 @@ class WordWidget extends StatefulWidget {
   final String? inPin;
   final String? inDev;
   final String? audio;
-  const WordWidget(
-      {Key? key,
-      this.inEng,
-      this.inNep,
-      this.inChi,
-      this.inPin,
-      this.inDev,
-      this.audio})
-      : super(key: key);
+  final bool? isFav;
+  final Function()? favPressed;
+  const WordWidget({
+    Key? key,
+    this.inEng,
+    this.inNep,
+    this.inChi,
+    this.inPin,
+    this.inDev,
+    this.audio,
+    this.isFav,
+    this.favPressed,
+  }) : super(key: key);
 
   @override
   State<WordWidget> createState() => _WordWidgetState();
@@ -26,6 +31,7 @@ class WordWidget extends StatefulWidget {
 
 class _WordWidgetState extends State<WordWidget> {
   AudioPlayer audioPlayer = AudioPlayer();
+  bool? fav;
 
   initAudio() {
     audioPlayer.play(widget.audio!);
@@ -116,18 +122,32 @@ class _WordWidgetState extends State<WordWidget> {
                 ],
               ),
               Positioned(
-                  top: 240,
-                  left: size.width * 0.6,
-                  child: IconButton(
-                      onPressed: () {
-                        print(widget.audio!);
-                        initAudio();
-                      },
-                      icon: const Icon(
-                        Icons.play_arrow,
-                        color: CustomColors.RED,
-                        size: 45,
-                      )))
+                top: 240,
+                left: size.width * 0.6,
+                child: IconButton(
+                  onPressed: () {
+                    print(widget.audio!);
+                    initAudio();
+                  },
+                  icon: const Icon(
+                    Icons.play_arrow,
+                    color: CustomColors.RED,
+                    size: 45,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 140,
+                left: size.width * 0.6,
+                child: IconButton(
+                  onPressed: widget.favPressed,
+                  icon: Icon(
+                    Icons.favorite,
+                    color: CustomColors.RED,
+                    size: 45,
+                  ),
+                ),
+              ),
             ]),
           ),
           decoration: BoxDecoration(
