@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
         splashTransition: SplashTransition.fadeTransition,
         // pageTransitionType:  PageTransitionType.bottomToTop,
         backgroundColor: CustomColors.RED,
+        // nextScreen: LandingScreen(),
         nextScreen: FutureBuilder(
           builder: (context, snapshot) {
             print('SNAPSHOT.DATA $snapshot.data');

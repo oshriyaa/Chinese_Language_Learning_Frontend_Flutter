@@ -29,8 +29,8 @@ class _TranslationPageState extends State<TranslationPage> {
   String? target;
   String? source;
 
-  String firstDropDown = 'Chinese';
-  String secondDropdown = 'English';
+  String firstDropDown = 'English';
+  String secondDropdown = 'Chinese';
   bool ispressed = false;
 
   final formKey = new GlobalKey<FormState>();
@@ -64,11 +64,11 @@ class _TranslationPageState extends State<TranslationPage> {
             ),
           ]),
       body: GestureDetector(
-        onTap: (){
+        onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
-           if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
         },
         child: SingleChildScrollView(
           child: Form(
@@ -146,7 +146,8 @@ class _TranslationPageState extends State<TranslationPage> {
                       Column(
                         children: [
                           const Padding(
-                            padding: const EdgeInsets.only(right: 90, bottom: 7),
+                            padding:
+                                const EdgeInsets.only(right: 90, bottom: 7),
                             child: Text(
                               "To: ",
                               style: StyleText.questionFont,
@@ -222,20 +223,24 @@ class _TranslationPageState extends State<TranslationPage> {
                     if (ispressed == true) {
                       if (_translateFormKey.currentState!.validate()) {
                         _translateFormKey.currentState!.save();
-      
-                        firstDropDown == 'Chinese'
-                            ? source = 'zh'
+
+                        print(firstDropDown);
+                        print(secondDropdown);
+
+                        firstDropDown == 'English'
+                            ? source = 'en'
                             : firstDropDown == 'Nepali'
                                 ? source = 'ne'
-                                : source = 'en';
-      
-                        secondDropdown == 'English'
-                            ? target = 'en'
-                            : firstDropDown == 'Nepali'
+                                : source = 'zh';
+
+                        secondDropdown == 'Chinese'
+                            ? target = 'zh'
+                            : secondDropdown == 'Nepali'
                                 ? target = 'ne'
-                                : target = 'zh';
-                        print(target);
-                        print(source);
+                                : target = 'en';
+
+                        print("HERERRRRRRR $target");
+                        print('HERERRRRR $source');
                         gett = TranslationAPI.getTranslation(
                                 text: query, target: target, source: source)
                             .whenComplete(() {
@@ -275,8 +280,8 @@ class _TranslationPageState extends State<TranslationPage> {
                             ));
                       }
                       if (snapshot.hasData) {
-                        translatedText =
-                            snapshot.data?.data?.translations![0].translatedText;
+                        translatedText = snapshot
+                            .data?.data?.translations![0].translatedText;
                         print("HERE IS $translatedText");
                         return Container(
                           height: 250,
@@ -300,8 +305,8 @@ class _TranslationPageState extends State<TranslationPage> {
                         height: 250,
                         width: size.width * 0.85,
                         child: const Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 20),
                           child: const Text(
                             "We are sorry to inform that an error has occored. Please, try again later.",
                             style: StyleText.categoryHeading,
