@@ -47,73 +47,53 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ],
       ),
-      body: Column(
+      body: Stack(
         children: [
-          SizedBox(
-            height: 30,
-          ),
-          Center(
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: CustomColors.RED,
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 4,
-                        offset: Offset(0, 0),
-                      ),
-                    ],
-                  ),
-                  width: size.width * 0.9,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children:  [
-                        Text("Name: ${widget.name}", style: StyleText.testWhiteAnswerButtons,),
-
-                        Text("UserName: ${widget.username}", style: StyleText.testWhiteAnswerButtons,),
-                        Text("PhoneNumber: ${widget.phone}", style: StyleText.testWhiteAnswerButtons,),
+          Column(
+            children: [
+              SizedBox(
+                height: 30,
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 35),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: CustomColors.RED,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: const [
+                        BoxShadow(
+                          blurRadius: 4,
+                          offset: Offset(0, 0),
+                        ),
                       ],
                     ),
+                    width: size.width * 0.9,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 30),
+                            child: Text(
+                              "Name: ${widget.name}",
+                              style: StyleText.testWhiteAnswerButtons,
+                            ),
+                          ),
+                          Text(
+                            "UserName: ${widget.username}",
+                            style: StyleText.testWhiteAnswerButtons,
+                          ),
+                          Text(
+                            "PhoneNumber: ${widget.phone}",
+                            style: StyleText.testWhiteAnswerButtons,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-                Positioned(
-                top: -50, child: Icon(Icons.person))
-              ],
-              
-            ),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: CustomColors.RED,
-              borderRadius: BorderRadius.circular(5),
-              boxShadow: const [
-                BoxShadow(
-                  blurRadius: 4,
-                  offset: Offset(0, 0),
-                ),
-              ],
-            ),
-            width: size.width * 0.9,
-            height: size.height * 0.6,
-            child: Column(children: [
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Saved Test Results",
-                style: TextStyle(
-                  fontSize: 23,
-                  fontFamily: 'Bitter',
-                  color: CustomColors.WHITE,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(
@@ -121,7 +101,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: CustomColors.L_RED,
+                  color: CustomColors.RED,
                   borderRadius: BorderRadius.circular(5),
                   boxShadow: const [
                     BoxShadow(
@@ -130,45 +110,103 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
-                width: size.width * 0.85,
-                height: size.height * 0.5,
-                child: SingleChildScrollView(
-                  child: FutureBuilder(
-                    future: ResultsApi().getResults(),
-                    builder:
-                        (context, AsyncSnapshot<List<ResultModel>> snapshot) {
-                      // print('Data $snapshot');
-                      if (snapshot.hasData) {
-                        return Column(
-                          children: List.generate(
-                            snapshot.data!.length,
-                            (index) {
-                              final data = snapshot.data![index];
-                              //  print("DATA $data.categoryID");
-                              return ResultWidget(
-                                  date: data.testDate,
-                                  time: data.testTime,
-                                  level: data.level,
-                                  score: data.result,
-                                  iconColor: data.level == 'easy'
-                                      ? CustomColors.GREEN
-                                      : data.level == 'medium'
-                                          ? CustomColors.YELLOW
-                                          : CustomColors.RED);
-                            },
-                          ),
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text(snapshot.error.toString());
-                      } else {
-                        return const CircularProgressIndicator();
-                      }
-                    },
+                width: size.width * 0.9,
+                height: size.height * 0.58,
+                child: Column(children: [
+                  SizedBox(
+                    height: 15,
                   ),
+                  Text(
+                    "Saved Test Results",
+                    style: TextStyle(
+                      fontSize: 23,
+                      fontFamily: 'Bitter',
+                      color: CustomColors.WHITE,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: CustomColors.L_RED,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: const [
+                        BoxShadow(
+                          blurRadius: 4,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                    ),
+                    width: size.width * 0.85,
+                    height: size.height * 0.48,
+                    child: SingleChildScrollView(
+                      child: FutureBuilder(
+                        future: ResultsApi().getResults(),
+                        builder: (context,
+                            AsyncSnapshot<List<ResultModel>> snapshot) {
+                          // print('Data $snapshot');
+                          if (snapshot.hasData) {
+                            return Column(
+                              children: List.generate(
+                                snapshot.data!.length,
+                                (index) {
+                                  final data = snapshot.data![index];
+                                  //  print("DATA $data.categoryID");
+                                  return ResultWidget(
+                                      date: data.testDate,
+                                      time: data.testTime,
+                                      level: data.level,
+                                      score: data.result,
+                                      iconColor: data.level == 'easy'
+                                          ? CustomColors.GREEN
+                                          : data.level == 'medium'
+                                              ? CustomColors.YELLOW
+                                              : CustomColors.RED);
+                                },
+                              ),
+                            );
+                          } else if (snapshot.hasError) {
+                            return Text(snapshot.error.toString());
+                          } else {
+                            return const CircularProgressIndicator();
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                ]),
+              ),
+            ],
+          ),
+          Positioned(
+            top: 10,
+            left: 160,
+            child: Center(
+              child: Container(
+                 decoration: BoxDecoration(
+                      color: CustomColors.L_RED,
+
+                       shape: BoxShape.circle,
+                      boxShadow: const [
+                        BoxShadow(
+                          blurRadius: 4,
+                          offset: Offset(0, 0),
+                          
+                        ),
+                      ],
+                    ),
+      
+  
+                child: Icon(
+                  Icons.person,
+                  color: CustomColors.RED,
+                  size: 100,
                 ),
               ),
-            ]),
-          ),
+            ),
+          )
         ],
       ),
     );
