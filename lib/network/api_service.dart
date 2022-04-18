@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:chinese_learning/models/favourites_model.dart';
 import 'package:chinese_learning/models/translation_model.dart';
 import 'package:chinese_learning/network/url.dart';
 import 'package:http/http.dart' as http;
@@ -7,7 +8,6 @@ import '../main.dart';
 import '../models/vocabulary_model.dart';
 
 class DictionaryService {
-  List<VocabularyModel> results = [];
   Future<List<VocabularyModel>> getMeaning() async {
     try {
       final req = await http.get(Uri.parse("${FypEnv.URL_PREFIX}/vocabulary"));
@@ -16,7 +16,7 @@ class DictionaryService {
         final vocabularyModel =
             vocabularyModelFromJson(utf8.decode(req.bodyBytes));
 
-        print('here2');
+        print(vocabularyModel);
 
         return vocabularyModel;
       } else {
@@ -121,17 +121,12 @@ class FavouritesAPI {
     print(token);
     String auth = 'Token $token';
     print("AUTH HERE $auth");
-    final String url = FypEnv.favouritesURL;
-    // var decodedResponse = checkToken();
 
-    //sending API request for login
     final response = await http.post(
-      Uri.parse("http://10.0.2.2:8000/Api/Favourites/post/$word/"),
-    
-    headers:
-    <String, String>{
-      'Authorization': 'Token $token',
-    });
+        Uri.parse("http://10.0.2.2:8000/Api/Favourites/post/$word/"),
+        headers: <String, String>{
+          'Authorization': 'Token $token',
+        });
     print("We are here");
     print("Code ${response.statusCode as int}");
     // body: requestBody);
@@ -145,4 +140,70 @@ class FavouritesAPI {
     //if the login is unseccessful
     return null;
   }
+
+Future<List<FavouritesModel>> getFavourites() async {
+    try {
+  var token = await secureStorage.readSecureData('token');
+    print(token);
+    String auth = 'Token $token';
+
+    final response = await http.get(
+        Uri.parse("http://10.0.2.2:8000/Api/Favourites/get/"),
+        headers: <String, String>{
+          'Authorization': 'Token $token',
+        });
+
+      if (response.statusCode == 200) {
+        final vocabularyModel =
+            favouritesModelFromJson(response.body);
+
+        print(vocabularyModel);
+
+        return vocabularyModel;
+      } else {
+        print("fetch error");
+
+        final vocabularyModel = favouritesModelFromJson(response.body);
+
+        return vocabularyModel;
+      }
+    } on SocketException catch (_) {
+      return Future.error('No network found');
+    } catch (_) {
+      return Future.error('Something occured');
+    }
+  }
+  //  Future<List<FavouritesModel>> getFavourites() async {
+  //   print("APICALL");
+  //   var token = await secureStorage.readSecureData('token');
+  //   print(token);
+  //   String auth = 'Token $token';
+
+  //   final response = await http.get(
+  //       Uri.parse("http://10.0.2.2:8000/Api/Favourites/get/"),
+  //       headers: <String, String>{
+  //         'Authorization': 'Token $token',
+  //       });
+
+  //   print(response.statusCode);
+  //   if (response.statusCode == 200) {
+  //      final vocabularyModel =
+  //           vocabularyModelFromJson(response.body);
+
+  //       print('here2');
+
+  //       return vocabularyModel;
+  //     // print("here");
+  //     // print(response.body);
+  //     // List<dynamic>  decoded = json.decode(response.body);
+  //     // print("here333");
+  //     // // var translatedText= decoded['data']['translations'][0]['translatedText'] ;
+
+  //     // FavouritesModel favouritesModel = FavouritesModel.fromJson(decoded[0]);
+  //     // print("here");
+  //     // print(favouritesModel.vocabulary);
+  //     // return favouritesModel;
+  //   }
+  //   // return null;
+  // }
 }

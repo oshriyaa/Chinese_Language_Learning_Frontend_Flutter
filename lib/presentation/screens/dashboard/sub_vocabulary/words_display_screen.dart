@@ -37,6 +37,7 @@ class _WordDisplayScreenState extends State<WordDisplayScreen> {
                         snapshot.data!.length,
                         (index) {
                           final data = snapshot.data![index];
+                             print("DATA $data.categoryID");
                           return data.categoryId == widget.categoryID
                               ? WordWidget(
                                   inEng: data.inEnglish!,

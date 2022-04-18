@@ -4,6 +4,7 @@ import 'package:chinese_learning/presentation/screens/dashboard/sub_about/about.
 
 import 'package:chinese_learning/presentation/screens/other/favourites_screen.dart';
 import 'package:chinese_learning/presentation/screens/other/search_screen.dart';
+import 'package:chinese_learning/presentation/screens/other/word_of_the_day.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
 
@@ -61,6 +62,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   text: "Favourites",
                   icon: Icons.favorite,
                   onClicked: () => selectedItem(context, 1)),
+                   buildDrawerItem(
+                  text: "word of the day",
+                  icon: Icons.favorite,
+                  onClicked: () => selectedItem(context, 5)),
               Divider(
                 color: CustomColors.GREY,
               ),
@@ -138,6 +143,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
         break;
        case 4:
         openLogoutDialog();
+        break;
+        case 5:
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => WordOfTheDay(),
+            ));
         break;
     }
   }
