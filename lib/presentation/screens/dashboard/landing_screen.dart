@@ -36,6 +36,7 @@ class _LandingScreenState extends State<LandingScreen> {
       context: context,
       builder: (contex) => LogoutAlertDialog(
             imageLink: 'lib/assets/logoutLogo.png',
+            dialogText: 'Do you want to logout?',
           ));
   @override
   Widget build(BuildContext context) {
@@ -162,7 +163,9 @@ class _LandingScreenState extends State<LandingScreen> {
               tileSubHeading: "We hope you enjoyed your stay. Visit us again.",
               image: 'lib/assets/logout.png',
               tapFunction: () {
-                openLogoutDialog();
+                openLogoutDialog(
+                  
+                );
               },
             ),
             const SizedBox(

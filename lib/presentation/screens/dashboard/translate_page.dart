@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import '../../../models/translation_model.dart';
 import '../../colors/colors.dart';
 import '../../styling/textstyle.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class TranslationPage extends StatefulWidget {
   const TranslationPage({Key? key}) : super(key: key);
@@ -20,6 +21,9 @@ class TranslationPage extends StatefulWidget {
 }
 
 class _TranslationPageState extends State<TranslationPage> {
+  late stt.SpeechToText _speech;
+  bool _isListening = false;
+  // double _confidence = 1.0;
   final _translateFormKey = GlobalKey<FormState>();
   final _translateController = TextEditingController();
   String? translatedText;
@@ -38,6 +42,7 @@ class _TranslationPageState extends State<TranslationPage> {
   Future<TranslationModel?>? gett;
   @override
   void initState() {
+    _speech = stt.SpeechToText();
     gett = TranslationAPI.getTranslation();
     super.initState();
   }
@@ -203,19 +208,34 @@ class _TranslationPageState extends State<TranslationPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                CustomWhiteTextField(
-                  editable: false,
-                  fieldHint: 'Enter text to be translated.',
-                  controller: _translateController,
-                  maxLine: 8,
-                  leftPosition: 285,
-                  topPosition: 170,
-                  validation: (value) {
-                    return TextValidator.emptyValidation(value);
-                  },
-                  save: (value) {
-                    query = value;
-                  },
+                Stack(
+                  children: [
+                    CustomWhiteTextField(
+                      editable: false,
+                      fieldHint: 'Enter text to be translated.',
+                      controller: _translateController,
+                      maxLine: 8,
+                      leftPosition: 285,
+                      topPosition: 170,
+                      validation: (value) {
+                        return TextValidator.emptyValidation(value);
+                      },
+                      save: (value) {
+                        query = value;
+                      },
+                    ),
+                    Positioned(
+                        top: 20,
+                        left: 300,
+                        child: IconButton(
+                          icon: Icon(Icons.mic),
+                          iconSize: 30,
+                          onPressed: () {
+                            _readAudio();
+                          },
+                          color: CustomColors.RED,
+                        ))
+                  ],
                 ),
                 CustomFormButton(
                   buttonText: 'Translate',
@@ -239,8 +259,6 @@ class _TranslationPageState extends State<TranslationPage> {
                                 ? target = 'ne'
                                 : target = 'en';
 
-                        print("HERERRRRRRR $target");
-                        print('HERERRRRR $source');
                         gett = TranslationAPI.getTranslation(
                                 text: query, target: target, source: source)
                             .whenComplete(() {
@@ -325,5 +343,30 @@ class _TranslationPageState extends State<TranslationPage> {
         ),
       ),
     );
+  }
+
+  void _readAudio() async {
+    if (!_isListening) {
+      bool available = await _speech.initialize(
+          onStatus: (val) => print('onStatus: $val'),
+          onError: (val) => print('onError: $val'));
+      if (available) {
+        setState(() => _isListening = true);
+        _speech.listen(
+          onResult: (val) => setState(() {
+            print(val);
+            _translateController.text = val.recognizedWords;
+            // onSearch(val.recognizedWords);
+
+            // if (val.hasConfidenceRating && val.confidence > 10) {
+            //   _confidence = val.confidence;
+            // }
+          }),
+        );
+      }
+    } else {
+      setState(() => _isListening = false);
+      _speech.stop();
+    }
   }
 }

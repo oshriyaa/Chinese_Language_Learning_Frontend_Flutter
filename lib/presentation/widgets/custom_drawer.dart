@@ -1,8 +1,11 @@
+import 'package:chinese_learning/models/user_model.dart';
+import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/client_info.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_about/about.dart';
 
 import 'package:chinese_learning/presentation/screens/other/favourites_screen.dart';
+import 'package:chinese_learning/presentation/screens/other/profile_screen.dart';
 import 'package:chinese_learning/presentation/screens/other/search_screen.dart';
 import 'package:chinese_learning/presentation/screens/other/word_of_the_day.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
@@ -12,28 +15,26 @@ import '../../secure_storage/secure_storage.dart';
 import 'logout_alert.dart';
 
 class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({ Key? key }) : super(key: key);
+  const CustomDrawer({Key? key}) : super(key: key);
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-
   final SecureStorage secureStorage = SecureStorage();
   bool? pressedLogout = false;
 
   Future openLogoutDialog() => showDialog(
-        context: context,
-        builder: (contex) => LogoutAlertDialog(
-              
-              imageLink: 'lib/assets/logoutLogo.png',
-            ));
+      context: context,
+      builder: (contex) => LogoutAlertDialog(
+            imageLink: 'lib/assets/logoutLogo.png',
+          ));
 
   @override
   Widget build(BuildContext context) {
     final name = "Oshriya Manandhar ";
-    final email = "manandharoshriya@gmail.com";
+    // final email = "manandharoshriya@gmail.com";
     return Drawer(
       child: SafeArea(
         child: Material(
@@ -41,19 +42,59 @@ class _CustomDrawerState extends State<CustomDrawer> {
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: 20),
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: buildHeader(
-                  name: name,
-                  email: email,
-                  onClicked: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AboutPage(),
-                      )),
-                ),
+              FutureBuilder(
+                future: UserDetailsAPI().getUserDetails(),
+                builder: (context, AsyncSnapshot<List<UserModel>> snapshot) {
+                  // print('Data $snapshot');
+                  if (snapshot.hasData) {
+                    final data = snapshot.data![0];
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: buildHeader(
+                        name: data.email!,
+                        // email: email,
+                        onClicked: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfileScreen(name: data.userName, phone: data.phoneNumber, username: data.email,),
+                            )),
+                      ),
+                    );
+                    // return Column(
+                    //   children: List.generate(
+                    //     snapshot.data!.length,
+                    //     (index) {
+                    //       final data = snapshot.data![index];
+                    //       print("DATA $data.categoryID");
+                    //       return data.categoryId == widget.categoryID
+                    //           ? WordWidget(
+                    //               inEng: data.inEnglish!,
+                    //               inNep: data.inNepali!,
+                    //               inChi: data.inChinese!,
+                    //               inPin: data.inPinYin!,
+                    //               inDev: data.inDevnagari!,
+                    //               audio: data.audio,
+                    //               favPressed: () {
+                    //                 FavouritesAPI.addFavourites(
+                    //                     word: (data.wordId));
+                    //               },
+                    //             )
+                    //           : const SizedBox(
+                    //               height: 1,
+                    //             );
+                    //     },
+                    //   ),
+                    // );
+                  } else if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                },
               ),
-              Divider(color: CustomColors.GREY,),
+              Divider(
+                color: CustomColors.GREY,
+              ),
               buildDrawerItem(
                   text: "Search",
                   icon: Icons.search,
@@ -62,7 +103,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   text: "Favourites",
                   icon: Icons.favorite,
                   onClicked: () => selectedItem(context, 1)),
-                   buildDrawerItem(
+              buildDrawerItem(
                   text: "word of the day",
                   icon: Icons.favorite,
                   onClicked: () => selectedItem(context, 5)),
@@ -77,7 +118,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   text: "Send Feedback",
                   icon: Icons.book,
                   onClicked: () => selectedItem(context, 3)),
-               buildDrawerItem(
+              buildDrawerItem(
                   text: "Logout",
                   icon: Icons.logout,
                   onClicked: () => selectedItem(context, 4))
@@ -141,10 +182,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
               builder: (context) => AboutPage(),
             ));
         break;
-       case 4:
+      case 4:
         openLogoutDialog();
         break;
-        case 5:
+      case 5:
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -156,17 +197,21 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   Widget buildHeader({
     required String name,
-    required String email,
+    // required String email,
     required VoidCallback onClicked,
   }) {
     return ListTile(
-      leading: Icon(Icons.person, size: 50, color: CustomColors.RED,),
-      title: Text(name, style: StyleText.categoryHeading,),
-      subtitle: Text(email, style: StyleText.featureSubHeading,),
+      leading: Icon(
+        Icons.person,
+        size: 50,
+        color: CustomColors.RED,
+      ),
+      title: Text(
+        name,
+        style: StyleText.categoryHeading,
+      ),
+      // subtitle: Text(email, style: StyleText.featureSubHeading,),
       onTap: onClicked,
     );
   }
 }
-
-
-

@@ -73,4 +73,28 @@ List textQuizQuestion = [
       {'answerText': 'Switzerland', 'score': true},
     ],
   },
+  {
+    'question': 'From which country do French fries originate?',
+    'answers': [
+      {'answerText': 'Belgium', 'score': true},
+      {'answerText': 'France (duh)', 'score': false},
+      {'answerText': 'Switzerland', 'score': false},
+    ],
+  },
+  {
+    'question': 'Which sea creature has three hearts?',
+    'answers': [
+      {'answerText': 'Great White Sharks', 'score': false},
+      {'answerText': 'Killer Whales', 'score': false},
+      {'answerText': 'The Octopus', 'score': true},
+    ],
+  },
+  {
+    'question': 'Which European country eats the most chocolate per capita?',
+    'answers': [
+      {'answerText': 'Belgium', 'score': false},
+      {'answerText': 'The Netherlands', 'score': false},
+      {'answerText': 'Switzerland', 'score': true},
+    ],
+  },
 ];

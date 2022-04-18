@@ -148,6 +148,7 @@ class _EasyQuizPageState extends State<EasyQuizPage> {
                                 MaterialPageRoute(
                                   builder: (context) => TestResults(
                                     testScore: _totalScore,
+                                    level: 'easy',
                                   ),
                                 ))
                             : _nextQuestion();

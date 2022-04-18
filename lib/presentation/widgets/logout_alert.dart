@@ -5,7 +5,8 @@ import '../screens/login pages/login_screen.dart';
 
 class LogoutAlertDialog extends StatelessWidget {
   final String? imageLink;
-  const LogoutAlertDialog({Key? key, this.imageLink}) : super(key: key);
+  final String? dialogText;
+  const LogoutAlertDialog({Key? key, this.imageLink, this.dialogText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +28,9 @@ class LogoutAlertDialog extends StatelessWidget {
                     color: CustomColors.L_RED),
                 padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
                 child: Column(
-                  children: const [
+                  children:  [
                     Text(
-                      "Do you want to logout?",
+                      dialogText!,
                       style: TextStyle(
                         fontSize: 25,
                         fontFamily: 'Bitter',

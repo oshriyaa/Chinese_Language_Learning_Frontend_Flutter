@@ -1,13 +1,25 @@
+import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/test_page.dart';
+import 'package:chinese_learning/presentation/screens/other/profile_screen.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
+import 'package:chinese_learning/presentation/widgets/logout_alert.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/buttons/custom_test_answer_buttons.dart';
+import '../../../widgets/dialog.dart';
 
-class TestResults extends StatelessWidget {
+class TestResults extends StatefulWidget {
   final int? testScore;
-  const TestResults({Key? key, this.testScore}) : super(key: key);
+  final String? level;
 
+  const TestResults({Key? key, this.testScore, this.level}) : super(key: key);
+
+  @override
+  State<TestResults> createState() => _TestResultsState();
+}
+
+class _TestResultsState extends State<TestResults> {
+  bool? disable = false;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -19,7 +31,7 @@ class TestResults extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                margin: const EdgeInsets.only(top: 150),
+                margin: const EdgeInsets.only(top: 140),
                 child: const Text(
                   "You have scored:",
                   style: TextStyle(
@@ -31,13 +43,13 @@ class TestResults extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(top: 30),
+                margin: const EdgeInsets.only(top: 20),
 
                 width: size.width * 0.8,
                 // color: Colors.black,
                 child: Center(
                   child: Text(
-                    "$testScore",
+                    "${widget.testScore}",
                     style: const TextStyle(
                       fontSize: 100,
                       fontFamily: 'Bitter',
@@ -55,7 +67,7 @@ class TestResults extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(top: 50),
                 child: Text(
-                  testScore! > 4
+                  widget.testScore! > 4
                       ? 'Congratulations!'
                       : 'Better luck next time!',
                   style: const TextStyle(
@@ -66,8 +78,48 @@ class TestResults extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               CustomTestAnswerButtonWidget(
                 buttonText: "Save test results",
+                btnTextStyle: StyleText.testAnswerButtons,
+                buttonColor: CustomColors.WHITE,
+                buttonPress: disable == false
+                    ? () {
+                        print("We are here");
+                        final snackBar = SnackBar(
+                          content: const Text(
+                            'Your progress has been saved.',
+                            style: StyleText.testWhiteAnswerButtons,
+                          ),
+                          backgroundColor: (CustomColors.RED),
+                          action: SnackBarAction(
+                            label: 'View.',
+                            textColor: CustomColors.WHITE,
+                            onPressed: () {
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          ProfileScreen()),
+                                  (Route<dynamic> route) => false);
+                            },
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        ResultsApi.saveResults(
+                            result: widget.testScore, level: widget.level);
+
+                        setState(() {
+                          disable = true;
+                        });
+                      }
+                    : null,
+                shadowColor: CustomColors.BLACK,
+              ),
+              CustomTestAnswerButtonWidget(
+                buttonText: "Take a new test",
                 btnTextStyle: StyleText.testAnswerButtons,
                 buttonColor: CustomColors.WHITE,
                 buttonPress: () {
@@ -80,7 +132,7 @@ class TestResults extends StatelessWidget {
                 shadowColor: CustomColors.BLACK,
               ),
               CustomTestAnswerButtonWidget(
-                buttonText: "Take a new test",
+                buttonText: "Return to home",
                 btnTextStyle: StyleText.testAnswerButtons,
                 buttonColor: CustomColors.WHITE,
                 buttonPress: () {
@@ -98,4 +150,11 @@ class TestResults extends StatelessWidget {
       ),
     );
   }
+
+  Future openDialog() => showDialog(
+      context: context,
+      builder: (contex) => LogoutAlertDialog(
+            imageLink: 'lib/assets/logoutLogo.png',
+            dialogText: 'Do you want to logout?',
+          ));
 }

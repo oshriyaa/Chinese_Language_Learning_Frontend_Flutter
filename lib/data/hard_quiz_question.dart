@@ -91,4 +91,94 @@ List hardQuizQuestionData = [
       {'answerText': 'Switzerland', 'score': true},
     ],
   },
+   {
+    'question': 'Which European country eats the most chocolate per capita?',
+    'category': 'audio',
+    'audio' : 'test.mp3',
+    'answers': [
+      {'answerText': 'Belgium', 'score': false},
+      {'answerText': 'The Netherlands', 'score': false},
+      {'answerText': 'Switzerland', 'score': true},
+    ],
+  },
+   {
+    'question': 'Which European country eats the most chocolate per capita?',
+    'category': 'audio',
+    'audio' : 'test.mp3',
+    'answers': [
+      {'answerText': 'Belgium', 'score': false},
+      {'answerText': 'The Netherlands', 'score': false},
+      {'answerText': 'Switzerland', 'score': true},
+    ],
+  },
+   {
+    'question': 'Which European country eats the most chocolate per capita?',
+    'category': 'audio',
+    'audio' : 'test.mp3',
+    'answers': [
+      {'answerText': 'Belgium', 'score': false},
+      {'answerText': 'The Netherlands', 'score': false},
+      {'answerText': 'Switzerland', 'score': true},
+    ],
+  },
+   {
+    'question': 'Which European country eats the most chocolate per capita?',
+    'category': 'audio',
+    'audio' : 'test.mp3',
+    'answers': [
+      {'answerText': 'Belgium', 'score': false},
+      {'answerText': 'The Netherlands', 'score': false},
+      {'answerText': 'Switzerland', 'score': true},
+    ],
+  },
+   {
+    'question': 'Which European country eats the most chocolate per capita?',
+    'category': 'audio',
+    'audio' : 'test.mp3',
+    'answers': [
+      {'answerText': 'Belgium', 'score': false},
+      {'answerText': 'The Netherlands', 'score': false},
+      {'answerText': 'Switzerland', 'score': true},
+    ],
+  },
+   {
+    'question': 'Which European country eats the most chocolate per capita?',
+    'category': 'audio',
+    'audio' : 'test.mp3',
+    'answers': [
+      {'answerText': 'Belgium', 'score': false},
+      {'answerText': 'The Netherlands', 'score': false},
+      {'answerText': 'Switzerland', 'score': true},
+    ],
+  },
+   {
+    'question': 'Which European country eats the most chocolate per capita?',
+    'category': 'audio',
+    'audio' : 'test.mp3',
+    'answers': [
+      {'answerText': 'Belgium', 'score': false},
+      {'answerText': 'The Netherlands', 'score': false},
+      {'answerText': 'Switzerland', 'score': true},
+    ],
+  },
+   {
+    'question': 'Which European country eats the most chocolate per capita?',
+    'category': 'audio',
+    'audio' : 'test.mp3',
+    'answers': [
+      {'answerText': 'Belgium', 'score': false},
+      {'answerText': 'The Netherlands', 'score': false},
+      {'answerText': 'Switzerland', 'score': true},
+    ],
+  },
+   {
+    'question': 'Which European country eats the most chocolate per capita?',
+    'category': 'audio',
+    'audio' : 'test.mp3',
+    'answers': [
+      {'answerText': 'Belgium', 'score': false},
+      {'answerText': 'The Netherlands', 'score': false},
+      {'answerText': 'Switzerland', 'score': true},
+    ],
+  },
 ];
