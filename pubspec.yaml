@@ -41,7 +41,7 @@ flutter:
     - lib/assets/importance.jpg
     - lib/assets/logoutLogo.png
     - lib/assets/learnmore.png
-    - lib/assets/logo1.png
+    - lib/assets/fyp_logo_white.png
     - lib/assets/about.png
     - lib/assets/test.png
     - lib/assets/learn.png
@@ -53,6 +53,7 @@ flutter:
     - lib/assets/feedbackwithoutbackground.png
     - lib/assets/audio/test.mp3
     - lib/assets/audio/
+    - lib/assets/
   uses-material-design: true
 
   fonts:

@@ -49,8 +49,8 @@ class _LoginFormState extends State<LoginForm> {
             ),
           ),
           CustomTextField(
-            fieldHint: "Enter your Email.",
-            fieldLabel: "Email",
+            fieldHint: "Enter your username.",
+            fieldLabel: "Username",
             controller: _emailController,
             save: (value) {
               emailText = value;

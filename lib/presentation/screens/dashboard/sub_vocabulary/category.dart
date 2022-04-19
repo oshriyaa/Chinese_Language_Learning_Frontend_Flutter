@@ -1,4 +1,6 @@
 import 'package:chinese_learning/network/api_service.dart';
+import 'package:chinese_learning/presentation/screens/other/favourites_screen.dart';
+import 'package:chinese_learning/presentation/screens/other/search_screen.dart';
 import 'package:chinese_learning/presentation/widgets/category_tile.dart';
 import 'package:chinese_learning/presentation/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +26,22 @@ class VocabularyScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-            
+            Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FavouritesScreen(),
+                        ));
             },
             icon: const Icon(Icons.favorite),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SearchScreen(),
+                        ));
+            },
             icon: const Icon(Icons.search),
           ),
         ],

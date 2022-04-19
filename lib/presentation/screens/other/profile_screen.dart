@@ -4,19 +4,14 @@ import 'package:chinese_learning/presentation/screens/other/result_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../models/user_model.dart';
 import '../../colors/colors.dart';
 import '../../styling/textstyle.dart';
 import '../dashboard/landing_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
-  final String? name;
-  final String? phone;
-  final String? username;
   const ProfileScreen({
     Key? key,
-    this.name,
-    this.phone,
-    this.username,
   }) : super(key: key);
 
   @override
@@ -54,47 +49,68 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 height: 30,
               ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 35),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: CustomColors.RED,
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: const [
-                        BoxShadow(
-                          blurRadius: 4,
-                          offset: Offset(0, 0),
-                        ),
-                      ],
-                    ),
-                    width: size.width * 0.9,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 30),
-                            child: Text(
-                              "Name: ${widget.name}",
-                              style: StyleText.testWhiteAnswerButtons,
+              FutureBuilder(
+                future: UserDetailsAPI().getUserDetails(),
+                builder: (context, AsyncSnapshot<List<UserModel>> snapshot) {
+                  // print('Data $snapshot');
+                  if (snapshot.hasData) {
+                    final data = snapshot.data![0];
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 35),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: CustomColors.RED,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                blurRadius: 4,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
+                          ),
+                          width: size.width * 0.9,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 30),
+                                  child: Text(
+                                    "Name: ${data.userName}",
+                                    style: StyleText.testWhiteAnswerButtons,
+                                  ),
+                                ),
+                                Text(
+                                  "UserName: ${data.email}",
+                                  style: StyleText.testWhiteAnswerButtons,
+                                ),
+                                Text(
+                                  "PhoneNumber: ${data.phoneNumber}",
+                                  style: StyleText.testWhiteAnswerButtons,
+                                ),
+                              ],
                             ),
                           ),
-                          Text(
-                            "UserName: ${widget.username}",
-                            style: StyleText.testWhiteAnswerButtons,
-                          ),
-                          Text(
-                            "PhoneNumber: ${widget.phone}",
-                            style: StyleText.testWhiteAnswerButtons,
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                ),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  } else {
+                    return Center(
+                      child: Container(
+                        child: Text(
+                          "An error was caused while establishing connection",
+                          style: StyleText.categoryHeading,
+                        ),
+                      ),
+                    );
+                    CircularProgressIndicator();
+                  }
+                },
               ),
               SizedBox(
                 height: 20,
@@ -185,20 +201,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
             left: 160,
             child: Center(
               child: Container(
-                 decoration: BoxDecoration(
-                      color: CustomColors.L_RED,
-
-                       shape: BoxShape.circle,
-                      boxShadow: const [
-                        BoxShadow(
-                          blurRadius: 4,
-                          offset: Offset(0, 0),
-                          
-                        ),
-                      ],
+                decoration: BoxDecoration(
+                  color: CustomColors.L_RED,
+                  shape: BoxShape.circle,
+                  boxShadow: const [
+                    BoxShadow(
+                      blurRadius: 4,
+                      offset: Offset(0, 0),
                     ),
-      
-  
+                  ],
+                ),
                 child: Icon(
                   Icons.person,
                   color: CustomColors.RED,

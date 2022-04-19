@@ -3,7 +3,6 @@ import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/client_info.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_about/about.dart';
-
 import 'package:chinese_learning/presentation/screens/other/favourites_screen.dart';
 import 'package:chinese_learning/presentation/screens/other/profile_screen.dart';
 import 'package:chinese_learning/presentation/screens/other/search_screen.dart';
@@ -57,38 +56,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ProfileScreen(
-                                name: data.userName,
-                                phone: data.phoneNumber,
-                                username: data.email,
+                                
                               ),
                             )),
                       ),
                     );
-                    // return Column(
-                    //   children: List.generate(
-                    //     snapshot.data!.length,
-                    //     (index) {
-                    //       final data = snapshot.data![index];
-                    //       print("DATA $data.categoryID");
-                    //       return data.categoryId == widget.categoryID
-                    //           ? WordWidget(
-                    //               inEng: data.inEnglish!,
-                    //               inNep: data.inNepali!,
-                    //               inChi: data.inChinese!,
-                    //               inPin: data.inPinYin!,
-                    //               inDev: data.inDevnagari!,
-                    //               audio: data.audio,
-                    //               favPressed: () {
-                    //                 FavouritesAPI.addFavourites(
-                    //                     word: (data.wordId));
-                    //               },
-                    //             )
-                    //           : const SizedBox(
-                    //               height: 1,
-                    //             );
-                    //     },
-                    //   ),
-                    // );
+                 
                   } else if (snapshot.hasError) {
                     return Text(snapshot.error.toString());
                   } else {

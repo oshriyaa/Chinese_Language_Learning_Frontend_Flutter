@@ -83,8 +83,8 @@ class _SignUpFormState extends State<SignUpForm> {
               },
             ),
             CustomTextField(
-              fieldHint: "Enter your Email.",
-              fieldLabel: "Email",
+              fieldHint: "Enter your username.",
+              fieldLabel: "Username",
               controller: _emailController,
               save: (value) {
                 emailInput = value;

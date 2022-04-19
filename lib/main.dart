@@ -30,8 +30,14 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: AppRouter.generateRoute,
       // initialRoute: SignUpPage,
        home: AnimatedSplashScreen(
-        splash: Image.asset(
-          'lib/assets/logo1.png',
+        splash: Container(
+                      height: 700,
+          child: Image.asset(
+            'lib/assets/fyp_logo_white.png',
+            // scale: 3,
+
+            fit: BoxFit.fitHeight,
+          ),
         ),
         duration: 2000,
         splashTransition: SplashTransition.fadeTransition,
@@ -57,3 +63,4 @@ Future checkToken() async {
   var token = await secureStorage.readSecureData('token');
   return token;
 }
+

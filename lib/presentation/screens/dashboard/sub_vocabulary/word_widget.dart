@@ -141,6 +141,7 @@ class _WordWidgetState extends State<WordWidget> {
                 left: size.width * 0.6,
                 child: IconButton(
                   onPressed: widget.favPressed,
+                  // tooltip: 'Refresh',
                   icon: Icon(
                     Icons.collections_bookmark,
                     color: CustomColors.RED,

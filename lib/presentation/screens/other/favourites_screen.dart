@@ -80,8 +80,10 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                               inDev: data.inDevnagari!,
                                               audio: data.audio,
                                               favPressed: () {
+                                           
                                                 FavouritesAPI.addFavourites(
                                                     word: (data.wordId));
+                                                    
                                               },
                                             )
                                           : const SizedBox(
