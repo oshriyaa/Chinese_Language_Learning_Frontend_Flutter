@@ -52,6 +52,7 @@ flutter:
     - lib/assets/feedback.png
     - lib/assets/feedbackwithoutbackground.png
     - lib/assets/audio/test.mp3
+    - lib/assets/audio/
   uses-material-design: true
 
   fonts:

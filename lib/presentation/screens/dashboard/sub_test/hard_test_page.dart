@@ -22,6 +22,7 @@ class _HardTestQuizPageState extends State<HardTestQuizPage> {
   void initState() {
     super.initState();
     // create this only once
+    hardQuizQuestionData.shuffle();
     audioCache = AudioCache(
         prefix: "lib/assets/audio/",
         fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
@@ -33,11 +34,6 @@ class _HardTestQuizPageState extends State<HardTestQuizPage> {
   bool endOfQuiz = false;
   bool correctAnswerSelected = false;
 
-  // @override
-  // void initState() {
-  //   hardQuizQuestionData.shuffle();
-  //   super.initState();
-  // }
 
   void _questionAnswered(bool answerScore) {
     setState(() {

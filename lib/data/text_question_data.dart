@@ -1,100 +1,98 @@
 List textQuizQuestion = [
   {
-    'question': 'How long is New Zealand’s Ninety Mile Beach?',
+    'question': "What is 'Good Morning' translated to?",
     'answers': [
-      {'answerText': '88km, so 55 miles long.', 'score': true},
-      {'answerText': '55km, so 34 miles long.', 'score': false},
-      {'answerText': '90km, so 56 miles long.', 'score': false},
+      {'answerText': 'Zǎoshang hǎo', 'score': true},
+      {'answerText': 'Xiàwǔ hǎo.', 'score': false},
+      {'answerText': 'Zàihuì', 'score': false},
     ],
   },
   {
-    'question':
-        'In which month does the German festival of Oktoberfest mostly take place?',
+    'question': "What is 'Goodbye' translated to?",
     'answers': [
-      {'answerText': 'January', 'score': false},
-      {'answerText': 'October', 'score': false},
-      {'answerText': 'September', 'score': true},
+      {'answerText': "Wǎn'ān", 'score': false},
+      {'answerText': 'Jìnlái', 'score': false},
+      {'answerText': 'Zàijiàn', 'score': true},
     ],
   },
   {
-    'question': 'Who composed the music for Sonic the Hedgehog 3?',
+    'question': "What is 'Qǐng' translated to?",
     'answers': [
-      {'answerText': 'Britney Spears', 'score': false},
-      {'answerText': 'Timbaland', 'score': false},
-      {'answerText': 'Michael Jackson', 'score': true},
+      {'answerText': 'Welcome', 'score': false},
+      {'answerText': 'Thanks', 'score': false},
+      {'answerText': 'Please', 'score': true},
     ],
   },
   {
-    'question': 'In Georgia (the state), it’s illegal to eat what with a fork?',
+    'question': "What is 'Duōshǎo?' translated to?",
     'answers': [
-      {'answerText': 'Hamburgers', 'score': false},
-      {'answerText': 'Fried chicken', 'score': true},
-      {'answerText': 'Pizza', 'score': false},
+      {'answerText': "What's this?", 'score': false},
+      {'answerText': 'How much?', 'score': true},
+      {'answerText': "How big?", 'score': false},
     ],
   },
   {
-    'question':
-        'Which part of his body did musician Gene Simmons from Kiss insure for one million dollars?',
+    'question': "What is 'What is your name?' translated to?",
     'answers': [
-      {'answerText': 'His tongue', 'score': true},
-      {'answerText': 'His leg', 'score': false},
-      {'answerText': 'His butt', 'score': false},
+      {'answerText': 'Nǐ jiào shénme míngzì?', 'score': true},
+      {'answerText': 'Nǐ xìng shénme?', 'score': false},
+      {'answerText': 'Nǐ zuì xǐhuān shénme shíwù?', 'score': false},
     ],
   },
   {
-    'question': 'In which country are Panama hats made?',
+    'question': "What is 'How old are you?' translated to?",
     'answers': [
-      {'answerText': 'Ecuador', 'score': true},
-      {'answerText': 'Panama (duh)', 'score': false},
-      {'answerText': 'Portugal', 'score': false},
+      {'answerText': "Nǐ yǒu duō ǎi?", 'score': false},
+      {'answerText': 'Nǐ yǒu duō gāo?', 'score': false},
+      {'answerText': 'Nǐ jǐ suì?', 'score': true},
     ],
   },
   {
-    'question': 'From which country do French fries originate?',
+    'question': "What is 'Qián'é' translated to?",
     'answers': [
-      {'answerText': 'Belgium', 'score': true},
-      {'answerText': 'France (duh)', 'score': false},
-      {'answerText': 'Switzerland', 'score': false},
+      {'answerText': 'Arms', 'score': false},
+      {'answerText': 'Forehead', 'score': true},
+      {'answerText': 'head', 'score': false},
     ],
   },
   {
-    'question': 'Which sea creature has three hearts?',
+    'question': "What is 'Zuǐ' translated to?",
     'answers': [
-      {'answerText': 'Great White Sharks', 'score': false},
-      {'answerText': 'Killer Whales', 'score': false},
-      {'answerText': 'The Octopus', 'score': true},
+      {'answerText': "Hair", 'score': false},
+      {'answerText': 'Mouth', 'score': true},
+      {'answerText': "Teeth", 'score': false},
     ],
   },
   {
-    'question': 'Which European country eats the most chocolate per capita?',
+    'question': "What is 'Cow' translated to?",
     'answers': [
-      {'answerText': 'Belgium', 'score': false},
-      {'answerText': 'The Netherlands', 'score': false},
-      {'answerText': 'Switzerland', 'score': true},
+      {'answerText': 'Niú', 'score': true},
+      {'answerText': 'Shuǐniú', 'score': false},
+      {'answerText': 'Mǎ', 'score': false},
     ],
   },
   {
-    'question': 'From which country do French fries originate?',
+    'question': "What is 'Dog' translated to?",
     'answers': [
-      {'answerText': 'Belgium', 'score': true},
-      {'answerText': 'France (duh)', 'score': false},
-      {'answerText': 'Switzerland', 'score': false},
+      {'answerText': "Māo", 'score': false},
+      {'answerText': 'Tùzǐ', 'score': false},
+      {'answerText': 'Gǒu', 'score': true},
     ],
   },
   {
-    'question': 'Which sea creature has three hearts?',
+    'question': "What is 'Míngtiān' translated to?",
     'answers': [
-      {'answerText': 'Great White Sharks', 'score': false},
-      {'answerText': 'Killer Whales', 'score': false},
-      {'answerText': 'The Octopus', 'score': true},
+      {'answerText': 'Today', 'score': false},
+      {'answerText': 'Yesterday', 'score': false},
+      {'answerText': 'Tomorrow', 'score': true},
     ],
   },
   {
-    'question': 'Which European country eats the most chocolate per capita?',
+    'question': "What is 'Liánhuā' translated to?",
     'answers': [
-      {'answerText': 'Belgium', 'score': false},
-      {'answerText': 'The Netherlands', 'score': false},
-      {'answerText': 'Switzerland', 'score': true},
+      {'answerText': "Rose", 'score': false},
+      {'answerText': 'Lotus', 'score': true},
+      {'answerText': "Marigold", 'score': false},
     ],
   },
 ];
