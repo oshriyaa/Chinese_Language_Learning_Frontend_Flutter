@@ -23,15 +23,16 @@ class TestPage extends StatelessWidget {
         // automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () {Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LandingScreen(),
-                  ),
-                );},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LandingScreen(),
+                ),
+              );
+            },
             icon: const Icon(Icons.home),
           ),
-          
         ],
       ),
       body: Center(
@@ -40,6 +41,8 @@ class TestPage extends StatelessWidget {
             children: [
               CustomSelectButton(
                 buttonName: "Level: Easy",
+                buttonDesc:
+                    "Test your languange knowledge with True/False tests.",
                 onPress: () {
                   Navigator.push(
                       context,
@@ -50,21 +53,25 @@ class TestPage extends StatelessWidget {
               ),
               CustomSelectButton(
                 buttonName: "Level: Medium",
+                buttonDesc:
+                    "Test your languange knowledge with MCQ language questions.",
                 onPress: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  NormalQuestionPage(),
+                        builder: (context) => NormalQuestionPage(),
                       ));
                 },
               ),
               CustomSelectButton(
                 buttonName: "Level: Hard",
+                buttonDesc:
+                    "Test your languange knowledge with MCQ and audio language questions.",
                 onPress: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  HardTestQuizPage(),
+                        builder: (context) => HardTestQuizPage(),
                       ));
                 },
               ),

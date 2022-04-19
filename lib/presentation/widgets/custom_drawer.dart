@@ -56,7 +56,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         onClicked: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ProfileScreen(name: data.userName, phone: data.phoneNumber, username: data.email,),
+                              builder: (context) => ProfileScreen(
+                                name: data.userName,
+                                phone: data.phoneNumber,
+                                username: data.email,
+                              ),
                             )),
                       ),
                     );
@@ -88,7 +92,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   } else if (snapshot.hasError) {
                     return Text(snapshot.error.toString());
                   } else {
-                    return const CircularProgressIndicator();
+                    return Center(
+                      child: Container(
+                        child: Text(
+                            "An error was caused while establishing connection", style: StyleText.categoryHeading,),
+                      ),
+                    );
+                    CircularProgressIndicator();
                   }
                 },
               ),
@@ -105,7 +115,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   onClicked: () => selectedItem(context, 1)),
               buildDrawerItem(
                   text: "word of the day",
-                  icon: Icons.favorite,
+                  icon: Icons.emoji_objects,
                   onClicked: () => selectedItem(context, 5)),
               Divider(
                 color: CustomColors.GREY,

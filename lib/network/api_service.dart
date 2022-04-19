@@ -101,9 +101,12 @@ class TranslationAPI {
 
 class FavouritesAPI {
   static Future addFavourites({required int? word}) async {
+    print("we are here");
     var token = await secureStorage.readSecureData('token');
 
     String auth = 'Token $token';
+    print(auth);
+    print(word);
 
     final response = await http.post(
         Uri.parse("http://10.0.2.2:8000/Api/Favourites/post/$word/"),
@@ -111,9 +114,14 @@ class FavouritesAPI {
           'Authorization': 'Token $token',
         });
 
+    print(response.statusCode as int);
+    print(response.body);
+
     if ((response.statusCode as int) == 200) {
+      print(response.body);
       return response.body;
     }
+    print(response.body);
 
     return null;
   }
@@ -151,8 +159,8 @@ class FavouritesAPI {
   }
 }
 
-class UserDetailsAPI{
-   Future<List<UserModel>> getUserDetails() async {
+class UserDetailsAPI {
+  Future<List<UserModel>> getUserDetails() async {
     try {
       var token = await secureStorage.readSecureData('token');
       print(token);

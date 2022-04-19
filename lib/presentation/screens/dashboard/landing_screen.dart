@@ -52,7 +52,11 @@ class _LandingScreenState extends State<LandingScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              FavouritesScreen;
+              Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FavouritesScreen(),
+                    ));
             },
             icon: const Icon(Icons.favorite),
           ),

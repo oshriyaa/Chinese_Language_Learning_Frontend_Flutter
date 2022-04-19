@@ -137,14 +137,14 @@ class _WordWidgetState extends State<WordWidget> {
                 ),
               ),
               Positioned(
-                top: 140,
+                top: 20,
                 left: size.width * 0.6,
                 child: IconButton(
                   onPressed: widget.favPressed,
                   icon: Icon(
-                    Icons.favorite,
+                    Icons.collections_bookmark,
                     color: CustomColors.RED,
-                    size: 45,
+                    size: 40,
                   ),
                 ),
               ),
