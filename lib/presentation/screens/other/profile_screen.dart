@@ -162,14 +162,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         future: ResultsApi().getResults(),
                         builder: (context,
                             AsyncSnapshot<List<ResultModel>> snapshot) {
-                          // print('Data $snapshot');
                           if (snapshot.hasData) {
                             return Column(
                               children: List.generate(
                                 snapshot.data!.length,
                                 (index) {
                                   final data = snapshot.data![index];
-                                  //  print("DATA $data.categoryID");
                                   return ResultWidget(
                                       date: data.testDate,
                                       time: data.testTime,

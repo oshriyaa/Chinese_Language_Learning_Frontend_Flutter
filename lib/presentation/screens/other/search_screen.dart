@@ -49,11 +49,15 @@ class _SearchScreenState extends State<SearchScreen> {
 
     _list.forEach((index) {
       if (index.inEnglish
-          .toString()
-          .toLowerCase() 
-          .contains(text.toString().toLowerCase()) || index.inPinYin.toString().toLowerCase().contains(text.toString().toLowerCase(),) || index.inNepali.toString().contains(text.toString()))
-        // || f.inPinYin.toString().toLowerCase().contains(text))
-        _search.add(index);
+              .toString()
+              .toLowerCase()
+              .contains(text.toString().toLowerCase()) ||
+          index.inPinYin.toString().toLowerCase().contains(
+                text.toString().toLowerCase(),
+              ) ||
+          index.inNepali.toString().contains(
+                text.toString(),
+              )) _search.add(index);
     });
 
     setState(() {});
@@ -61,7 +65,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchData();
   }
@@ -88,83 +91,81 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ],
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(10.0),
-              color: CustomColors.RED,
-              child: Card(
-                child: ListTile(
-                  leading: Icon(Icons.search),
-                  title: TextField(
-                    controller: controller,
-                    onChanged: onSearch,
-                    decoration: InputDecoration(
-                        hintText: "Search", border: InputBorder.none),
-                  ),
-                  trailing: IconButton(
-                    onPressed: () {
-                      controller.clear();
-                      onSearch('');
-                    },
-                    icon: Icon(Icons.cancel),
-                  ),
+      body: Column(
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.all(10.0),
+            color: CustomColors.RED,
+            child: Card(
+              child: ListTile(
+                leading: Icon(Icons.search),
+                title: TextField(
+                  controller: controller,
+                  onChanged: onSearch,
+                  decoration: const InputDecoration(
+                      hintText: "Search", border: InputBorder.none),
+                ),
+                trailing: IconButton(
+                  onPressed: () {
+                    controller.clear();
+                    onSearch('');
+                  },
+                  icon: const Icon(Icons.cancel),
                 ),
               ),
             ),
-            loading
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : Expanded(
-                    child: _search.isNotEmpty || controller.text.isNotEmpty
-                        ? ListView.builder(
-                            itemCount: _search.length,
-                            itemBuilder: (context, i) {
-                              final searchList = _search[i];
-                              return WordWidget(
-                                inEng: searchList.inEnglish,
-                                inNep: searchList.inNepali,
-                                inChi: searchList.inChinese,
-                                inPin: searchList.inPinYin,
-                                inDev: searchList.inDevnagari,
-                                favPressed: () {
-                                  FavouritesAPI.addFavourites(
-                                      word: (searchList.wordId));
-                                },
-                              );
-                            },
-                          )
-                        : ListView.builder(
-                            itemCount: _list.length,
-                            itemBuilder: (context, i) {
-                              final displayList = _list[i];
-                              return Container(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      WordWidget(
-                                        inEng: displayList.inEnglish,
-                                        inNep: displayList.inNepali,
-                                        inChi: displayList.inChinese,
-                                        inPin: displayList.inPinYin,
-                                        inDev: displayList.inDevnagari,
-                                        audio: displayList.audio,
-                                          favPressed: () {
-                                  FavouritesAPI.addFavourites(
-                                      word: (displayList.wordId));
-                                },
-                                      ),
-                                    ],
-                                  ));
-                            },
-                          ),
-                  ),
-          ],
-        ),
+          ),
+          loading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Expanded(
+                  child: _search.isNotEmpty || controller.text.isNotEmpty
+                      ? ListView.builder(
+                          itemCount: _search.length,
+                          itemBuilder: (context, i) {
+                            final searchList = _search[i];
+                            return WordWidget(
+                              inEng: searchList.inEnglish,
+                              inNep: searchList.inNepali,
+                              inChi: searchList.inChinese,
+                              inPin: searchList.inPinYin,
+                              inDev: searchList.inDevnagari,
+                              favPressed: () {
+                                FavouritesAPI.addFavourites(
+                                    word: (searchList.wordId));
+                              },
+                            );
+                          },
+                        )
+                      : ListView.builder(
+                          itemCount: _list.length,
+                          itemBuilder: (context, i) {
+                            final displayList = _list[i];
+                            return Container(
+                                padding: EdgeInsets.all(10.0),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    WordWidget(
+                                      inEng: displayList.inEnglish,
+                                      inNep: displayList.inNepali,
+                                      inChi: displayList.inChinese,
+                                      inPin: displayList.inPinYin,
+                                      inDev: displayList.inDevnagari,
+                                      audio: displayList.audio,
+                                      favPressed: () {
+                                        FavouritesAPI.addFavourites(
+                                            word: (displayList.wordId));
+                                      },
+                                    ),
+                                  ],
+                                ));
+                          },
+                        ),
+                ),
+        ],
       ),
     );
   }

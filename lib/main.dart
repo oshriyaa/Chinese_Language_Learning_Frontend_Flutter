@@ -7,12 +7,16 @@ import 'package:chinese_learning/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'secure_storage/secure_storage.dart';
 import 'routes/route_constant.dart';
+import 'package:native_notify/native_notify.dart';
+
 
 late final SecureStorage secureStorage;
 
 
 //where application starts
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+NativeNotify.initialize(602, 'uhBdUdbWSfLQeDMeDkeqvt', 'AAAALLm7fS8:APA91bEHzgy465MIcnSTLA73Jd7-4rpONt2KC0Ghv3GcWDAUlkgUE7_7Wiw8q0_zyxO75geBpXW9-zZTp50Fwfr8tk13Wi7pEs_7NEa_dspfp8_Jbdzyl2YoieXI6e5g8jFfYS-ZNETu');
   // creating instance of secure storage
   secureStorage = SecureStorage();
 

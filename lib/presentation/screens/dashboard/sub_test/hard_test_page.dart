@@ -15,8 +15,14 @@ class HardTestQuizPage extends StatefulWidget {
 }
 
 class _HardTestQuizPageState extends State<HardTestQuizPage> {
-  late AudioCache audioCache;
+  
+  int _questionIndex = 0;
+  int _totalScore = 0;
+  bool answerWasSelected = false;
+  bool endOfQuiz = false;
+  bool correctAnswerSelected = false;
 
+  late AudioCache audioCache;
   @override
   void initState() {
     super.initState();
@@ -26,12 +32,6 @@ class _HardTestQuizPageState extends State<HardTestQuizPage> {
         prefix: "lib/assets/audio/",
         fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
   }
-
-  int _questionIndex = 0;
-  int _totalScore = 0;
-  bool answerWasSelected = false;
-  bool endOfQuiz = false;
-  bool correctAnswerSelected = false;
 
   void _questionAnswered(bool answerScore) {
     setState(() {

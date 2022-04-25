@@ -24,9 +24,9 @@ class _EasyQuizPageState extends State<EasyQuizPage> {
 
   void _questionAnswered(bool answerScore) {
     setState(() {
-      // answer was selected
+      // if answer was selected
       answerWasSelected = true;
-      // check if answer was correct
+      // check if selected answer is correct
       if (answerScore) {
         _totalScore++;
         correctAnswerSelected = true;

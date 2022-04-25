@@ -354,13 +354,7 @@ class _TranslationPageState extends State<TranslationPage> {
         setState(() => _isListening = true);
         _speech.listen(
           onResult: (val) => setState(() {
-            print(val);
             _translateController.text = val.recognizedWords;
-            // onSearch(val.recognizedWords);
-
-            // if (val.hasConfidenceRating && val.confidence > 10) {
-            //   _confidence = val.confidence;
-            // }
           }),
         );
       }

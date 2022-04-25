@@ -14,15 +14,13 @@ class DictionaryService {
   Future<List<VocabularyModel>> getMeaning() async {
     try {
       final req = await http.get(Uri.parse("${FypEnv.URL_PREFIX}/vocabulary"));
-
+      //If api request was successful
       if (req.statusCode == 200) {
         final vocabularyModel =
             vocabularyModelFromJson(utf8.decode(req.bodyBytes));
-
         return vocabularyModel;
       } else {
         final vocabularyModel = vocabularyModelFromJson(req.body);
-
         return vocabularyModel;
       }
     } on SocketException catch (_) {
@@ -90,9 +88,7 @@ class TranslationAPI {
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var decoded = json.decode(response.body);
-
       var data = TranslationModel.fromJson(decoded);
-
       return data;
     }
     return null;
@@ -100,55 +96,36 @@ class TranslationAPI {
 }
 
 class FavouritesAPI {
+  //post or remove favourites
   static Future addFavourites({required int? word}) async {
-    print("we are here");
     var token = await secureStorage.readSecureData('token');
-
     String auth = 'Token $token';
-    print(auth);
-    print(word);
-
     final response = await http.post(
         Uri.parse("http://10.0.2.2:8000/Api/Favourites/post/$word/"),
         headers: <String, String>{
           'Authorization': 'Token $token',
         });
-
-    print(response.statusCode as int);
-    print(response.body);
-
     if ((response.statusCode as int) == 200) {
-      print(response.body);
       return response.body;
     }
-    print(response.body);
-
     return null;
   }
 
+  //get favourites from api 
   Future<List<FavouritesModel>> getFavourites() async {
     try {
       var token = await secureStorage.readSecureData('token');
-      print(token);
       String auth = 'Token $token';
-
       final response = await http.get(
           Uri.parse("http://10.0.2.2:8000/Api/Favourites/get/"),
           headers: <String, String>{
             'Authorization': 'Token $token',
           });
-
       if (response.statusCode == 200) {
         final vocabularyModel = favouritesModelFromJson(response.body);
-
-        print(vocabularyModel);
-
         return vocabularyModel;
       } else {
-        print("fetch error");
-
         final vocabularyModel = favouritesModelFromJson(response.body);
-
         return vocabularyModel;
       }
     } on SocketException catch (_) {
@@ -198,11 +175,8 @@ class UserDetailsAPI {
 class ResultsApi {
   static Future saveResults(
       {required int? result, required String? level}) async {
-    print("We are here");
     String dateNow = DateFormat("yyyy-MM-dd").format(DateTime.now());
     String timeNow = DateFormat("hh:mm:ss").format(DateTime.now());
-    // var variable = DateTime.now();
-    // String dateOnly = variable.();
     var token = await secureStorage.readSecureData('token');
 
     String auth = 'Token $token';
@@ -220,13 +194,10 @@ class ResultsApi {
       },
     );
 
-    print(response.statusCode as int);
-
     if ((response.statusCode as int) == 200) {
       print(response.body);
       return response.body;
     }
-
     return null;
   }
 
@@ -244,17 +215,12 @@ class ResultsApi {
           });
 
       if (response.statusCode == 200) {
-        // print(response.body);
         final vocabularyModel = resultModelFromJson(response.body);
         print("HERE");
-        // print(vocabularyModel);
-
         return vocabularyModel;
       } else {
         print("fetch error");
-
         final vocabularyModel = resultModelFromJson(response.body);
-
         return vocabularyModel;
       }
     } on SocketException catch (_) {

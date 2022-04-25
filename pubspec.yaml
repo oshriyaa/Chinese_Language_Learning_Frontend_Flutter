@@ -26,6 +26,7 @@ dependencies:
   intl: ^0.17.0
   speech_to_text: ^5.4.3
   flutter_launcher_icons: ^0.9.2
+  native_notify: ^0.0.12
 
 dev_dependencies:
   flutter_test:

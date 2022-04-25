@@ -58,19 +58,17 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                         snapshot2.data!.length,
                         (index) {
                           final data2 = snapshot2.data![index];
-                          print("DATA $data2");
+
                           return FutureBuilder(
                             future: DictionaryService().getMeaning(),
                             builder: (context,
                                 AsyncSnapshot<List<VocabularyModel>> snapshot) {
-                              // print('Data $snapshot');
                               if (snapshot.hasData) {
                                 return Column(
                                   children: List.generate(
                                     snapshot.data!.length,
                                     (index) {
                                       final data = snapshot.data![index];
-                                      print("DATA $data");
                                       return data.wordId == data2.vocabulary
                                           ? WordWidget(
                                               inEng: data.inEnglish!,
@@ -82,13 +80,17 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                               favPressed: () {
                                                 FavouritesAPI.addFavourites(
                                                     word: (data.wordId));
-
-                                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => FavouritesScreen()),);
+                                                Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        const FavouritesScreen(),
+                                                  ),
+                                                );
                                               },
                                             )
-                                          : const SizedBox(
-                                              height: 1,
-                                            );
+                                          : const SizedBox(height: 1);
                                     },
                                   ),
                                 );

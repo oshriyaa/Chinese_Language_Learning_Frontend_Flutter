@@ -125,8 +125,7 @@ class _WordWidgetState extends State<WordWidget> {
                 top: 240,
                 left: size.width * 0.6,
                 child: IconButton(
-                  onPressed: () {
-                    print(widget.audio!);
+                  onPressed: () async {
                     initAudio();
                   },
                   icon: const Icon(

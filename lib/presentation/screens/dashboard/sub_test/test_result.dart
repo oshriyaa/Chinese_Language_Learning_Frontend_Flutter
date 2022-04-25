@@ -88,7 +88,6 @@ class _TestResultsState extends State<TestResults> {
                 buttonColor: CustomColors.WHITE,
                 buttonPress: disable == false
                     ? () {
-                        print("We are here");
                         final snackBar = SnackBar(
                           content: const Text(
                             'Your progress has been saved.',
@@ -103,7 +102,7 @@ class _TestResultsState extends State<TestResults> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          ProfileScreen()),
+                                          const ProfileScreen()),
                                   (Route<dynamic> route) => false);
                             },
                           ),
@@ -151,10 +150,5 @@ class _TestResultsState extends State<TestResults> {
     );
   }
 
-  Future openDialog() => showDialog(
-      context: context,
-      builder: (contex) => LogoutAlertDialog(
-            imageLink: 'lib/assets/logoutLogo.png',
-            dialogText: 'Do you want to logout?',
-          ));
+
 }

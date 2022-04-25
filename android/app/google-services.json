@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "192094633263",
+    "project_id": "namaste-china-307a9",
+    "storage_bucket": "namaste-china-307a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192094633263:android:1b5807001389fe657735da",
+        "android_client_info": {
+          "package_name": "com.example.chinese_learning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192094633263-h5bs2gmhc3qtk6oqjdeghl26tofk13n9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt7BEF_xyYmKw6egj0GeTOHs3Ka25-q0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "192094633263-h5bs2gmhc3qtk6oqjdeghl26tofk13n9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
