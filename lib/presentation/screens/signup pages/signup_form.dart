@@ -187,7 +187,7 @@ class _SignUpFormState extends State<SignUpForm> {
       ),
     );
       } else {
-        Navigator.push(
+       Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => LoginScreen()));
       }
 

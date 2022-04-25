@@ -20,11 +20,9 @@ class NepaliAlphabetPage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LandingScreen(),
-                    ));
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => LandingScreen()),
+                    (Route<dynamic> route) => false);
               },
               icon: const Icon(Icons.home),
             ),

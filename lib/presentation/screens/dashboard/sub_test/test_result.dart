@@ -1,5 +1,6 @@
 import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
+import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_test/test_page.dart';
 import 'package:chinese_learning/presentation/screens/other/profile_screen.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
@@ -123,11 +124,12 @@ class _TestResultsState extends State<TestResults> {
                 btnTextStyle: StyleText.testAnswerButtons,
                 buttonColor: CustomColors.WHITE,
                 buttonPress: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const TestPage(),
-                      ));
+                  Navigator.pushReplacement<void, void>(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => const TestPage(),
+                    ),
+                  );
                 },
                 shadowColor: CustomColors.BLACK,
               ),
@@ -136,11 +138,9 @@ class _TestResultsState extends State<TestResults> {
                 btnTextStyle: StyleText.testAnswerButtons,
                 buttonColor: CustomColors.WHITE,
                 buttonPress: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const TestPage(),
-                      ));
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => LandingScreen()),
+                      (Route<dynamic> route) => false);
                 },
                 shadowColor: CustomColors.BLACK,
               ),

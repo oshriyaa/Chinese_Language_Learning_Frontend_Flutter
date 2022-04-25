@@ -15,7 +15,7 @@
 
    <application
         android:label="Namaste China"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true">
         
 

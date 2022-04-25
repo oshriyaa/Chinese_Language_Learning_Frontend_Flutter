@@ -127,14 +127,15 @@ class _NormalQuestionPageState extends State<NormalQuestionPage> {
                       return;
                     }
                     endOfQuiz
-                        ? Navigator.push(
+                        ? Navigator.pushReplacement<void, void>(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => TestResults(
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => TestResults(
                                 testScore: _totalScore,
                                 level: 'medium',
                               ),
-                            ))
+                            ),
+                          )
                         : _nextQuestion();
                   },
                   child: Text(endOfQuiz ? 'View Results' : 'Next Question →',

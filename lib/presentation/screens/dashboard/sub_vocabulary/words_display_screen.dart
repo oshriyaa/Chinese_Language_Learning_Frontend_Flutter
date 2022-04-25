@@ -4,6 +4,9 @@ import 'package:chinese_learning/presentation/screens/dashboard/sub_vocabulary/w
 import 'package:flutter/material.dart';
 
 import '../../../../network/api_service.dart';
+import '../../../styling/textstyle.dart';
+import '../../other/favourites_screen.dart';
+import '../../other/search_screen.dart';
 
 class WordDisplayScreen extends StatefulWidget {
   final String? categoryID;
@@ -19,6 +22,34 @@ class _WordDisplayScreenState extends State<WordDisplayScreen> {
     // var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: CustomColors.L_RED,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: CustomColors.WHITE),
+        backgroundColor: CustomColors.RED,
+        title: const Text("Word", style: StyleText.textAppBar),
+        // automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FavouritesScreen(),
+                    ));
+            },
+            icon: const Icon(Icons.favorite),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SearchScreen(),
+                  ));
+            },
+            icon: const Icon(Icons.search),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(

@@ -3,6 +3,7 @@ import 'package:chinese_learning/models/search_vocabulary_model.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_vocabulary/word_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../../../network/api_service.dart';
 import '../../colors/colors.dart';
 import '../../styling/textstyle.dart';
 import '../dashboard/landing_screen.dart';
@@ -47,7 +48,10 @@ class _SearchScreenState extends State<SearchScreen> {
     }
 
     _list.forEach((index) {
-      if (index.inEnglish.toString().toLowerCase().contains(text.toString().toLowerCase()))
+      if (index.inEnglish
+          .toString()
+          .toLowerCase() 
+          .contains(text.toString().toLowerCase()) || index.inPinYin.toString().toLowerCase().contains(text.toString().toLowerCase(),) || index.inNepali.toString().contains(text.toString()))
         // || f.inPinYin.toString().toLowerCase().contains(text))
         _search.add(index);
     });
@@ -125,7 +129,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                 inChi: searchList.inChinese,
                                 inPin: searchList.inPinYin,
                                 inDev: searchList.inDevnagari,
-                                isFav: true,
+                                favPressed: () {
+                                  FavouritesAPI.addFavourites(
+                                      word: (searchList.wordId));
+                                },
                               );
                             },
                           )
@@ -146,7 +153,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                         inPin: displayList.inPinYin,
                                         inDev: displayList.inDevnagari,
                                         audio: displayList.audio,
-                                        isFav: true,
+                                          favPressed: () {
+                                  FavouritesAPI.addFavourites(
+                                      word: (displayList.wordId));
+                                },
                                       ),
                                     ],
                                   ));

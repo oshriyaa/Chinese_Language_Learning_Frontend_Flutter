@@ -2,6 +2,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/screens/login%20pages/login_screen.dart';
+import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:chinese_learning/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'secure_storage/secure_storage.dart';
@@ -10,7 +11,9 @@ import 'routes/route_constant.dart';
 late final SecureStorage secureStorage;
 
 
+//where application starts
 void main() {
+  // creating instance of secure storage
   secureStorage = SecureStorage();
 
   runApp(const MyApp());
@@ -23,25 +26,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      //Title of application
       title: 'Namaste China',
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
       onGenerateRoute: AppRouter.generateRoute,
-      // initialRoute: SignUpPage,
+      //Splash screen code 
        home: AnimatedSplashScreen(
-        splash: Container(
-                      height: 700,
-          child: Image.asset(
-            'lib/assets/fyp_logo_white.png',
-            // scale: 3,
-
-            fit: BoxFit.fitHeight,
-          ),
+        splash: Image.asset(
+          'lib/assets/fyp_logo_white.png',
         ),
         duration: 2000,
         splashTransition: SplashTransition.fadeTransition,
-        // pageTransitionType:  PageTransitionType.bottomToTop,
+        splashIconSize: 500,
+        // pageTransitionType:  PageTransitionType.scale,
         backgroundColor: CustomColors.RED,
         // nextScreen: LandingScreen(),
         nextScreen: FutureBuilder(

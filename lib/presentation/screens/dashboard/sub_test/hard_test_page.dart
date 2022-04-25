@@ -15,7 +15,6 @@ class HardTestQuizPage extends StatefulWidget {
 }
 
 class _HardTestQuizPageState extends State<HardTestQuizPage> {
-
   late AudioCache audioCache;
 
   @override
@@ -33,7 +32,6 @@ class _HardTestQuizPageState extends State<HardTestQuizPage> {
   bool answerWasSelected = false;
   bool endOfQuiz = false;
   bool correctAnswerSelected = false;
-
 
   void _questionAnswered(bool answerScore) {
     setState(() {
@@ -104,19 +102,18 @@ class _HardTestQuizPageState extends State<HardTestQuizPage> {
                                     )
                                   ]),
                               child: TextButton.icon(
-                                label: const Text(
-                                  "Play ",
-                                  style: StyleText.testWhiteAnswerButtons,
-                                ),
-                                icon: const Icon(
-                                  Icons.play_arrow,
-                                  color: CustomColors.WHITE,
-                                ),
-                                onPressed: () => audioCache.play(
-                                              hardQuizQuestionData[_questionIndex]
-                                                  ['audio'] as String)),
-                              ),
-                            
+                                  label: const Text(
+                                    "Play ",
+                                    style: StyleText.testWhiteAnswerButtons,
+                                  ),
+                                  icon: const Icon(
+                                    Icons.play_arrow,
+                                    color: CustomColors.WHITE,
+                                  ),
+                                  onPressed: () => audioCache.play(
+                                      hardQuizQuestionData[_questionIndex]
+                                          ['audio'] as String)),
+                            ),
                           ],
                         )
                       : Text(
@@ -176,14 +173,15 @@ class _HardTestQuizPageState extends State<HardTestQuizPage> {
                       return;
                     }
                     endOfQuiz
-                        ? Navigator.push(
+                        ? Navigator.pushReplacement<void, void>(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => TestResults(
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => TestResults(
                                 testScore: _totalScore,
                                 level: 'hard',
                               ),
-                            ))
+                            ),
+                          )
                         : _nextQuestion();
                   },
                   child: Text(endOfQuiz ? 'View Results' : 'Next Question →',

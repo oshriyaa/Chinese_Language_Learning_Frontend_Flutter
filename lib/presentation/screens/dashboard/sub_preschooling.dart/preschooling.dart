@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import '../../../colors/colors.dart';
 import '../../../styling/textstyle.dart';
 import '../../../widgets/custom_drawer.dart';
+import '../../other/favourites_screen.dart';
+import '../../other/search_screen.dart';
 
 class PreschoolingScreen extends StatefulWidget {
   const PreschoolingScreen({Key? key}) : super(key: key);
@@ -23,25 +25,34 @@ class _PreschoolingScreenState extends State<PreschoolingScreen> {
     return Scaffold(
         backgroundColor: CustomColors.L_RED,
         drawer: const CustomDrawer(),
-        appBar: AppBar(
-          iconTheme: const IconThemeData(color: CustomColors.WHITE),
-          backgroundColor: CustomColors.RED,
-          title: const Text("Preschooling", style: StyleText.textAppBar),
-          // automaticallyImplyLeading: false,
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(
+       appBar: AppBar(
+        iconTheme: const IconThemeData(color: CustomColors.WHITE),
+        backgroundColor: CustomColors.RED,
+        title: const Text("Preschooling", style: StyleText.textAppBar),
+        // automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FavouritesScreen(),
+                    ));
+            },
+            icon: const Icon(Icons.favorite),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const LandingScreen(),
-                  ),
-                );
-              },
-              icon: const Icon(Icons.home),
-            ),
-          ],
-        ),
+                    builder: (context) => const SearchScreen(),
+                  ));
+            },
+            icon: const Icon(Icons.search),
+          ),
+        ],
+      ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(

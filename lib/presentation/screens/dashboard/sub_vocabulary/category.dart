@@ -84,7 +84,7 @@ class VocabularyScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const WordDisplayScreen(),
+                          builder: (context) => const WordDisplayScreen(categoryID: 'C3',),
                         ));
                   },
                 ),
@@ -96,7 +96,7 @@ class VocabularyScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const WordDisplayScreen(),
+                          builder: (context) => const WordDisplayScreen(categoryID: 'C4',),
                         ));
                   },
                 ),
@@ -108,7 +108,7 @@ class VocabularyScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const WordDisplayScreen(),
+                          builder: (context) => const WordDisplayScreen(categoryID: 'C5',),
                         ));
                   },
                 ),
@@ -120,7 +120,7 @@ class VocabularyScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const WordDisplayScreen(),
+                          builder: (context) => const WordDisplayScreen(categoryID: 'C6',),
                         ));
                   },
                 ),
@@ -133,7 +133,7 @@ class VocabularyScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const WordDisplayScreen(),
+                          builder: (context) => const WordDisplayScreen(categoryID: 'C7',),
                         ));
                   },
                 ),
@@ -145,7 +145,7 @@ class VocabularyScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const WordDisplayScreen(),
+                          builder: (context) => const WordDisplayScreen(categoryID: 'C8',),
                         ));
                   },
                 ),
@@ -157,7 +157,7 @@ class VocabularyScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const WordDisplayScreen(),
+                          builder: (context) => const WordDisplayScreen(categoryID: 'C9',),
                         ));
                   },
                 ),
@@ -169,7 +169,7 @@ class VocabularyScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const WordDisplayScreen(),
+                          builder: (context) => const WordDisplayScreen(categoryID: 'C10',),
                         ));
                   },
                 ),

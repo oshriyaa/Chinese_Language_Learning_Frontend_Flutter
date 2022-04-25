@@ -70,7 +70,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                     snapshot.data!.length,
                                     (index) {
                                       final data = snapshot.data![index];
-                                       print("DATA $data");
+                                      print("DATA $data");
                                       return data.wordId == data2.vocabulary
                                           ? WordWidget(
                                               inEng: data.inEnglish!,
@@ -80,10 +80,10 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                               inDev: data.inDevnagari!,
                                               audio: data.audio,
                                               favPressed: () {
-                                           
                                                 FavouritesAPI.addFavourites(
                                                     word: (data.wordId));
-                                                    
+
+                                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => FavouritesScreen()),);
                                               },
                                             )
                                           : const SizedBox(

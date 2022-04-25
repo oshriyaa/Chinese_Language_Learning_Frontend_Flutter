@@ -24,12 +24,9 @@ class TestPage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LandingScreen(),
-                ),
-              );
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => LandingScreen()),
+                  (Route<dynamic> route) => false);
             },
             icon: const Icon(Icons.home),
           ),
@@ -44,11 +41,14 @@ class TestPage extends StatelessWidget {
                 buttonDesc:
                     "Test your languange knowledge with True/False tests.",
                 onPress: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const EasyQuizPage(),
-                      ));
+                  Navigator.pushReplacement<void, void>(
+                    context,
+                    MaterialPageRoute<void>(
+                        builder: (BuildContext context) => WillPopScope(
+                              onWillPop: () async => false,
+                              child: EasyQuizPage(),
+                            )),
+                  );
                 },
               ),
               CustomSelectButton(
@@ -56,23 +56,29 @@ class TestPage extends StatelessWidget {
                 buttonDesc:
                     "Test your languange knowledge with MCQ language questions.",
                 onPress: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => NormalQuestionPage(),
-                      ));
+                  Navigator.pushReplacement<void, void>(
+                    context,
+                    MaterialPageRoute<void>(
+                        builder: (BuildContext context) => WillPopScope(
+                              onWillPop: () async => false,
+                              child: NormalQuestionPage(),
+                            )),
+                  );
                 },
               ),
               CustomSelectButton(
-                buttonName: "Level: Hard",
+                buttonName: "Level: Difficult",
                 buttonDesc:
-                    "Test your languange knowledge with MCQ and audio language questions.",
+                    "Test your languange knowledge with MCQ and audio based questions.",
                 onPress: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HardTestQuizPage(),
-                      ));
+                  Navigator.pushReplacement<void, void>(
+                    context,
+                    MaterialPageRoute<void>(
+                        builder: (BuildContext context) => WillPopScope(
+                              onWillPop: () async => false,
+                              child: HardTestQuizPage(),
+                            )),
+                  );
                 },
               ),
             ],

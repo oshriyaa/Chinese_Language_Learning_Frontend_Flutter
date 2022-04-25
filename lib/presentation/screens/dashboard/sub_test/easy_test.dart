@@ -33,11 +33,11 @@ class _EasyQuizPageState extends State<EasyQuizPage> {
       }
       _scoreTracker.add(
         answerScore
-            ? Icon(
+            ? const Icon(
                 Icons.check_circle,
                 color: Colors.green,
               )
-            : Icon(
+            : const Icon(
                 Icons.clear,
                 color: Colors.red,
               ),
@@ -136,47 +136,51 @@ class _EasyQuizPageState extends State<EasyQuizPage> {
                     child: TextButton(
                       onPressed: () {
                         if (!answerWasSelected) {
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
                             content: Text(
                                 'Please select an answer before going to the next question'),
                           ));
                           return;
                         }
                         endOfQuiz
-                            ? Navigator.push(
+                            ? Navigator.pushReplacement<void, void>(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => TestResults(
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      TestResults(
                                     testScore: _totalScore,
                                     level: 'easy',
                                   ),
-                                ))
+                                ),
+                              )
+
+                           
                             : _nextQuestion();
                       },
-                      child: Text(endOfQuiz ? 'View Results' : 'Next Question →',
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontFamily: 'Bitter',
-                            color: CustomColors.WHITE,
-                          )),
+                      child:
+                          Text(endOfQuiz ? 'View Results' : 'Next Question →',
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontFamily: 'Bitter',
+                                color: CustomColors.WHITE,
+                              )),
                     ),
                   ),
-                  
                 ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 150, left: 5),
               child: Column(
-              
-                      children: [
-                        if (_scoreTracker.isEmpty)
-                          const SizedBox(
-                            height: 25.0,
-                          ),
-                        if (_scoreTracker.isNotEmpty) ..._scoreTracker
-                      ],
+                children: [
+                  if (_scoreTracker.isEmpty)
+                    const SizedBox(
+                      height: 25.0,
                     ),
+                  if (_scoreTracker.isNotEmpty) ..._scoreTracker
+                ],
+              ),
             ),
           ],
         ),

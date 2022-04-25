@@ -13,22 +13,21 @@ class NumbersPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: CustomColors.L_RED,
         appBar: AppBar(
-        iconTheme: const IconThemeData(color: CustomColors.WHITE),
-        backgroundColor: CustomColors.RED,
-        title: const Text("Numbers and Strokes", style: StyleText.textAppBar),
-        // automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            onPressed: () {Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>  const LandingScreen(),
-                    ));},
-            icon: const Icon(Icons.home),
-          ),
-         
-        ],
-      ),
+          iconTheme: const IconThemeData(color: CustomColors.WHITE),
+          backgroundColor: CustomColors.RED,
+          title: const Text("Numbers and Strokes", style: StyleText.textAppBar),
+          // automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => LandingScreen()),
+                    (Route<dynamic> route) => false);
+              },
+              icon: const Icon(Icons.home),
+            ),
+          ],
+        ),
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(20.0),
