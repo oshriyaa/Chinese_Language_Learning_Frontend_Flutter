@@ -34,7 +34,7 @@ class _LandingScreenState extends State<LandingScreen> {
 
   Future openLogoutDialog() => showDialog(
       context: context,
-      builder: (contex) => LogoutAlertDialog(
+      builder: (contex) => const LogoutAlertDialog(
             imageLink: 'lib/assets/logoutLogo.png',
             dialogText: 'Do you want to logout?',
           ));
@@ -48,7 +48,6 @@ class _LandingScreenState extends State<LandingScreen> {
         iconTheme: const IconThemeData(color: CustomColors.WHITE),
         backgroundColor: CustomColors.RED,
         title: const Text("Namastey China", style: StyleText.textAppBar),
-        // automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () {
@@ -139,7 +138,7 @@ class _LandingScreenState extends State<LandingScreen> {
               },
             ),
             FeatureContainer(
-              tileTitle: "Han Dao Institute",
+              tileTitle: "Han Da Institute",
               tileSubHeading: "Want to learn more?",
               image: 'lib/assets/client.png',
               tapFunction: () {

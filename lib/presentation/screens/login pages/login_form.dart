@@ -35,7 +35,6 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    // var size = MediaQuery.of(context).size;
     return Form(
       key: _loginKey,
       child: Column(
@@ -43,10 +42,7 @@ class _LoginFormState extends State<LoginForm> {
           const Text(
             "Login",
             style: TextStyle(
-              color: CustomColors.RED,
-              fontFamily: 'Bitter',
-              fontSize: 40,
-            ),
+                color: CustomColors.RED, fontFamily: 'Bitter', fontSize: 40),
           ),
           CustomTextField(
             fieldHint: "Enter your username.",
@@ -65,16 +61,16 @@ class _LoginFormState extends State<LoginForm> {
             fieldLabel: "Password",
             controller: _passwordController,
             suffixIcon: IconButton(
-              icon: Icon(
-                _obscureText == true ? Icons.visibility_off : Icons.visibility,
-              ),
-              onPressed: () {
-                // print('The eye visibility is working.');
-                setState(() {
-                  _obscureText = !_obscureText;
-                });
-              },
-            ),
+                icon: Icon(
+                  _obscureText == true
+                      ? Icons.visibility_off
+                      : Icons.visibility,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                }),
             obscure: _obscureText,
             save: (value) {
               passwordText = value;

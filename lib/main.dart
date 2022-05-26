@@ -23,6 +23,9 @@ NativeNotify.initialize(602, 'uhBdUdbWSfLQeDMeDkeqvt', 'AAAALLm7fS8:APA91bEHzgy4
   runApp(const MyApp());
 }
 
+
+
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -49,7 +52,7 @@ class MyApp extends StatelessWidget {
         // nextScreen: LandingScreen(),
         nextScreen: FutureBuilder(
           builder: (context, snapshot) {
-            print('SNAPSHOT.DATA $snapshot.data');
+
             if (snapshot.data != null) {
               return LandingScreen();
             }

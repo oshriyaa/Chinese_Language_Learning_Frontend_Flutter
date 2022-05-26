@@ -27,12 +27,7 @@ class CategoryTileWidget extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             color: CustomColors.WHITE,
-            boxShadow: const [
-              BoxShadow(
-                blurRadius: 2,
-                offset: Offset(2, 2),
-              )
-            ]),
+            boxShadow: const [BoxShadow(blurRadius: 2, offset: Offset(2, 2))]),
         child: Center(
           child: ListTile(
             onTap: tapFunction,
@@ -41,14 +36,7 @@ class CategoryTileWidget extends StatelessWidget {
               size: 50,
               color: CustomColors.RED,
             ),
-            // leading: Image.asset(
-            //   image!,
-            //   height: 70,
-            // ),
-            title: Text(
-              tileTitle!,
-              style: StyleText.categoryHeading,
-            ),
+            title: Text(tileTitle!, style: StyleText.categoryHeading),
           ),
         ),
       ),

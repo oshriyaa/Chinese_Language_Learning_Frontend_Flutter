@@ -15,7 +15,6 @@ class HardTestQuizPage extends StatefulWidget {
 }
 
 class _HardTestQuizPageState extends State<HardTestQuizPage> {
-  
   int _questionIndex = 0;
   int _totalScore = 0;
   bool answerWasSelected = false;
@@ -26,7 +25,6 @@ class _HardTestQuizPageState extends State<HardTestQuizPage> {
   @override
   void initState() {
     super.initState();
-    // create this only once
     hardQuizQuestionData.shuffle();
     audioCache = AudioCache(
         prefix: "lib/assets/audio/",

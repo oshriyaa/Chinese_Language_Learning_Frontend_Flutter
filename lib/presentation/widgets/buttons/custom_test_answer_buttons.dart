@@ -10,7 +10,12 @@ class CustomTestAnswerButtonWidget extends StatefulWidget {
   final TextStyle? btnTextStyle;
   final Function()? buttonPress;
   const CustomTestAnswerButtonWidget(
-      {Key? key, this.buttonText, this.buttonColor, required this.shadowColor, this.btnTextStyle, this.buttonPress})
+      {Key? key,
+      this.buttonText,
+      this.buttonColor,
+      required this.shadowColor,
+      this.btnTextStyle,
+      this.buttonPress})
       : super(key: key);
 
   @override
@@ -27,21 +32,15 @@ class _CustomTestAnswerButtonWidgetState
       margin: const EdgeInsets.only(top: 20),
       width: size.width * 0.8,
       child: TextButton(
-        child: Text(
-          widget.buttonText!,
-          style: widget.btnTextStyle,
-        ),
+        child: Text(widget.buttonText!, style: widget.btnTextStyle),
         onPressed: widget.buttonPress,
       ),
       decoration: BoxDecoration(
           color: widget.buttonColor,
           borderRadius: BorderRadius.circular(5),
-          boxShadow:  [
+          boxShadow: [
             BoxShadow(
-              color: widget.shadowColor,
-              blurRadius: 4,
-              offset: Offset(2, 2),
-            )
+                color: widget.shadowColor, blurRadius: 4, offset: Offset(2, 2))
           ]),
     );
   }

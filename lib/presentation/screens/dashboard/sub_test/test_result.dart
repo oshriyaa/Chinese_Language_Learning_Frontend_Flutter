@@ -36,29 +36,22 @@ class _TestResultsState extends State<TestResults> {
                 child: const Text(
                   "You have scored:",
                   style: TextStyle(
-                    fontSize: 30,
-                    fontFamily: 'Bitter',
-                    color: CustomColors.RED,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontSize: 30,
+                      fontFamily: 'Bitter',
+                      color: CustomColors.RED,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 20),
-
                 width: size.width * 0.8,
-                // color: Colors.black,
                 child: Center(
-                  child: Text(
-                    "${widget.testScore}",
-                    style: const TextStyle(
-                      fontSize: 100,
-                      fontFamily: 'Bitter',
-                      color: CustomColors.RED,
-                      // fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                  child: Text("${widget.testScore}",
+                      style: const TextStyle(
+                          fontSize: 100,
+                          fontFamily: 'Bitter',
+                          color: CustomColors.RED),
+                      textAlign: TextAlign.center),
                 ),
               ),
               const Text(
@@ -72,16 +65,13 @@ class _TestResultsState extends State<TestResults> {
                       ? 'Congratulations!'
                       : 'Better luck next time!',
                   style: const TextStyle(
-                    fontSize: 30,
-                    fontFamily: 'Bitter',
-                    color: CustomColors.RED,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontSize: 30,
+                      fontFamily: 'Bitter',
+                      color: CustomColors.RED,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               CustomTestAnswerButtonWidget(
                 buttonText: "Save test results",
                 btnTextStyle: StyleText.testAnswerButtons,
@@ -111,9 +101,6 @@ class _TestResultsState extends State<TestResults> {
                         ResultsApi.saveResults(
                             result: widget.testScore, level: widget.level);
 
-                        setState(() {
-                          disable = true;
-                        });
                       }
                     : null,
                 shadowColor: CustomColors.BLACK,
@@ -149,6 +136,4 @@ class _TestResultsState extends State<TestResults> {
       ),
     );
   }
-
-
 }

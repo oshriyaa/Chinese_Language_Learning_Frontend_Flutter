@@ -51,7 +51,6 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                 future: FavouritesAPI().getFavourites(),
                 builder:
                     (context, AsyncSnapshot<List<FavouritesModel>> snapshot2) {
-                  // print('Data $snapshot2');
                   if (snapshot2.hasData) {
                     return Column(
                       children: List.generate(
@@ -90,7 +89,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                                 );
                                               },
                                             )
-                                          : const SizedBox(height: 1);
+                                          : const SizedBox(height: 0);
                                     },
                                   ),
                                 );

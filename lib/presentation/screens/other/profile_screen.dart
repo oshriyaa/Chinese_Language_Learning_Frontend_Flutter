@@ -78,19 +78,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(top: 30),
-                                  child: Text(
-                                    "Name: ${data.userName}",
-                                    style: StyleText.testWhiteAnswerButtons,
-                                  ),
+                                  child: Text("Name: ${data.userName}",
+                                      style: StyleText.testWhiteAnswerButtons),
                                 ),
-                                Text(
-                                  "UserName: ${data.email}",
-                                  style: StyleText.testWhiteAnswerButtons,
-                                ),
-                                Text(
-                                  "PhoneNumber: ${data.phoneNumber}",
-                                  style: StyleText.testWhiteAnswerButtons,
-                                ),
+                                Text("UserName: ${data.email}",
+                                    style: StyleText.testWhiteAnswerButtons),
+                                Text("PhoneNumber: ${data.phoneNumber}",
+                                    style: StyleText.testWhiteAnswerButtons),
                               ],
                             ),
                           ),
@@ -129,19 +123,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 width: size.width * 0.9,
                 height: size.height * 0.58,
                 child: Column(children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Text(
-                    "Saved Test Results",
-                    style: TextStyle(
-                      fontSize: 23,
-                      fontFamily: 'Bitter',
-                      color: CustomColors.WHITE,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
+                  const Text("Saved Test Results",
+                      style: TextStyle(
+                          fontSize: 23,
+                          fontFamily: 'Bitter',
+                          color: CustomColors.WHITE,
+                          fontWeight: FontWeight.bold)),
+                  const SizedBox(
                     height: 15,
                   ),
                   Container(
@@ -184,7 +175,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           } else if (snapshot.hasError) {
                             return Text(snapshot.error.toString());
                           } else {
-                            return const CircularProgressIndicator();
+                            return const Center(
+                              child: Text(
+                                "An error was caused while establishing connection",
+                                style: StyleText.categoryHeading,
+                              ),
+                            );
                           }
                         },
                       ),

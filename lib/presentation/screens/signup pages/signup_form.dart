@@ -1,5 +1,6 @@
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/screens/login%20pages/login_screen.dart';
+import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:chinese_learning/presentation/widgets/textfields/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import '../../../network/api_service.dart';
@@ -149,52 +150,66 @@ class _SignUpFormState extends State<SignUpForm> {
                 save: () {
                   Register(context);
                 }),
+
+                
           ],
         ));
   }
 
   Register(BuildContext context) async {
-    print("2here");
     if (_signUpKey.currentState!.validate()) {
-      print("1here");
       _signUpKey.currentState!.save();
 
       setState(() {
         pressedRegister = true;
       });
-      print(pressedRegister);
-      print("1here");
+
       registerResponse = await AuthService.register(
           fullNameInput, numberInput, emailInput, passwordInput);
-      print('FIRST PRINT $registerResponse');
-      if (registerResponse==null) {
+      if (registerResponse == null) {
         print("HERE AGAIN");
-         await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title:  const Text('Error'),
-        content: const Text(
+        await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Error'),
+            content: const Text(
                 'Your register credentitals are invalid. Please check and try again.'),
-        actions: <Widget>[
-           TextButton(
-            onPressed: () {
-              Navigator.of(context, rootNavigator: true)
-                  .pop(); // dismisses only the dialog and returns nothing
-            },
-            child:  const Text('OK'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .pop(); // dismisses only the dialog and returns nothing
+                },
+                child: const Text('OK'),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        );
       } else {
-       Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => LoginScreen()));
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Registration Successful', style: StyleText.categoryHeading,),
+            content: const Text('You have been registered successfully.', style: StyleText.featureSubHeading,),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) =>
+                              LoginScreen())); // dismisses only the dialog and returns nothing
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
       }
 
       // print('ACCESS TOKEN = ${registerResponse['access_token']}');
       //   print('REFRESH TOKEN = ${registerResponse["refresh_token"]}');
 
-     
     } else {
       loginError(context);
       pressedRegister = false;

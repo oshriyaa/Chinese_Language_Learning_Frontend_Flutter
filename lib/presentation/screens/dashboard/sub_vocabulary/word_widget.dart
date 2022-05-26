@@ -51,103 +51,45 @@ class _WordWidgetState extends State<WordWidget> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  const Text(
-                    'Word:',
-                    style: StyleText.categoryHeading,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    'English:',
-                    style: StyleText.featureSubHeading,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    widget.inEng!,
-                    style: StyleText.vocabularyText,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    'Nepali:',
-                    style: StyleText.featureSubHeading,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    widget.inNep!,
-                    style: StyleText.vocabularyText,
-                  ),
+                  const SizedBox(height: 25),
+                  const Text('Word:', style: StyleText.categoryHeading),
+                  const SizedBox(height: 10),
+                  const Text('English:', style: StyleText.featureSubHeading),
+                  const SizedBox(height: 10),
+                  Text(widget.inEng!, style: StyleText.vocabularyText),
+                  const SizedBox(height: 10),
+                  const Text('Nepali:', style: StyleText.featureSubHeading),
+                  const SizedBox(height: 1),
+                  Text(widget.inNep!, style: StyleText.vocabularyText),
                   const Divider(
-                    thickness: 1,
-                    color: CustomColors.GREY,
-                    endIndent: 70,
-                  ),
-                  const Text(
-                    'Translation:',
-                    style: StyleText.categoryHeading,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    widget.inChi!,
-                    style: StyleText.vocabularyText,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    widget.inPin!,
-                    style: StyleText.vocabularyText,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    widget.inDev!,
-                    style: StyleText.vocabularyText,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                      thickness: 1, color: CustomColors.GREY, endIndent: 70),
+                  const Text('Translation:', style: StyleText.categoryHeading),
+                  const SizedBox(height: 10),
+                  Text(widget.inChi!, style: StyleText.vocabularyText),
+                  const SizedBox(height: 15),
+                  Text(widget.inPin!, style: StyleText.vocabularyText),
+                  const SizedBox(height: 15),
+                  Text(widget.inDev!, style: StyleText.vocabularyText),
+                  const SizedBox(height: 10),
                 ],
               ),
               Positioned(
-                top: 240,
-                left: size.width * 0.6,
-                child: IconButton(
-                  onPressed: () async {
-                    initAudio();
-                  },
-                  icon: const Icon(
-                    Icons.play_arrow,
-                    color: CustomColors.RED,
-                    size: 45,
-                  ),
-                ),
-              ),
+                  top: 240,
+                  left: size.width * 0.6,
+                  child: IconButton(
+                      onPressed: () async {
+                        initAudio();
+                      },
+                      icon: const Icon(Icons.play_arrow,
+                          color: CustomColors.RED, size: 45))),
               Positioned(
-                top: 20,
-                left: size.width * 0.6,
-                child: IconButton(
-                  onPressed: widget.favPressed,
-                  // tooltip: 'Refresh',
-                  icon: Icon(
-                    Icons.collections_bookmark,
-                    color: CustomColors.RED,
-                    size: 40,
-                  ),
-                ),
-              ),
+                  top: 20,
+                  left: size.width * 0.6,
+                  child: IconButton(
+                      onPressed: widget.favPressed,
+                      // tooltip: 'Refresh',
+                      icon: const Icon(Icons.collections_bookmark,
+                          color: CustomColors.RED, size: 40))),
             ]),
           ),
           decoration: BoxDecoration(

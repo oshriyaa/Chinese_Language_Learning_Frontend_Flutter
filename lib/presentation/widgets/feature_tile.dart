@@ -30,20 +30,13 @@ class FeatureContainer extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
               color: CustomColors.WHITE,
               boxShadow: const [
-                BoxShadow(
-                  blurRadius: 2,
-                  offset: Offset(2, 2),
-                )
+                BoxShadow(blurRadius: 2, offset: Offset(2, 2))
               ]),
           child: Stack(
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Image.asset(
-                  image!,
-                  width: 150,
-                  height: 150,
-                ),
+                child: Image.asset(image!, width: 150, height: 150),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5),
@@ -56,10 +49,8 @@ class FeatureContainer extends StatelessWidget {
                   ),
                   subtitle: Padding(
                     padding: const EdgeInsets.only(top: 7),
-                    child: Text(
-                      tileSubHeading!,
-                      style: StyleText.featureSubHeading,
-                    ),
+                    child: Text(tileSubHeading!,
+                        style: StyleText.featureSubHeading),
                   ),
                   contentPadding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 30.0),

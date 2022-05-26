@@ -48,6 +48,7 @@ class _SearchScreenState extends State<SearchScreen> {
     }
 
     _list.forEach((index) {
+
       if (index.inEnglish
               .toString()
               .toLowerCase()

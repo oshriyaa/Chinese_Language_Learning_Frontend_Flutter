@@ -50,8 +50,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     return Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: buildHeader(
-                        name: data.email!,
-                        // email: email,
+                        name: data.userName!,
+                        username: data.email!,
                         onClicked: () => Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -180,7 +180,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   Widget buildHeader({
     required String name,
-    // required String email,
+    required String username,
     required VoidCallback onClicked,
   }) {
     return ListTile(
@@ -189,9 +189,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
         size: 50,
         color: CustomColors.RED,
       ),
-      title: Text(
-        name,
-        style: StyleText.categoryHeading,
+      title: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+
+          Text(
+            name,
+            style: StyleText.categoryHeading,
+          ),
+          
+        ],
       ),
       // subtitle: Text(email, style: StyleText.featureSubHeading,),
       onTap: onClicked,

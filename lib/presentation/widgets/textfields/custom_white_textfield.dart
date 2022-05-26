@@ -13,7 +13,7 @@ class CustomWhiteTextField extends StatelessWidget {
   final int? maxLine;
   final double? topPosition;
   final double? leftPosition;
-  final  bool? editable;
+  final bool? editable;
   const CustomWhiteTextField({
     Key? key,
     this.fieldHint,
@@ -49,10 +49,9 @@ class CustomWhiteTextField extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
                   borderSide: const BorderSide(
-                    width: 1,
-                    style: BorderStyle.solid,
-                    color: CustomColors.RED,
-                  ),
+                      width: 1,
+                      style: BorderStyle.solid,
+                      color: CustomColors.RED),
                 ),
                 labelText: fieldLabel,
                 labelStyle: const TextStyle(
@@ -62,7 +61,10 @@ class CustomWhiteTextField extends StatelessWidget {
                     fontWeight: FontWeight.bold),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 hintText: fieldHint,
-                hintStyle: const TextStyle(fontFamily: 'Bitter', color: CustomColors.GREY, fontSize: 20),
+                hintStyle: const TextStyle(
+                    fontFamily: 'Bitter',
+                    color: CustomColors.GREY,
+                    fontSize: 20),
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
                 filled: true,
@@ -70,19 +72,19 @@ class CustomWhiteTextField extends StatelessWidget {
               ),
             ),
           ),
-          editable==false?
-           Positioned(
-              top: topPosition,
-              left: leftPosition,
-              child: TextButton(
-                child: Text(
-                  'Clear',
-                  style: StyleText.featureSubHeading,
-                ),
-                onPressed: () {
-                  controller?.clear();
-                },
-              ))  
+          editable == false
+              ? Positioned(
+                  top: topPosition,
+                  left: leftPosition,
+                  child: TextButton(
+                    child: Text(
+                      'Clear',
+                      style: StyleText.featureSubHeading,
+                    ),
+                    onPressed: () {
+                      controller?.clear();
+                    },
+                  ))
               : SizedBox(),
         ],
       ),

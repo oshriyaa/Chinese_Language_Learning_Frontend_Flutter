@@ -66,6 +66,7 @@ class LogoutAlertDialog extends StatelessWidget {
                           pressedLogout = true;
 
                           secureStorage.deleteSecureData();
+                          
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
                                   builder: (context) => LoginScreen()),
