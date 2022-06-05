@@ -22,6 +22,7 @@ class _EasyQuizPageState extends State<EasyQuizPage> {
   bool correctAnswerSelected = false;
   bool selected = false;
 
+
   void _questionAnswered(bool answerScore) {
     setState(() {
       // if answer was selected
@@ -50,6 +51,7 @@ class _EasyQuizPageState extends State<EasyQuizPage> {
     });
   }
 
+  
   void _nextQuestion() {
     setState(() {
       _questionIndex++;
@@ -58,6 +60,7 @@ class _EasyQuizPageState extends State<EasyQuizPage> {
     });
   }
 
+  //initilizes the page
   @override
   void initState() {
     easyQuestionList.shuffle();

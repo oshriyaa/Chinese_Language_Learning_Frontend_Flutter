@@ -31,10 +31,10 @@ class _WordDisplayScreenState extends State<WordDisplayScreen> {
           IconButton(
             onPressed: () {
               Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const FavouritesScreen(),
-                    ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const FavouritesScreen(),
+                  ));
             },
             icon: const Icon(Icons.favorite),
           ),
@@ -68,7 +68,7 @@ class _WordDisplayScreenState extends State<WordDisplayScreen> {
                         snapshot.data!.length,
                         (index) {
                           final data = snapshot.data![index];
-                             print("DATA $data.categoryID");
+                          print("DATA $data.categoryID");
                           return data.categoryId == widget.categoryID
                               ? WordWidget(
                                   inEng: data.inEnglish!,
@@ -80,10 +80,32 @@ class _WordDisplayScreenState extends State<WordDisplayScreen> {
                                   favPressed: () {
                                     FavouritesAPI.addFavourites(
                                         word: (data.wordId));
+                                    final snackBar = SnackBar(
+                                      content: const Text(
+                                        'Favourites list has been updated.',
+                                        style: StyleText.testWhiteAnswerButtons,
+                                      ),
+                                      backgroundColor: (CustomColors.RED),
+                                      action: SnackBarAction(
+                                        label: 'View.',
+                                        textColor: CustomColors.WHITE,
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const FavouritesScreen(),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    );
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
                                   },
                                 )
                               : const SizedBox(
-                                  height: 1,
+                                  height: 0,
                                 );
                         },
                       ),

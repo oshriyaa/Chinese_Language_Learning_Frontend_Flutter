@@ -26,7 +26,7 @@ class _SignUpFormState extends State<SignUpForm> {
   String? fullNameInput;
   String? numberInput;
   String? passwordInput;
-  String? confirmPasswordInput;
+  String? confirmInputPassword;
   String? emailInput;
   bool _obscureText = true;
   bool? pressedRegister = false;
@@ -139,7 +139,7 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               obscure: _obscureText,
               save: (value) {
-                passwordInput = value;
+                confirmInputPassword = value;
               },
               validation: (value) {
                 return TextValidator.passwordValidation(value);
@@ -150,12 +150,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 save: () {
                   Register(context);
                 }),
-
-                
           ],
         ));
   }
 
+  //Method for register
   Register(BuildContext context) async {
     if (_signUpKey.currentState!.validate()) {
       _signUpKey.currentState!.save();
@@ -163,17 +162,70 @@ class _SignUpFormState extends State<SignUpForm> {
       setState(() {
         pressedRegister = true;
       });
+      print(fullNameInput);
+      print(numberInput);
+      print(emailInput);
+      print(passwordInput);
+      print(confirmInputPassword);
 
-      registerResponse = await AuthService.register(
-          fullNameInput, numberInput, emailInput, passwordInput);
-      if (registerResponse == null) {
-        print("HERE AGAIN");
+      if (passwordInput == confirmInputPassword) {
+        print("Same");
+        registerResponse = await AuthService.register(
+            fullNameInput, numberInput, emailInput, passwordInput);
+
+        if (registerResponse == null) {
+          print("HERE AGAIN");
+          await showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Error'),
+              content: const Text(
+                  'Your register credentitals are invalid. Please check and try again.'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true)
+                        .pop(); // dismisses only the dialog and returns nothing
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        } else {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text(
+                'Registration Successful',
+                style: StyleText.categoryHeading,
+              ),
+              content: const Text(
+                'You have been registered successfully.',
+                style: StyleText.featureSubHeading,
+              ),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) =>
+                                LoginScreen())); // dismisses only the dialog and returns nothing
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        }
+      } else {
+        print("Not same");
         await showDialog(
           context: context,
           builder: (context) => AlertDialog(
             title: const Text('Error'),
-            content: const Text(
-                'Your register credentitals are invalid. Please check and try again.'),
+            content: const Text('Your passwords do not match.'),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
@@ -185,31 +237,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ],
           ),
         );
-      } else {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Registration Successful', style: StyleText.categoryHeading,),
-            content: const Text('You have been registered successfully.', style: StyleText.featureSubHeading,),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) =>
-                              LoginScreen())); // dismisses only the dialog and returns nothing
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
       }
-
-      // print('ACCESS TOKEN = ${registerResponse['access_token']}');
-      //   print('REFRESH TOKEN = ${registerResponse["refresh_token"]}');
-
     } else {
       loginError(context);
       pressedRegister = false;
