@@ -29,6 +29,7 @@ class _SignUpFormState extends State<SignUpForm> {
   String? confirmInputPassword;
   String? emailInput;
   bool _obscureText = true;
+   bool _obscureTextAgain = true;
   bool? pressedRegister = false;
   var registerResponse;
 
@@ -133,7 +134,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 onPressed: () {
                   // print('The eye visibility is working.');
                   setState(() {
-                    _obscureText = !_obscureText;
+                    _obscureTextAgain = !_obscureTextAgain;
                   });
                 },
               ),

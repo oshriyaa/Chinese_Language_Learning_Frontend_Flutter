@@ -1,3 +1,4 @@
+//Search API model
 class SearchVocabulary {
 
      int? wordId;

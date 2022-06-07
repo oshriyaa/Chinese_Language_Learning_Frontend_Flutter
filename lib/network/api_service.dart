@@ -50,6 +50,9 @@ class AuthService {
       var token = decodedResponse['token'];
       secureStorage.writeSecureData(token);
 
+      String dateNow = DateFormat("yyyy-MM-dd").format(DateTime.now());
+      String timeNow = DateFormat("hh:mm:ss").format(DateTime.now());
+
       return decodedResponse;
     }
     //if the login is unseccessful
@@ -80,6 +83,7 @@ class AuthService {
   }
 }
 
+//Translation API
 class TranslationAPI {
   static Future<TranslationModel?> getTranslation(
       {source, target, text}) async {
@@ -121,6 +125,7 @@ class FavouritesAPI {
           headers: <String, String>{
             'Authorization': 'Token $token',
           });
+          //if response is a success
       if (response.statusCode == 200) {
         final vocabularyModel = favouritesModelFromJson(response.body);
         return vocabularyModel;
@@ -136,9 +141,11 @@ class FavouritesAPI {
   }
 }
 
+//User Profile 
 class UserDetailsAPI {
   Future<List<UserModel>> getUserDetails() async {
     try {
+      //read token form storage
       var token = await secureStorage.readSecureData('token');
       print(token);
       String auth = 'Token $token';
@@ -172,9 +179,12 @@ class UserDetailsAPI {
   }
 }
 
+//Results API
 class ResultsApi {
+  //Adding results 
   static Future saveResults(
       {required int? result, required String? level}) async {
+        //Current date and time
     String dateNow = DateFormat("yyyy-MM-dd").format(DateTime.now());
     String timeNow = DateFormat("hh:mm:ss").format(DateTime.now());
     var token = await secureStorage.readSecureData('token');
@@ -201,6 +211,7 @@ class ResultsApi {
     return null;
   }
 
+  //Get results data
   Future<List<ResultModel>> getResults() async {
     try {
       var token = await secureStorage.readSecureData('token');

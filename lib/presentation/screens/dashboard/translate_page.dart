@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/translate_dropdown_widget.dart';
+import 'package:chinese_learning/presentation/screens/other/search_screen.dart';
 import 'package:chinese_learning/presentation/widgets/buttons/custom_button.dart';
 import 'package:chinese_learning/presentation/widgets/textfields/custom_white_textfield.dart';
 import 'package:chinese_learning/presentation/widgets/validators.dart';
@@ -62,7 +63,7 @@ class _TranslationPageState extends State<TranslationPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const LandingScreen(),
+                      builder: (context) => const SearchScreen(),
                     ));
               },
               icon: const Icon(Icons.search),

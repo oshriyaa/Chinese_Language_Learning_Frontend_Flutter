@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
+//Custom color package 
 class CustomColors {
   static const WHITE = Color(0xFFFFFFFF);
   static const L_RED = Color(0xFFF1E9E9);

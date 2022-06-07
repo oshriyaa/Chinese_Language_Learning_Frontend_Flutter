@@ -1,13 +1,20 @@
+import 'dart:math';
+
 import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
+import 'package:chinese_learning/presentation/screens/other/word_of_the_day.dart';
 import 'package:chinese_learning/presentation/widgets/buttons/custom_button.dart';
 
 import 'package:chinese_learning/presentation/widgets/validators.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../widgets/textfields/custom_textfield.dart';
+import '../dashboard/sub_preschooling.dart/chinese_alphabets.dart';
+
+int generatedElement = 0;
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -25,12 +32,48 @@ class _LoginFormState extends State<LoginForm> {
   bool _obscureText = true;
   bool? pressedLogin = false;
   var loginResponse;
+  late FlutterLocalNotificationsPlugin fltrNotification;
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    var androidInitilize = new AndroidInitializationSettings('app_icon');
+    //  var iOSinitilize = new IOSInitializationSettings();
+    var initilizationsSettings =
+        //  new InitializationSettings(androidInitilize, iOSinitilize);
+        new InitializationSettings(android: androidInitilize);
+    fltrNotification = new FlutterLocalNotificationsPlugin();
+    fltrNotification.initialize(initilizationsSettings,
+        onSelectNotification: (_) => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ChineseAlphabetPage(),
+            )));
+  }
+
+  Future showNotification() async {
+    var androidDetails = new AndroidNotificationDetails(
+        "Channel ID", "programmer",
+        importance: Importance.high);
+    var iSODetails = new IOSNotificationDetails();
+    var generalNotificationDetails =
+        new NotificationDetails(android: androidDetails);
+
+    var scheduledTime = DateTime.now().add(Duration(minutes: 5));
+    fltrNotification.schedule(
+        1,
+        "Word of the day",
+        "Check out today's word of the day.",
+        scheduledTime,
+        generalNotificationDetails);
   }
 
   @override
@@ -125,6 +168,16 @@ class _LoginFormState extends State<LoginForm> {
           ),
         );
       } else {
+        showNotification();
+        var list = ['1', '2', '3', '4', '5'];
+
+        // generates a new Random object
+        final _random = new Random();
+
+        // generate a random index based on the list length
+        // and use it to retrie ve the element
+        var element = list[_random.nextInt(list.length)];
+        generatedElement = int.parse(element);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => LandingScreen()));
       }

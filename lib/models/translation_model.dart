@@ -1,3 +1,4 @@
+//Translation API model
 class TranslationModel {
   Data? data;
 

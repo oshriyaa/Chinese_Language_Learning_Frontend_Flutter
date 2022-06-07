@@ -1,3 +1,4 @@
+//favourites api model
 import 'dart:convert';
 
 List<FavouritesModel> favouritesModelFromJson(String str) =>

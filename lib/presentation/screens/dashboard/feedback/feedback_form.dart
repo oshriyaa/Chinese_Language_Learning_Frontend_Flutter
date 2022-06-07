@@ -65,6 +65,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
               final subject = "$subjectInput";
               final message = '$feedbackInput';
               final url = 'mailto: $toEmail?subject=$subject&body=$message';
+              //Launch to Gmail 
               if (await canLaunch(url)) {
                 await launch(
                   url,

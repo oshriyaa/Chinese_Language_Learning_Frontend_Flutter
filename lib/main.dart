@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
         // pageTransitionType:  PageTransitionType.scale,
         backgroundColor: CustomColors.RED,
         // nextScreen: LandingScreen(),
+        
         nextScreen: FutureBuilder(
           builder: (context, snapshot) {
 

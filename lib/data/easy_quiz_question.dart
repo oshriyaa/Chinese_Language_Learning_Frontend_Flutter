@@ -1,3 +1,4 @@
+//Question list for easy question category
 List easyQuestionList = [
   {
     'question': "'Sorry' transates to 'Duìbùqǐ' in Chinese.",

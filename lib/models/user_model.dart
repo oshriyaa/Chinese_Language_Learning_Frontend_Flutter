@@ -1,3 +1,4 @@
+//User API model
 import 'dart:convert';
 
 List<UserModel> userModelFromJson(String str) =>

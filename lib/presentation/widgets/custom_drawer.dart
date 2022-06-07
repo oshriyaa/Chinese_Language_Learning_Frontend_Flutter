@@ -2,6 +2,7 @@ import 'package:chinese_learning/models/user_model.dart';
 import 'package:chinese_learning/network/api_service.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/client_info.dart';
+import 'package:chinese_learning/presentation/screens/dashboard/feedback/feedback_page.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/sub_about/about.dart';
 import 'package:chinese_learning/presentation/screens/other/favourites_screen.dart';
 import 'package:chinese_learning/presentation/screens/other/profile_screen.dart';
@@ -23,12 +24,6 @@ class CustomDrawer extends StatefulWidget {
 class _CustomDrawerState extends State<CustomDrawer> {
   final SecureStorage secureStorage = SecureStorage();
   bool? pressedLogout = false;
-
-  Future openLogoutDialog() => showDialog(
-      context: context,
-      builder: (contex) => LogoutAlertDialog(
-            imageLink: 'lib/assets/logoutLogo.png',
-          ));
 
   @override
   Widget build(BuildContext context) {
@@ -55,20 +50,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         onClicked: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ProfileScreen(
-                                
-                              ),
+                              builder: (context) => ProfileScreen(),
                             )),
                       ),
                     );
-                 
+                    //listing all buttons in drawer
                   } else if (snapshot.hasError) {
                     return Text(snapshot.error.toString());
                   } else {
                     return Center(
                       child: Container(
                         child: Text(
-                            "An error was caused while establishing connection", style: StyleText.categoryHeading,),
+                          "An error was caused while establishing connection",
+                          style: StyleText.categoryHeading,
+                        ),
                       ),
                     );
                     CircularProgressIndicator();
@@ -101,10 +96,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   text: "Send Feedback",
                   icon: Icons.book,
                   onClicked: () => selectedItem(context, 3)),
-              buildDrawerItem(
-                  text: "Logout",
-                  icon: Icons.logout,
-                  onClicked: () => selectedItem(context, 4))
             ],
           ),
         ),
@@ -162,12 +153,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AboutPage(),
+              builder: (context) => FeedbackPage(),
             ));
         break;
-      case 4:
-        openLogoutDialog();
-        break;
+
       case 5:
         Navigator.push(
             context,
@@ -192,12 +181,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
       title: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-
           Text(
             name,
             style: StyleText.categoryHeading,
           ),
-          
         ],
       ),
       // subtitle: Text(email, style: StyleText.featureSubHeading,),
