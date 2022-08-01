@@ -4,19 +4,6 @@ Namaste China is a mobile applciation built using FLutter. This application can 
 
 This particular project is the frontend of the Namaste China project which is bulit using Flutter framework.
 
-This project consists of built APIs for:
-
-Extracting data from database
-- Registering a user
-- User login, one time token generation
-- GET APIs to get user data, user interations such as favourite list, test results and more.
-- POST APIs to post user interations such as favourite list, test results user data and more.
-
-
-The API built is deployed using heroku.
-
-The applicaiton uses multiple plugins.
-
 <h3>The features of the mobile application are as follows:</h3>
 
  - <h4>Translated Dictionary</h4>
@@ -51,3 +38,12 @@ The applicaiton uses multiple plugins.
        This feature reads audio input in English and translated the audio to word to be translated.
  - <h4> Favourite </h4> 
       The favourite feature allows users to favourite the phrases they like and would like to come back to. This feature lets users store and access their favourite phrases quickly.
+ 
+ 
+Screenshots of the included pages: 
+ 
+ <img src="https://user-images.githubusercontent.com/89770092/182071037-739d553c-77c8-493b-8e7b-9954904b4e16.jpg" width="200">    <img src="https://user-images.githubusercontent.com/89770092/182071060-8992adb4-025d-4977-bdd1-fdb92eae92b9.jpg" width="200">  <img src="https://user-images.githubusercontent.com/89770092/182071119-eedebd58-a957-4eaa-aae2-ac28548be448.jpg" width="200">  <img src="https://user-images.githubusercontent.com/89770092/182071131-53f4e65b-6b6b-4776-aaa4-c751428c8ed8.jpg" width="200">  <img src="https://user-images.githubusercontent.com/89770092/182071138-677648ad-5456-452f-a3f2-6d99bc502a05.jpg" width="200">
+ <img src="https://user-images.githubusercontent.com/89770092/182071156-dbc5a824-be66-44b4-8c0a-9e01d0f80c72.jpg" width="200"> <img src="https://user-images.githubusercontent.com/89770092/182071170-4bc772ca-d240-4169-93ab-70b4022e1e52.jpg" width="200">  <img src="https://user-images.githubusercontent.com/89770092/182071182-fe67f365-2018-4f16-abfe-c4332005f81c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/89770092/182071197-5f6aeab0-1aa2-4a3c-aa28-e9943285f133.jpg" width="200">  <img src="https://user-images.githubusercontent.com/89770092/182071211-43d21110-9493-4eec-808d-6467ea7a1402.jpg" width="200">  <img src="https://user-images.githubusercontent.com/89770092/182071219-a10762da-bb2f-49ef-b1ef-013486edc32f.jpg" width="200">
+ <img src="https://user-images.githubusercontent.com/89770092/182071224-3b24c44f-8b86-44ed-87c7-7c30b188de43.jpg" width="200">
+ 
+ 
