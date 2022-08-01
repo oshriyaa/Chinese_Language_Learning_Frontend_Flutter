@@ -1,16 +1,18 @@
 # chinese_learning
 
-A new Flutter project.
+Namaste China is a mobile applciation built using FLutter. This application can be used for Chinese language leraning purpuses. This applciaiton consists of Nepali, English and Chinese languages.
 
-## Getting Started
+This particular project is the frontend of the Namaste China project which is bulit using Flutter framework.
 
-This project is a starting point for a Flutter application.
+This project consists of built APIs for:
 
-A few resources to get you started if this is your first Flutter project:
+Extracting data from database
+- Registering a user
+- User login, one time token generation
+- GET APIs to get user data, user interations such as favourite list, test results and more.
+- POST APIs to post user interations such as favourite list, test results user data and more.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The API built is deployed using heroku.
+
+The applicaiton uses multiple plugins
