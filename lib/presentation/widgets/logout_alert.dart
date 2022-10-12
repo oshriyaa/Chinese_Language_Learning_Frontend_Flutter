@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../secure_storage/secure_storage.dart';
 import '../colors/colors.dart';
-import '../screens/login pages/login_screen.dart';
+import '../../features/authentication/presentation/login pages/login_screen.dart';
 
 class LogoutAlertDialog extends StatelessWidget {
   final String? imageLink;

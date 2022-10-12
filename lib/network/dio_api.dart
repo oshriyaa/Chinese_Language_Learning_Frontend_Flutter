@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../models/vocabulary_model.dart';
+import '../features/dictionary/data/model/vocabulary_model.dart';
 import 'url.dart';
 
 getHttp() async {

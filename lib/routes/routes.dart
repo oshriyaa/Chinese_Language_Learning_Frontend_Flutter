@@ -1,5 +1,5 @@
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
-import 'package:chinese_learning/presentation/screens/login%20pages/login_screen.dart';
+import 'package:chinese_learning/features/authentication/presentation/login%20pages/login_screen.dart';
 import 'package:chinese_learning/routes/route_constant.dart';
 import 'package:flutter/material.dart';
 

@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:chinese_learning/models/search_vocabulary_model.dart';
-import 'package:chinese_learning/presentation/screens/dashboard/sub_vocabulary/word_widget.dart';
+import 'package:chinese_learning/features/dictionary/data/model/search_vocabulary_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../../../features/dictionary/presentation/word_widget.dart';
 import '../../../network/api_service.dart';
 import '../../colors/colors.dart';
 import '../../styling/textstyle.dart';

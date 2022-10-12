@@ -1,13 +1,12 @@
 import 'package:chinese_learning/models/favourites_model.dart';
 import 'package:chinese_learning/network/api_service.dart';
-import 'package:chinese_learning/routes/route_constant.dart';
 import 'package:flutter/material.dart';
-
-import '../../../models/vocabulary_model.dart';
+import '../../../features/dictionary/data/model/vocabulary_model.dart';
+import '../../../features/dictionary/data/datasource/vocabulary_service.dart';
+import '../../../features/dictionary/presentation/word_widget.dart';
 import '../../colors/colors.dart';
 import '../../styling/textstyle.dart';
 import '../dashboard/landing_screen.dart';
-import '../dashboard/sub_vocabulary/word_widget.dart';
 
 class FavouritesScreen extends StatefulWidget {
   const FavouritesScreen({Key? key}) : super(key: key);
@@ -61,7 +60,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                           return FutureBuilder(
                             future: DictionaryService().getMeaning(),
                             builder: (context,
-                                AsyncSnapshot<List<VocabularyModel>> snapshot) {
+                                AsyncSnapshot<dynamic> snapshot) {
                               if (snapshot.hasData) {
                                 return Column(
                                   children: List.generate(

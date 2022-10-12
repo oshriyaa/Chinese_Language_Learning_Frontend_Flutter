@@ -1,18 +1,17 @@
-import 'package:chinese_learning/models/user_model.dart';
-import 'package:chinese_learning/network/api_service.dart';
+import 'package:chinese_learning/features/authentication/data/model/user_model.dart';
+import 'package:chinese_learning/features/profile/domain/profile_provider.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/client_info.dart';
-import 'package:chinese_learning/presentation/screens/dashboard/feedback/feedback_page.dart';
-import 'package:chinese_learning/presentation/screens/dashboard/sub_about/about.dart';
+import 'package:chinese_learning/features/static_features/feedback/feedback_page.dart';
 import 'package:chinese_learning/presentation/screens/other/favourites_screen.dart';
-import 'package:chinese_learning/presentation/screens/other/profile_screen.dart';
+import 'package:chinese_learning/features/profile/presentation/profile_screen.dart';
 import 'package:chinese_learning/presentation/screens/other/search_screen.dart';
 import 'package:chinese_learning/presentation/screens/other/word_of_the_day.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import '../../features/profile/data/datasource/userdata_service.dart';
 import '../../secure_storage/secure_storage.dart';
-import 'logout_alert.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -27,51 +26,39 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    final name = "Oshriya Manandhar ";
-    // final email = "manandharoshriya@gmail.com";
+    var size = MediaQuery.of(context).size;
     return Drawer(
       child: SafeArea(
         child: Material(
           color: CustomColors.L_RED,
           child: ListView(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            // padding: const EdgeInsets.symmetric(horizontal: 20),
             children: [
-              FutureBuilder(
-                future: UserDetailsAPI().getUserDetails(),
-                builder: (context, AsyncSnapshot<List<UserModel>> snapshot) {
-                  // print('Data $snapshot');
-                  if (snapshot.hasData) {
-                    final data = snapshot.data![0];
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: buildHeader(
-                        name: data.userName!,
-                        username: data.email!,
-                        onClicked: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProfileScreen(),
-                            )),
-                      ),
-                    );
-                    //listing all buttons in drawer
-                  } else if (snapshot.hasError) {
-                    return Text(snapshot.error.toString());
-                  } else {
-                    return Center(
-                      child: Container(
-                        child: Text(
-                          "An error was caused while establishing connection",
-                          style: StyleText.categoryHeading,
-                        ),
-                      ),
-                    );
-                    CircularProgressIndicator();
+              Center(
+                child: Consumer<ProfileProvider>(builder: ((context, provider, child) {
+                  if (provider.userData == null) {
+                    return buildHeader(name: "Loading...",  onClicked: (){});
                   }
-                },
+                  final data = provider.userData![0];
+                  print(data.email);
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: buildHeader(
+                      name: data.userName!,
+                      // username: data.email!,
+                      onClicked: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ProfileScreen(),
+                          )),
+                    ),
+                  );
+                })),
               ),
-              Divider(
-                color: CustomColors.GREY,
+             
+              const Divider(
+                color: CustomColors.RED,
+                thickness: 1,
               ),
               buildDrawerItem(
                   text: "Search",
@@ -85,7 +72,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   text: "word of the day",
                   icon: Icons.emoji_objects,
                   onClicked: () => selectedItem(context, 5)),
-              Divider(
+              const Divider(
                 color: CustomColors.GREY,
               ),
               buildDrawerItem(
@@ -108,8 +95,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
     required IconData icon,
     VoidCallback? onClicked,
   }) {
-    final color = CustomColors.RED;
-    final hoverColor = CustomColors.RED;
+    const color = CustomColors.RED;
+    const hoverColor = CustomColors.RED;
     return ListTile(
       tileColor: CustomColors.L_RED,
       leading: Icon(
@@ -132,28 +119,28 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => SearchScreen(),
+              builder: (context) => const SearchScreen(),
             ));
         break;
       case 1:
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => FavouritesScreen(),
+              builder: (context) => const FavouritesScreen(),
             ));
         break;
       case 2:
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ClientInformationPage(),
+              builder: (context) => const ClientInformationPage(),
             ));
         break;
       case 3:
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => FeedbackPage(),
+              builder: (context) => const FeedbackPage(),
             ));
         break;
 
@@ -161,7 +148,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => WordOfTheDay(),
+              builder: (context) => const WordOfTheDay(),
             ));
         break;
     }
@@ -169,11 +156,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   Widget buildHeader({
     required String name,
-    required String username,
     required VoidCallback onClicked,
   }) {
     return ListTile(
-      leading: Icon(
+      leading: const Icon(
         Icons.person,
         size: 50,
         color: CustomColors.RED,
@@ -187,7 +173,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
         ],
       ),
-      // subtitle: Text(email, style: StyleText.featureSubHeading,),
       onTap: onClicked,
     );
   }
