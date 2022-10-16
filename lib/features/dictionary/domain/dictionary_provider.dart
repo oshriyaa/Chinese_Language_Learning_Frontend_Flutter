@@ -3,8 +3,8 @@ import 'package:chinese_learning/features/dictionary/data/model/vocabulary_model
 import 'package:flutter/material.dart';
 
 class DictionaryProvider extends ChangeNotifier {
-  List<VocabularyModel>? _vocabulary;
-   List<VocabularyModel>?  get vocabulary => _vocabulary;
+  List<VocabularyModel> _vocabulary = [];
+   List<VocabularyModel>  get vocabulary => _vocabulary;
 
   fetchVocabulary() async {
     var allVocabulary = await DictionaryService().getMeaning();

@@ -17,7 +17,6 @@ class WordDisplayScreen extends StatefulWidget {
 }
 
 class _WordDisplayScreenState extends State<WordDisplayScreen> {
-  
   @override
   void initState() {
     callProvider();
@@ -31,7 +30,7 @@ class _WordDisplayScreenState extends State<WordDisplayScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // var size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: CustomColors.L_RED,
       appBar: AppBar(
@@ -62,56 +61,71 @@ class _WordDisplayScreenState extends State<WordDisplayScreen> {
           ),
         ],
       ),
-      body: Consumer<DictionaryProvider>(
-          builder: ((context, provider, child) {
+      body: Consumer<DictionaryProvider>(builder: ((context, provider, child) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
           child: SingleChildScrollView(
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-                itemCount: provider.vocabulary!.length,
-                itemBuilder: (context, index) {
-                  final data = provider.vocabulary![index];
-                  return data.categoryId == widget.categoryID
-                      ? WordWidget(
-                          inEng: data.inEnglish!,
-                          inNep: data.inNepali!,
-                          inChi: data.inChinese!,
-                          inPin: data.inPinYin!,
-                          inDev: data.inDevnagari!,
-                          audio: data.audio,
-                          favPressed: () {
-                            FavouritesAPI.addFavourites(
-                                word: (data.wordId));
-                            final snackBar = SnackBar(
-                              content: const Text(
-                                'Favourites list has been updated.',
-                                style: StyleText.testWhiteAnswerButtons,
-                              ),
-                              backgroundColor: (CustomColors.RED),
-                              action: SnackBarAction(
-                                label: 'View.',
-                                textColor: CustomColors.WHITE,
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const FavouritesScreen(),
-                                    ),
-                                  );
-                                },
-                              ),
+            child: (provider.vocabulary.length == 0)
+                ? Container(
+                    height: size.height * 0.8,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: CircularProgressIndicator( color: CustomColors.RED,),
+                          ),
+                          Text("Loading.." ,style: StyleText.featureHeading,)
+                        ],
+                      ),
+                    ),
+                  )
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: provider.vocabulary.length,
+                    itemBuilder: (context, index) {
+                      final data = provider.vocabulary[index];
+                      return data.categoryId == widget.categoryID
+                          ? WordWidget(
+                              inEng: data.inEnglish!,
+                              inNep: data.inNepali!,
+                              inChi: data.inChinese!,
+                              inPin: data.inPinYin!,
+                              inDev: data.inDevnagari!,
+                              audio: data.audio,
+                              favPressed: () {
+                                FavouritesAPI.addFavourites(
+                                    word: (data.wordId));
+                                final snackBar = SnackBar(
+                                  content: const Text(
+                                    'Favourites list has been updated.',
+                                    style: StyleText.testWhiteAnswerButtons,
+                                  ),
+                                  backgroundColor: (CustomColors.RED),
+                                  action: SnackBarAction(
+                                    label: 'View.',
+                                    textColor: CustomColors.WHITE,
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const FavouritesScreen(),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              },
+                            )
+                          : const SizedBox(
+                              height: 0,
                             );
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
-                          },
-                        )
-                  : const SizedBox(
-                      height: 0,
-                    );
-                }),
+                    }),
           ),
         );
       })),

@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../features/profile/domain/profile_provider.dart';
 import '../../../features/static_features/preschooling/preschooling.dart';
+import '../../../features/test/domain/result_provider.dart';
 import '../../../features/test/presentation/test_page.dart';
 import '../../../secure_storage/secure_storage.dart';
 import '../../widgets/feature_tile.dart';
@@ -45,6 +46,7 @@ class _LandingScreenState extends State<LandingScreen> {
 
   callProvider() async {
     await Provider.of<ProfileProvider>(context, listen: false).fetchUserData();
+    await Provider.of<ResultProvider>(context, listen: false).fetchUserResult();
   }
 
 
@@ -177,7 +179,6 @@ class _LandingScreenState extends State<LandingScreen> {
               image: 'lib/assets/logout.png',
               tapFunction: () {
                 openLogoutDialog(
-                  
                 );
               },
             ),

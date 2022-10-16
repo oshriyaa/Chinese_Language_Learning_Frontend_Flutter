@@ -1,14 +1,10 @@
-import 'package:chinese_learning/features/test/data/model/results_model.dart';
 import 'package:chinese_learning/features/test/domain/result_provider.dart';
-import 'package:chinese_learning/presentation/screens/other/result_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../authentication/data/model/user_model.dart';
 import '../../../presentation/colors/colors.dart';
+import '../../../presentation/screens/other/result_widget.dart';
 import '../../../presentation/styling/textstyle.dart';
 import '../../../presentation/screens/dashboard/landing_screen.dart';
-import '../../test/data/datasource/result_service.dart';
-import '../data/datasource/userdata_service.dart';
 import '../domain/profile_provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -21,6 +17,17 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  @override
+  void initState() {
+    callProvider();
+    super.initState();
+  }
+
+  callProvider() async {
+    await Provider.of<ProfileProvider>(context, listen: false).fetchUserData();
+    await Provider.of<ResultProvider>(context, listen: false).fetchUserResult();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -152,10 +159,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: SingleChildScrollView(
                         child: Consumer<ResultProvider>(
                             builder: ((context, provider, child) {
-                          if (provider.userResult == null) {
+                          if (provider.userResult.length == 0) {
                             return Text("No data");
                           }
-                          return Text('Has data');
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: provider.userResult.length,
+                            itemBuilder: (context, index) {
+                              final data = provider.userResult[index];
+                              return ResultWidget(
+                                  date: data.testDate,
+                                  time: data.testTime,
+                                  level: data.level,
+                                  score: data.result,
+                                  iconColor: data.level == 'easy'
+                                      ? CustomColors.GREEN
+                                      : data.level == 'medium'
+                                          ? CustomColors.YELLOW
+                                          : CustomColors.RED);
+                            },
+                          );
+
+                          // return Column(
+                          //   children: List.generate(
+                          //     provider.userResult.length,
+                          //     (index) {
                         })),
 
                         // child: FutureBuilder(

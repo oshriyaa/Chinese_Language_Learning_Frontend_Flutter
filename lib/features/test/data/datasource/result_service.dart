@@ -17,7 +17,7 @@ class ResultsApi {
 
 
     final response = await http.post(
-      Uri.parse("http://10.0.2.2:8000/api/results/post/"),
+      Uri.parse("http://namaste-china-app.herokuapp.com/api/results/post/"),
       headers: <String, String>{
         'Authorization': 'Token $token',
       },
@@ -45,7 +45,7 @@ class ResultsApi {
       print("AUTH $auth");
 
       final response = await http.get(
-          Uri.parse("http://10.0.2.2:8000/api/results/get/"),
+          Uri.parse("http://namaste-china-app.herokuapp.com/api/results/get/"),
           headers: <String, String>{
             'Authorization': 'Token $token',
           });

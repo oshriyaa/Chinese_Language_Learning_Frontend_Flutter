@@ -1,12 +1,12 @@
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TranslateDropdown extends StatefulWidget {
   final String word1;
   final String word2;
   final String word3;
+  
 
   const TranslateDropdown({Key? key, required this.word1, required this.word2, required this.word3}) : super(key: key);
 
