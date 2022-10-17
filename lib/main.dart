@@ -1,5 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:chinese_learning/features/dictionary/domain/dictionary_provider.dart';
+import 'package:chinese_learning/features/favourites/data/datasource/favourites_service.dart';
+import 'package:chinese_learning/features/favourites/domain/favourites_provider.dart';
 import 'package:chinese_learning/features/profile/domain/profile_provider.dart';
 import 'package:chinese_learning/features/test/domain/result_provider.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
@@ -37,6 +39,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => DictionaryProvider()),
         ChangeNotifierProvider(create: (_) => ResultProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ChangeNotifierProvider(create: (_) => FavouriteProvider()),
+
       ],
       builder: (context, child) {
         return MaterialApp(

@@ -1,7 +1,7 @@
 
 import 'package:chinese_learning/presentation/colors/colors.dart';
-import 'package:chinese_learning/presentation/screens/other/favourites_screen.dart';
-import 'package:chinese_learning/presentation/screens/other/search_screen.dart';
+import 'package:chinese_learning/features/favourites/favourites_screen.dart';
+import 'package:chinese_learning/features/search/search_screen.dart';
 import 'package:chinese_learning/presentation/styling/textstyle.dart';
 import 'package:chinese_learning/presentation/widgets/category_tile.dart';
 import 'package:chinese_learning/presentation/widgets/custom_drawer.dart';

@@ -1,9 +1,8 @@
 import 'dart:math';
-import 'package:chinese_learning/features/dictionary/data/model/vocabulary_model.dart';
 import 'package:chinese_learning/features/dictionary/presentation/word_widget.dart';
 import 'package:flutter/material.dart';
 import '../../../features/dictionary/data/datasource/vocabulary_service.dart';
-import '../../../network/api_service.dart';
+import '../../../features/favourites/data/datasource/favourites_service.dart';
 import '../../colors/colors.dart';
 import '../../styling/textstyle.dart';
 import '../dashboard/landing_screen.dart';
@@ -19,7 +18,6 @@ class WordOfTheDay extends StatefulWidget {
 class WordOfTheDayState extends State<WordOfTheDay> {
   @override
   Widget build(BuildContext context) {
-    List test = [1];
     return Scaffold(
       backgroundColor: CustomColors.L_RED,
       appBar: AppBar(
@@ -43,14 +41,10 @@ class WordOfTheDayState extends State<WordOfTheDay> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // TextButton(
-            //   onPressed: showNotification,
-            //   child: Text('Press'),
-            // ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Center(
+            const Center(
                 child: Text(
               "Word of the Day",
               style: StyleText.categoryHeading,

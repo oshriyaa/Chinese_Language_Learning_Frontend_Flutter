@@ -3,8 +3,8 @@ import 'package:chinese_learning/presentation/widgets/category_tile.dart';
 import 'package:flutter/material.dart';
 
 import '../../../presentation/colors/colors.dart';
-import '../../../presentation/screens/other/favourites_screen.dart';
-import '../../../presentation/screens/other/search_screen.dart';
+import '../../favourites/favourites_screen.dart';
+import '../../search/search_screen.dart';
 import '../../../presentation/styling/textstyle.dart';
 import '../../../presentation/widgets/custom_drawer.dart';
 import 'chinese_alphabets.dart';

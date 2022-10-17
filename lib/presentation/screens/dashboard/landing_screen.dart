@@ -1,7 +1,7 @@
 import 'package:chinese_learning/features/dictionary/presentation/category.dart';
 import 'package:chinese_learning/presentation/colors/colors.dart';
 import 'package:chinese_learning/features/static_features/feedback/feedback_page.dart';
-import 'package:chinese_learning/presentation/screens/other/favourites_screen.dart';
+import 'package:chinese_learning/features/favourites/favourites_screen.dart';
 import 'package:chinese_learning/presentation/widgets/logout_alert.dart';
 import 'package:chinese_learning/features/static_features/about/about.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/client_info.dart';
@@ -16,7 +16,7 @@ import '../../../features/test/presentation/test_page.dart';
 import '../../../secure_storage/secure_storage.dart';
 import '../../widgets/feature_tile.dart';
 import '../../widgets/custom_drawer.dart';
-import '../other/search_screen.dart';
+import '../../../features/search/search_screen.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({Key? key}) : super(key: key);
@@ -179,6 +179,7 @@ class _LandingScreenState extends State<LandingScreen> {
               image: 'lib/assets/logout.png',
               tapFunction: () {
                 openLogoutDialog(
+                  
                 );
               },
             ),

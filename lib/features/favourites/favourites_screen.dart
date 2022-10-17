@@ -1,12 +1,12 @@
-import 'package:chinese_learning/models/favourites_model.dart';
-import 'package:chinese_learning/network/api_service.dart';
+import 'package:chinese_learning/features/dictionary/presentation/shimmer_word_widget.dart';
 import 'package:flutter/material.dart';
-import '../../../features/dictionary/data/model/vocabulary_model.dart';
 import '../../../features/dictionary/data/datasource/vocabulary_service.dart';
 import '../../../features/dictionary/presentation/word_widget.dart';
-import '../../colors/colors.dart';
-import '../../styling/textstyle.dart';
-import '../dashboard/landing_screen.dart';
+import '../../presentation/colors/colors.dart';
+import '../../presentation/screens/dashboard/landing_screen.dart';
+import '../../presentation/styling/textstyle.dart';
+import 'data/datasource/favourites_service.dart';
+import 'data/model/favourites_model.dart';
 
 class FavouritesScreen extends StatefulWidget {
   const FavouritesScreen({Key? key}) : super(key: key);
@@ -18,6 +18,7 @@ class FavouritesScreen extends StatefulWidget {
 class _FavouritesScreenState extends State<FavouritesScreen> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: CustomColors.L_RED,
       appBar: AppBar(
@@ -56,11 +57,10 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                         snapshot2.data!.length,
                         (index) {
                           final data2 = snapshot2.data![index];
-
                           return FutureBuilder(
                             future: DictionaryService().getMeaning(),
-                            builder: (context,
-                                AsyncSnapshot<dynamic> snapshot) {
+                            builder:
+                                (context, AsyncSnapshot<dynamic> snapshot) {
                               if (snapshot.hasData) {
                                 return Column(
                                   children: List.generate(
@@ -95,7 +95,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                               } else if (snapshot.hasError) {
                                 return Text(snapshot.error.toString());
                               } else {
-                                return const CircularProgressIndicator();
+                                return ShimmerWord();
                               }
                             },
                           );
@@ -103,7 +103,13 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                       ),
                     );
                   }
-                  return CircularProgressIndicator();
+                  return SizedBox(
+                    height: size.height * 0.8,
+                    child: Center(
+                        child: const CircularProgressIndicator(
+                      color: CustomColors.RED,
+                    )),
+                  );
                 },
               )
             ],

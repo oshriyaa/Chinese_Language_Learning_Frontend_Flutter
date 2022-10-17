@@ -2,10 +2,10 @@ import 'package:chinese_learning/features/dictionary/domain/dictionary_provider.
 import 'package:chinese_learning/features/dictionary/presentation/word_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../network/api_service.dart';
 import '../../../presentation/colors/colors.dart';
-import '../../../presentation/screens/other/favourites_screen.dart';
-import '../../../presentation/screens/other/search_screen.dart';
+import '../../favourites/data/datasource/favourites_service.dart';
+import '../../favourites/favourites_screen.dart';
+import '../../search/search_screen.dart';
 import '../../../presentation/styling/textstyle.dart';
 
 class WordDisplayScreen extends StatefulWidget {
@@ -66,14 +66,14 @@ class _WordDisplayScreenState extends State<WordDisplayScreen> {
           padding: const EdgeInsets.symmetric(vertical: 5),
           child: SingleChildScrollView(
             child: (provider.vocabulary.length == 0)
-                ? Container(
+                ? SizedBox(
                     height: size.height * 0.8,
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Padding(
-                            padding: const EdgeInsets.all(15.0),
+                            padding: EdgeInsets.all(15.0),
                             child: CircularProgressIndicator( color: CustomColors.RED,),
                           ),
                           Text("Loading.." ,style: StyleText.featureHeading,)

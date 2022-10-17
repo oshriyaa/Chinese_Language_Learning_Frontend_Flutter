@@ -1,9 +1,5 @@
-import 'dart:ffi';
-
 import 'package:chinese_learning/network/api_service.dart';
-import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
-import 'package:chinese_learning/presentation/screens/dashboard/translate_dropdown_widget.dart';
-import 'package:chinese_learning/presentation/screens/other/search_screen.dart';
+import 'package:chinese_learning/features/search/search_screen.dart';
 import 'package:chinese_learning/presentation/widgets/buttons/custom_button.dart';
 import 'package:chinese_learning/presentation/widgets/textfields/custom_white_textfield.dart';
 import 'package:chinese_learning/presentation/widgets/validators.dart';
@@ -128,7 +124,6 @@ class _TranslationPageState extends State<TranslationPage> {
                                   setState(() {
                                     firstDropDown = newValue!.toString();
                                   });
-                                  print(firstDropDown);
                                 },
                                 items: <String>[
                                   'English',
@@ -244,10 +239,6 @@ class _TranslationPageState extends State<TranslationPage> {
                     if (ispressed == true) {
                       if (_translateFormKey.currentState!.validate()) {
                         _translateFormKey.currentState!.save();
-
-                        print(firstDropDown);
-                        print(secondDropdown);
-
                         firstDropDown == 'English'
                             ? source = 'en'
                             : firstDropDown == 'Nepali'
@@ -289,7 +280,7 @@ class _TranslationPageState extends State<TranslationPage> {
                             child: const Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 20),
-                              child: const Text(
+                              child: Text(
                                 "Translated text will be displayed here.",
                                 style: TextStyle(
                                     fontFamily: 'Bitter',

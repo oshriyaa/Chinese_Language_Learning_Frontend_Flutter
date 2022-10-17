@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:chinese_learning/features/dictionary/data/model/search_vocabulary_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../../../features/dictionary/presentation/word_widget.dart';
-import '../../../network/api_service.dart';
-import '../../colors/colors.dart';
-import '../../styling/textstyle.dart';
-import '../dashboard/landing_screen.dart';
+import '../dictionary/presentation/word_widget.dart';
+import '../../presentation/colors/colors.dart';
+import '../../presentation/styling/textstyle.dart';
+import '../../presentation/screens/dashboard/landing_screen.dart';
+import '../favourites/data/datasource/favourites_service.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -25,8 +25,8 @@ class _SearchScreenState extends State<SearchScreen> {
       loading = true;
     });
     _list.clear();
-    final response =
-        await http.get(Uri.parse("http://10.0.2.2:8000/vocabulary"));
+    final response = await http
+        .get(Uri.parse("http://namaste-china-app.herokuapp.com/vocabulary"));
     if (response.statusCode == 200) {
       final data = jsonDecode(utf8.decode(response.bodyBytes));
       setState(() {
@@ -48,7 +48,6 @@ class _SearchScreenState extends State<SearchScreen> {
     }
 
     _list.forEach((index) {
-
       if (index.inEnglish
               .toString()
               .toLowerCase()
@@ -72,6 +71,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: CustomColors.L_RED,
       appBar: AppBar(
@@ -117,8 +117,25 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
           loading
-              ? const Center(
-                  child: CircularProgressIndicator(),
+              ? SizedBox(
+                  height: size.height * 0.7,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.all(15.0),
+                          child: CircularProgressIndicator(
+                            color: CustomColors.RED,
+                          ),
+                        ),
+                        Text(
+                          "Loading..",
+                          style: StyleText.featureHeading,
+                        )
+                      ],
+                    ),
+                  ),
                 )
               : Expanded(
                   child: _search.isNotEmpty || controller.text.isNotEmpty
@@ -146,8 +163,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             return Container(
                                 padding: EdgeInsets.all(10.0),
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     WordWidget(
                                       inEng: displayList.inEnglish,
