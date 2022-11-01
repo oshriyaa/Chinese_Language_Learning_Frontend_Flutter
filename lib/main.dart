@@ -1,6 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:chinese_learning/features/dictionary/domain/dictionary_provider.dart';
-import 'package:chinese_learning/features/favourites/data/datasource/favourites_service.dart';
 import 'package:chinese_learning/features/favourites/domain/favourites_provider.dart';
 import 'package:chinese_learning/features/profile/domain/profile_provider.dart';
 import 'package:chinese_learning/features/test/domain/result_provider.dart';

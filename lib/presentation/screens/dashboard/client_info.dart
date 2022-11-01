@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chinese_learning/presentation/screens/dashboard/landing_screen.dart';
 import 'package:chinese_learning/presentation/widgets/buttons/custom_icon_botton.dart';
@@ -40,7 +39,7 @@ class _ClientInformationPageState extends State<ClientInformationPage> {
         ),
         // height: 700,
         width: 1000,
-        margin: EdgeInsets.symmetric(horizontal: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         // color: CustomColors.GREY,
         child: Image.asset(
           urlImage,
@@ -51,7 +50,7 @@ class _ClientInformationPageState extends State<ClientInformationPage> {
   Widget buildIndicator() => AnimatedSmoothIndicator(
         activeIndex: activeIndex,
         count: urlImages.length,
-        effect: WormEffect(
+        effect: const WormEffect(
           dotColor: CustomColors.GREY,
           activeDotColor: CustomColors.RED,
         ),
@@ -120,11 +119,11 @@ class _ClientInformationPageState extends State<ClientInformationPage> {
             btn2: 'Facebook',
             btn2icn: Icons.facebook,
             save2: () async {
-              const url = 'https://www.facebook.com/Handachinese';
-              if (await canLaunch(url)) {
-                await launch(
+              final Uri url = Uri.parse('https://www.facebook.com/Handachinese');
+              if (await canLaunchUrl(url)) {
+                await launchUrl(
                   url,
-                  forceSafariVC: false,
+                  // forceSafariVC: false,
                 );
               }
             },

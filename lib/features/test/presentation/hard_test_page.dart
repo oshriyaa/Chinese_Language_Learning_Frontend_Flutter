@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:chinese_learning/features/test/data/questions/hard_quiz_question.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../presentation/colors/colors.dart';
@@ -22,7 +23,7 @@ class _HardTestQuizPageState extends State<HardTestQuizPage> {
 
   late AudioCache audioCache;
   
-  get hardQuizQuestionData => null;
+  // get hardQuizQuestionData => null;
   @override
   void initState() {
     super.initState();
